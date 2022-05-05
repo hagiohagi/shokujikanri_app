@@ -19,8 +19,18 @@
         <div class="container">
             <nav class="navbar navbar-light">
                 <span class="navbar-brand mb-0 h1">食事記録</span>
+            </div>
+
                 @if( Auth::check() )
                 <logout-component></logout-component>
+                <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('ログアウト') }}
+                            </x-dropdown-link>
+                        </form>
                 @else
                 @endguest
             </nav>
