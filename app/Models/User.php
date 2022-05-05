@@ -17,10 +17,22 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $connection = 'sqlite';
+    
     protected $fillable = [
-        'name',
+        'user_name',
+        'sex_type',
+        'height',
+        'weight',
+        'fat_percentage',
+        'sport_name',
+        'sport_position',
         'email',
         'password',
+        'create_user_id',
+        'update_user_id',
+
+        'name'
     ];
 
     /**
@@ -41,4 +53,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function mealrecords()
+    {
+        return $this->hasMany(MealRecord::class, 'user_id', 'user_id');
+    }
+
+    public function surveyInfos()
+    {
+        return $this->hasManyThrough(
+            SurveyInfo::class,
+            UserSurveyMapping::class,
+            'user_id',
+            'survey_id',
+            '',
+            'survey_id');
+    }
 }
