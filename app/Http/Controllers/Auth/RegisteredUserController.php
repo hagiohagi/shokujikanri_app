@@ -35,15 +35,33 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'user_name' => ['required', 'string'],
+            'sex_type' =>['required','string'],
+            'height' =>['required','integer','max:999'],
+            'weight' =>['required','integer','max:999'],
+            'fat_percentage' =>['required','integer','max:99'],
+            'sport_name' =>['required','string'],
+            'sport_position' =>['string'],
+            'email_confirmation' => ['required', 'string'],
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password_confirmation' => ['required', 'string'],
+            'resarch_number' => ['required', 'integer'],
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'user_name' => $request['user_name'],
+            'sex_type' =>$request['sex_type'],
+            'height' =>$request['height'],
+            'weight' =>$request['weight'],
+            'fat_percentage' =>$request['fat_percentage'],
+            'sport_name' =>$request['sport_name'],
+            'sport_position' =>$request['sport_positon'] ,
+            'email' =>$request['email'],
+            'password' =>Hash::make($request['password']),
+            'ayth_type' => 1,
+            // 'create_user_id' => Auth::id(),
+            'create_user_id' => 1, ##とりあえずテスト用
         ]);
 
         event(new Registered($user));

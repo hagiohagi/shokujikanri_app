@@ -31,8 +31,6 @@ class User extends Authenticatable
         'password',
         'create_user_id',
         'update_user_id',
-
-        'name'
     ];
 
     /**
