@@ -26,10 +26,10 @@ createInertiaApp({
     },
 });
 
-Vue.component('logout-component', LogoutComponent);
-Vue.component('meal-detail-component', MealDetailComponent);
-Vue.component('delete-record-component', DeleteRecordComponent);
-Vue.component('delete-picture-component', DeletePictureComponent);
+app.component('logout-component', LogoutComponent);
+app.component('meal-detail-component', MealDetailComponent);
+app.component('delete-record-component', DeleteRecordComponent);
+app.component('delete-picture-component', DeletePictureComponent);
 
 
 InertiaProgress.init({ color: '#4B5563' });
