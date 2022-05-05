@@ -54,8 +54,7 @@
     </form>
   </div>
 
-  <div is="style">
-
+<style>
 .title-screen{
   height:100vh;
   min-height:100vh;
@@ -69,8 +68,7 @@
  .error {
 	color: red;
 }
-
-</div>
+</style>
 
 
 @endsection
