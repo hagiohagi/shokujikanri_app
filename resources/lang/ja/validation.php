@@ -146,7 +146,7 @@ return [
     */
 
     'attributes' => [
-        'user_name' => '名前',
+        'name' => '名前',
         'sex_type' => '性別',
         'height' => '身長',
         'weight' => '体重',

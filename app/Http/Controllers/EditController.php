@@ -32,7 +32,7 @@ class EditController extends Controller
             'eat_date' => $request['eat_date'],
             'eat_time' => $request['eat_time'],
             'memo' => $request['memo'],
-            'update_user_id' => FacadesAuth::user()->user_id
+            'update_user_id' => FacadesAuth::user()->id
         ]);
 
         return view('/index');

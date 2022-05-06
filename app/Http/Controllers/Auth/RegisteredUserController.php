@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_name' => ['required', 'string'],
+            'name' => ['required', 'string'],
             'sex_type' =>['required','string'],
             'height' =>['required','integer','max:999'],
             'weight' =>['required','integer','max:999'],
@@ -50,7 +50,7 @@ class RegisteredUserController extends Controller
         ]);
 
         $user = User::create([
-            'user_name' => $request['user_name'],
+            'name' => $request['name'],
             'sex_type' =>$request['sex_type'],
             'height' =>$request['height'],
             'weight' =>$request['weight'],
