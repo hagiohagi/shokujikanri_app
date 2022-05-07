@@ -54,17 +54,11 @@ class User extends Authenticatable
 
     public function mealrecords()
     {
-        return $this->hasMany(MealRecord::class, 'id', 'user_id');
+        return $this->hasMany(MealRecord::class, 'user_id');
     }
 
     public function surveyInfos()
     {
-        return $this->hasManyThrough(
-            SurveyInfo::class,
-            UserSurveyMapping::class,
-            'id',
-            'survey_id',
-            '',
-            'survey_id');
+        return $this->belongsToMany(SurveyInfo::class, 'user_survey_mapping');
     }
 }

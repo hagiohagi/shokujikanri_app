@@ -32,12 +32,6 @@ class SurveyInfo extends Model
 
     public function users()
     {
-        return $this->hasManyThrough(
-            User::class,
-            UserSurveyMapping::class,
-            'survey_id',
-            'user_id',
-            '',
-            'user_id');
+        return $this->belongsToMany(User::class, 'user_survey_mapping');
     }
 }
