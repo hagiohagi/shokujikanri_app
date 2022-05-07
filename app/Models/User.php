@@ -20,7 +20,7 @@ class User extends Authenticatable
     protected $connection = 'sqlite';
     
     protected $fillable = [
-        'user_name',
+        'name',
         'sex_type',
         'height',
         'weight',
@@ -31,6 +31,7 @@ class User extends Authenticatable
         'password',
         'create_user_id',
         'update_user_id',
+        'auth_type'
     ];
 
     /**
@@ -54,17 +55,11 @@ class User extends Authenticatable
 
     public function mealrecords()
     {
-        return $this->hasMany(MealRecord::class, 'user_id', 'user_id');
+        return $this->hasMany(MealRecord::class, 'user_id');
     }
 
     public function surveyInfos()
     {
-        return $this->hasManyThrough(
-            SurveyInfo::class,
-            UserSurveyMapping::class,
-            'user_id',
-            'survey_id',
-            '',
-            'survey_id');
+        return $this->belongsToMany(SurveyInfo::class, 'user_survey_mapping');
     }
 }

@@ -14,9 +14,9 @@
         お名前（必須）
         </label>
         <div class="col-sm-7">
-          <!-- <input class="form-control" type="text" v-model="user_name"> -->
-          <input id="user_name" type="text" class="form-control @error('user_name') is-invalid @enderror" name="user_name" value="{{ old('user_name') }}" autocomplete="user_name" autofocus>
-          @error('user_name')
+          <!-- <input class="form-control" type="text" v-model="name"> -->
+          <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
+          @error('name')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>

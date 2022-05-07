@@ -28,7 +28,7 @@
       @foreach($user as $data)
       <tbody>
           <tr>
-              <td>{{ $data->user_name }}</td>
+              <td>{{ $data->name }}</td>
               <td>{{ $data->email }}</td>
               <td>{{ $data->sex_type }}</td>
               <td>{{ $data->height }}cm</td>

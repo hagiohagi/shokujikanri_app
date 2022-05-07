@@ -20,7 +20,7 @@ class UserRegisterController extends Controller
         $user = new User();
 
         $rules = [
-            'user_name' => ['required', 'string'],
+            'name' => ['required', 'string'],
             'sex_type' =>['required','string'],
             'height' =>['required','integer','max:999'],
             'weight' =>['required','integer','max:999'],
@@ -37,7 +37,7 @@ class UserRegisterController extends Controller
         $this->validate($request, $rules);
 
         $user->create([
-            'user_name' => $request['user_name'],
+            'name' => $request['name'],
             'sex_type' =>$request['sex_type'],
             'height' =>$request['height'],
             'weight' =>$request['weight'],
@@ -47,8 +47,7 @@ class UserRegisterController extends Controller
             'email' =>$request['email'],
             'password' =>Hash::make($request['password']),
             'ayth_type' =>$request['auth_type'],
-            // 'create_user_id' => Auth::id(),
-            'create_user_id' => 1, ##とりあえずテスト用
+            'create_user_id' => Auth::id(),
         ]);
 
         return redirect()->route('admin.user');
