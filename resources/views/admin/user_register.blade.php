@@ -180,9 +180,9 @@
         <div class="col-sm-7">
           <select class="form-control @error('auth_type') is-invalid @enderror" name="auth_type">
             <option value="" selected='selected'>選択してください</option>
-            <option  value="um_custom_role_1">投稿者</option>
-            <option  value="um_custom_role_2">参照者</option>
-            <option  value="um_custom_role_3">管理者</option>
+            <option  value="1">投稿者</option>
+            <option  value="2">参照者</option>
+            <option  value="3">管理者</option>
           </select>
           @error('auth_type')
             <span class="invalid-feedback" role="alert">

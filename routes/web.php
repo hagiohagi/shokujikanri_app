@@ -36,17 +36,17 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 // 回答者側
-// Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/complete', 'App\Http\Controllers\CompleteController@index');
     Route::get('/index', 'App\Http\Controllers\IndexController@index')->name('index');
     Route::get('/upload', 'App\Http\Controllers\UploadController@index');
     Route::post('/upload', 'App\Http\Controllers\UploadController@create');
     Route::get('/edit/{meal_id}', 'App\Http\Controllers\EditController@index');
     Route::post('edit/{meal_id}', 'App\Http\Controllers\EditController@update');
-  // });
+  });
   
   // 研究者側
-  Route::prefix('project')->group(function () {
+  Route::prefix('project')->middleware('can:reseacher')->group(function () {
     Route::get('/index', 'App\Http\Controllers\Project\IndexController@index');
     Route::get('/list/{survey_id}', 'App\Http\Controllers\Project\ListController@index');
     Route::get('/info/{survey_id}/{meal_id}', 'App\Http\Controllers\Project\InfoController@index');

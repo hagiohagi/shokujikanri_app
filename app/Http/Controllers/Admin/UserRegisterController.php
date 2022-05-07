@@ -47,8 +47,7 @@ class UserRegisterController extends Controller
             'email' =>$request['email'],
             'password' =>Hash::make($request['password']),
             'ayth_type' =>$request['auth_type'],
-            // 'create_user_id' => Auth::id(),
-            'create_user_id' => 1, ##とりあえずテスト用
+            'create_user_id' => Auth::id(),
         ]);
 
         return redirect()->route('admin.user');
