@@ -43,25 +43,25 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/upload', 'App\Http\Controllers\UploadController@create');
     Route::get('/edit/{meal_id}', 'App\Http\Controllers\EditController@index');
     Route::post('edit/{meal_id}', 'App\Http\Controllers\EditController@update');
-  });
-  
-  // 研究者側
-  Route::prefix('project')->middleware('can:reseacher')->group(function () {
-    Route::get('/index', 'App\Http\Controllers\Project\IndexController@index');
-    Route::get('/list/{survey_id}', 'App\Http\Controllers\Project\ListController@index');
-    Route::get('/info/{survey_id}/{meal_id}', 'App\Http\Controllers\Project\InfoController@index');
-  });
-  
-  // 管理者側
-  Route::prefix('admin')->group(function () {
-    Route::get('/login', 'App\Http\Controllers\Admin\LoginController@index');
-    Route::get('/user', 'App\Http\Controllers\Admin\UserController@index')->name('admin.user');
-    Route::get('/user/register', 'App\Http\Controllers\Admin\UserRegisterController@index');
-    Route::post('/user/register', 'App\Http\Controllers\Admin\UserRegisterController@register');
-    Route::get('/project', 'App\Http\Controllers\Admin\ProjectController@index')->name('admin.project');
-    Route::get('/project/register', 'App\Http\Controllers\Admin\ProjectRegisterController@index');
-    Route::post('/project/register', 'App\Http\Controllers\Admin\ProjectRegisterController@register');
-    Route::get('/user/import', 'App\Http\Controllers\Admin\UserImportController@index');
-  
-   });
+    
+    // 研究者側
+        Route::prefix('project')->middleware('can:researcher')->group(function () {
+            Route::get('/index', 'App\Http\Controllers\Project\IndexController@index');
+            Route::get('/list/{survey_id}', 'App\Http\Controllers\Project\ListController@index');
+            Route::get('/info/{survey_id}/{meal_id}', 'App\Http\Controllers\Project\InfoController@index');
+        });
+        
+        // 管理者側
+        Route::prefix('admin')->middleware('can:admin')->group(function () {
+            Route::get('/login', 'App\Http\Controllers\Admin\LoginController@index');
+            Route::get('/user', 'App\Http\Controllers\Admin\UserController@index')->name('admin.user');
+            Route::get('/user/register', 'App\Http\Controllers\Admin\UserRegisterController@index');
+            Route::post('/user/register', 'App\Http\Controllers\Admin\UserRegisterController@register');
+            Route::get('/project', 'App\Http\Controllers\Admin\ProjectController@index')->name('admin.project');
+            Route::get('/project/register', 'App\Http\Controllers\Admin\ProjectRegisterController@index');
+            Route::post('/project/register', 'App\Http\Controllers\Admin\ProjectRegisterController@register');
+            Route::get('/user/import', 'App\Http\Controllers\Admin\UserImportController@index');
+        
+    });
+});
 

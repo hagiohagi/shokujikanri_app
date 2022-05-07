@@ -46,7 +46,7 @@ class UserRegisterController extends Controller
             'sport_position' =>$request['sport_positon'] ,
             'email' =>$request['email'],
             'password' =>Hash::make($request['password']),
-            'ayth_type' =>$request['auth_type'],
+            'auth_type' =>$request['auth_type'],
             'create_user_id' => Auth::id(),
         ]);
 

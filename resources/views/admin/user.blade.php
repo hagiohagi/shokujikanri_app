@@ -36,7 +36,13 @@
               <td>{{ $data->fat_percentage }}%</td>
               <td>{{ $data->sport_name }}</td>
               <td>{{ $data->sport_position }}</td>
-              <td>{{ $data->auth_type }}</td>
+              @if($data->auth_type ==1)
+              <td>回答者</td>
+              @elseif($data->auth_type ==2)
+              <td>研究者</td>
+              @else
+              <td>管理者</td>
+              @endif
           </tr>
       </tbody>
       @endforeach
