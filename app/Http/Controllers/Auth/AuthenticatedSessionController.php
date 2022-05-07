@@ -36,9 +36,9 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
         if($user->auth_type == 2){
-            return redirect()->intended(RouteServiceProvider::ADMIN);
-        } elseif ($user->auth_type == 3) {
             return redirect()->intended(RouteServiceProvider::PROJECT);
+        } elseif ($user->auth_type == 3) {
+            return redirect()->intended(RouteServiceProvider::ADMIN);
         } else {
             return redirect()->intended(RouteServiceProvider::HOME);
         }

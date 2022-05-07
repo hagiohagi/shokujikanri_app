@@ -40,8 +40,10 @@
               <td>回答者</td>
               @elseif($data->auth_type ==2)
               <td>研究者</td>
-              @else
+              @elseif($data->auth_type ==3)
               <td>管理者</td>
+              @else
+              <td></td>
               @endif
           </tr>
       </tbody>

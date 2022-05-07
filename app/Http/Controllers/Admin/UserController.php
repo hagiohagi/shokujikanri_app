@@ -5,11 +5,16 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, User $user)
     {
+        // if (! Gate::allows('admin', $user)) {
+        //     abort(403);
+        // }
+        
         $user = User::all();
         return view('admin.user', ['user' => $user]);
     }
