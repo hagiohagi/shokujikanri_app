@@ -31,7 +31,7 @@ class UserRegisterController extends Controller
             'email_confirmation' => ['required', 'string'],
             'password' => ['required', 'string'],
             'password_confirmation' => ['required', 'string'],
-            'auth_type' => ['required']
+            'auth_type' => ['required','integer'],
         ];
 
         $this->validate($request, $rules);
@@ -46,7 +46,7 @@ class UserRegisterController extends Controller
             'sport_position' =>$request['sport_positon'] ,
             'email' =>$request['email'],
             'password' =>Hash::make($request['password']),
-            'ayth_type' =>$request['auth_type'],
+            'auth_type' =>$request['auth_type'],
             'create_user_id' => Auth::id(),
         ]);
 
