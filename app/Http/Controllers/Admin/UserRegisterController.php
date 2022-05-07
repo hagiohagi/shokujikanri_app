@@ -31,7 +31,7 @@ class UserRegisterController extends Controller
             'email_confirmation' => ['required', 'string'],
             'password' => ['required', 'string'],
             'password_confirmation' => ['required', 'string'],
-            'auth_type' => ['required']
+            'auth_type' => ['required','integer'],
         ];
 
         $this->validate($request, $rules);

@@ -26,7 +26,7 @@ return new class extends Migration
             $table->integer('fat_percentage')->nullable()->comment('体脂肪率');
             $table->string('sport_name')->comment('競技名');
             $table->string('sport_position')->nullable()->comment('ポジション');
-            $table->integer('auth_type')->default(1)->comment('権限区分'); // 1:回答者,2:研究者,3:管理者 
+            $table->integer('auth_type')->comment('権限区分'); // 1:回答者,2:研究者,3:管理者 
             $table->unsignedInteger('create_user_id')->comment('登録ユーザーID');
             $table->unsignedInteger('update_user_id')->nullable()->comment('更新ユーザーID');
             $table->timestamps();

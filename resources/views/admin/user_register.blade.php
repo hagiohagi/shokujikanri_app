@@ -178,11 +178,11 @@
         権限（必須）
         </label>
         <div class="col-sm-7">
-          <select class="form-control @error('auth_type') is-invalid @enderror" name="auth_type">
-            <option value="" selected='selected'>選択してください</option>
-            <option  value="1">投稿者</option>
-            <option  value="2">参照者</option>
-            <option  value="3">管理者</option>
+          <select class="form-control @error('auth_type') is-invalid @enderror" id="auth_type" name="auth_type">
+            <option value="" hidden>選択してください</option>
+            <option value="1">回答者</option>
+            <option value="2">研究者</option>
+            <option value="3">管理者</option>
           </select>
           @error('auth_type')
             <span class="invalid-feedback" role="alert">

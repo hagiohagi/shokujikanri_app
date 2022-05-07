@@ -27,11 +27,11 @@ class User extends Authenticatable
         'fat_percentage',
         'sport_name',
         'sport_position',
+        'auth_type',
         'email',
         'password',
         'create_user_id',
         'update_user_id',
-        'auth_type'
     ];
 
     /**
