@@ -57,9 +57,13 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/user', 'App\Http\Controllers\Admin\UserController@index')->name('admin.user');
             Route::get('/user/register', 'App\Http\Controllers\Admin\UserRegisterController@index');
             Route::post('/user/register', 'App\Http\Controllers\Admin\UserRegisterController@register');
+            Route::get('/user/{id}/edit', 'App\Http\Controllers\Admin\UserEditController@index');
+            Route::post('/user/{id}/edit', 'App\Http\Controllers\Admin\UserEditController@update');
             Route::get('/project', 'App\Http\Controllers\Admin\ProjectController@index')->name('admin.project');
             Route::get('/project/register', 'App\Http\Controllers\Admin\ProjectRegisterController@index');
             Route::post('/project/register', 'App\Http\Controllers\Admin\ProjectRegisterController@register');
+            Route::get('/project/{id}/edit', 'App\Http\Controllers\Admin\ProjectEditController@index');
+            Route::post('/project/{id}/edit', 'App\Http\Controllers\Admin\ProjectEditController@update');
             Route::get('/user/import', 'App\Http\Controllers\Admin\UserImportController@index');
         
     });

@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
 @csrf
+<ul class="nav nav-tabs">
+    <li class="nav-item"><a class="nav-link" href="/admin/project">調査一覧</a></li>
+    <li class="nav-item "><a class="nav-link disabled" href="/admin/user">ユーザー一覧</a></li>
+</ul>
   
     <h1>ユーザー一覧</h1>
 
@@ -22,6 +26,7 @@
               <th>競技名</th>
               <th>ポジション</th>
               <th>権限</th>
+              <th></th>
 
           </tr>
       </thead>
@@ -45,6 +50,7 @@
               @else
               <td></td>
               @endif
+              <td><a class="btn btn-secondary" href="/admin/user/{{ $data->id }}/edit">編集する</a></td>
           </tr>
       </tbody>
       @endforeach

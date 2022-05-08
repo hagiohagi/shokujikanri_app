@@ -1,23 +1,22 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\SurveyInfo;
 use Illuminate\Support\Facades\Auth;
 
-class ProjectRegisterController extends Controller
+class ProjectEditController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request,$survey_id)
     {
-        return view('admin.project_register');
+        $survey_info = SurveyInfo::find($survey_id);
+        return view('admin.project_edit',['survey_info' => $survey_info]);
     }
 
-    public function register(Request $request)
+    public function update(Request $request, $survey_id)
     {
-        $survey_info = new SurveyInfo();
-
+        $survey_info = SurveyInfo::find($survey_id);
 
         $rules = [
             'survey_name' => ['required', 'string'],
@@ -29,15 +28,14 @@ class ProjectRegisterController extends Controller
 
         $this->validate($request, $rules);
 
-        $survey_info->create([
+        $survey_info->update([
             'survey_name' => $request['survey_name'],
             'term' =>$request['term'],
             'era' =>$request['era'],
             'sex' =>$request['sex'],
             'sport' =>$request['sport'],
-            'create_user_id' => Auth::id(),
+            'update_user_id' => Auth::id(),
         ]);
-
         return redirect()->route('admin.project');
     }
 }
