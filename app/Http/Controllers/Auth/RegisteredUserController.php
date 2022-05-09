@@ -59,7 +59,7 @@ class RegisteredUserController extends Controller
             'sport_position' =>$request['sport_positon'] ,
             'email' =>$request['email'],
             'password' =>Hash::make($request['password']),
-            'ayth_type' => 1,
+            'auth_type' => 1,
             // 'create_user_id' => Auth::id(),
             'create_user_id' => 1, ##とりあえずテスト用
         ]);

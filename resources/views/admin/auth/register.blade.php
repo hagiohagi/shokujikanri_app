@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <form class="form-horizontal" method="POST" action="/admin.register">
+    <form class="form-horizontal" method="POST" action="{{ route('admin.register') }}">
     {{csrf_field()}}
       <div class="p-3 my-3" style="background-color:#f5f5f5">
         本日時点のあなたの情報を入力してください

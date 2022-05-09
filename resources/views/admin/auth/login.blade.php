@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid  title-screen">
-    <form class="form-horizontal" method="POST" action="/admin.login">
+    <form class="form-horizontal" method="POST" action="{{ route('admin.login') }}">
     @csrf
       <div class="py-5 form-group text-center">
         <div class="h2 my-3">

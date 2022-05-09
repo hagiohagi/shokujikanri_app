@@ -43,7 +43,7 @@ class RegisteredUserController extends Controller
             'sport_name' =>['required','string'],
             'sport_position' =>['string'],
             'email_confirmation' => ['required', 'string'],
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:researchers',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'password_confirmation' => ['required', 'string'],
             'resarch_number' => ['required', 'integer'],
@@ -59,14 +59,14 @@ class RegisteredUserController extends Controller
             'sport_position' =>$request['sport_positon'] ,
             'email' =>$request['email'],
             'password' =>Hash::make($request['password']),
-            'ayth_type' => 1,
+            'auth_type' => 2,
             // 'create_user_id' => Auth::id(),
             'create_user_id' => 1, ##とりあえずテスト用
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
+        Auth::guard('researchers')->login($user);
 
         return redirect(RouteServiceProvider::PROJECT);
     }

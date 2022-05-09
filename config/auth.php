@@ -110,7 +110,7 @@ return [
             'throttle' => 60,
         ],
         'researchers' => [
-            'provider' => 'admins',
+            'provider' => 'researchers',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
