@@ -45,14 +45,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('edit/{meal_id}', 'App\Http\Controllers\EditController@update');
     
     // 研究者側
-        Route::prefix('project')->middleware('can:researcher')->group(function () {
+        Route::prefix('project')->group(function () {
             Route::get('/index', 'App\Http\Controllers\Project\IndexController@index');
             Route::get('/list/{survey_id}', 'App\Http\Controllers\Project\ListController@index');
             Route::get('/info/{survey_id}/{meal_id}', 'App\Http\Controllers\Project\InfoController@index');
         });
         
         // 管理者側
-        Route::prefix('admin')->middleware('can:admin')->group(function () {
+        Route::prefix('admin')->group(function () {
             Route::get('/login', 'App\Http\Controllers\Admin\LoginController@index');
             Route::get('/user', 'App\Http\Controllers\Admin\UserController@index')->name('admin.user');
             Route::get('/user/register', 'App\Http\Controllers\Admin\UserRegisterController@index');

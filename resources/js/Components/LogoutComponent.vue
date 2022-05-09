@@ -20,7 +20,7 @@
     </div>
 </template>
 
-<script>
+<script setup>
     export default {
         methods: {
             openModal(e) {
