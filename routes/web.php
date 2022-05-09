@@ -34,6 +34,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+Route::prefix('researchers')->name('researchers.')->group(function(){
+    require __DIR__.'/researchers.php';
+});
+Route::prefix('admin')->name('admin.')->group(function(){
+    require __DIR__.'/admin.php';
+});
 
 // 回答者側
 Route::group(['middleware' => 'auth'], function () {
@@ -53,7 +59,6 @@ Route::group(['middleware' => 'auth'], function () {
         
         // 管理者側
         Route::prefix('admin')->group(function () {
-            Route::get('/login', 'App\Http\Controllers\Admin\LoginController@index');
             Route::get('/user', 'App\Http\Controllers\Admin\UserController@index')->name('admin.user');
             Route::get('/user/register', 'App\Http\Controllers\Admin\UserRegisterController@index');
             Route::post('/user/register', 'App\Http\Controllers\Admin\UserRegisterController@register');
