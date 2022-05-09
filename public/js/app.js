@@ -26180,6 +26180,7 @@ var _window$document$getE;
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js")["default"]);
 
 
 
@@ -26187,7 +26188,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 var appName = ((_window$document$getE = window.document.getElementsByTagName('title')[0]) === null || _window$document$getE === void 0 ? void 0 : _window$document$getE.innerText) || 'Laravel';
 (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.createInertiaApp)({
   title: function title(_title) {
@@ -26212,21 +26212,15 @@ var appName = ((_window$document$getE = window.document.getElementsByTagName('ti
     }).mount(el);
   }
 });
-app.component('logout-component', _components_LogoutComponent_vue__WEBPACK_IMPORTED_MODULE_3__.LogoutComponent);
-app.component('meal-detail-component', _components_MealDetailComponent_vue__WEBPACK_IMPORTED_MODULE_4__.MealDetailComponent);
-app.component('delete-record-component', _components_DeleteRecordComponent_vue__WEBPACK_IMPORTED_MODULE_5__.DeleteRecordComponent);
-app.component('delete-picture-component', _components_DeletePictureComponent_vue__WEBPACK_IMPORTED_MODULE_6__.DeletePictureComponent);
+app.component('logout-component', _components_LogoutComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
+app.component('meal-detail-component', _components_MealDetailComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
+app.component('delete-record-component', _components_DeleteRecordComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
+app.component('delete-picture-component', _components_DeletePictureComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
 _inertiajs_progress__WEBPACK_IMPORTED_MODULE_2__.InertiaProgress.init({
   color: '#4B5563'
 });
-var app = new Vue({
-  el: '#app',
-  // router: router,
-  LogoutComponent: _components_LogoutComponent_vue__WEBPACK_IMPORTED_MODULE_3__.LogoutComponent,
-  MealDetailComponent: _components_MealDetailComponent_vue__WEBPACK_IMPORTED_MODULE_4__.MealDetailComponent,
-  DeleteRecordComponent: _components_DeleteRecordComponent_vue__WEBPACK_IMPORTED_MODULE_5__.DeleteRecordComponent,
-  DeletePictureComponent: _components_DeletePictureComponent_vue__WEBPACK_IMPORTED_MODULE_6__.DeletePictureComponent
-});
+var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({});
+app.mount('#app');
 
 /***/ }),
 
