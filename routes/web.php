@@ -35,6 +35,14 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+Route::prefix('researchers')->name('researchers.')->group(function(){
+    require __DIR__.'/researchers.php';
+});
+
+Route::prefix('admin')->name('admin.')->group(function(){
+    require __DIR__.'/admin.php';
+});
+
 // 回答者側
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/complete', 'App\Http\Controllers\CompleteController@index');
@@ -43,17 +51,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/upload', 'App\Http\Controllers\UploadController@create');
     Route::get('/edit/{meal_id}', 'App\Http\Controllers\EditController@index');
     Route::post('edit/{meal_id}', 'App\Http\Controllers\EditController@update');
+});
     
     // 研究者側
-        Route::prefix('project')->group(function () {
+        Route::prefix('project')->middleware(['auth:researchers'])->group(function () {
             Route::get('/index', 'App\Http\Controllers\Project\IndexController@index');
             Route::get('/list/{survey_id}', 'App\Http\Controllers\Project\ListController@index');
             Route::get('/info/{survey_id}/{meal_id}', 'App\Http\Controllers\Project\InfoController@index');
         });
         
         // 管理者側
-        Route::prefix('admin')->group(function () {
-            Route::get('/login', 'App\Http\Controllers\Admin\LoginController@index');
+        Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
             Route::get('/user', 'App\Http\Controllers\Admin\UserController@index')->name('admin.user');
             Route::get('/user/register', 'App\Http\Controllers\Admin\UserRegisterController@index');
             Route::post('/user/register', 'App\Http\Controllers\Admin\UserRegisterController@register');
@@ -67,5 +75,5 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/user/import', 'App\Http\Controllers\Admin\UserImportController@index');
         
     });
-});
+
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Admin;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -21,7 +21,7 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        return view('admin.auth.register');
     }
 
     /**
@@ -43,13 +43,13 @@ class RegisteredUserController extends Controller
             'sport_name' =>['required','string'],
             'sport_position' =>['string'],
             'email_confirmation' => ['required', 'string'],
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:admins',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'password_confirmation' => ['required', 'string'],
             'resarch_number' => ['required', 'integer'],
         ]);
 
-        $user = User::create([
+        $user = Admin::create([
             'name' => $request['name'],
             'sex_type' =>$request['sex_type'],
             'height' =>$request['height'],
@@ -59,15 +59,15 @@ class RegisteredUserController extends Controller
             'sport_position' =>$request['sport_positon'] ,
             'email' =>$request['email'],
             'password' =>Hash::make($request['password']),
-            'auth_type' => 1,
+            'auth_type' => 3,
             // 'create_user_id' => Auth::id(),
             'create_user_id' => 1, ##とりあえずテスト用
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
+        Auth::guard('admin')->login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::ADMIN);
     }
 }

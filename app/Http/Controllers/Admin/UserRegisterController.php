@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Researcher;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,7 +19,6 @@ class UserRegisterController extends Controller
 
     public function register(Request $request)
     {
-        $user = new User();
 
         $rules = [
             'name' => ['required', 'string'],
@@ -36,19 +37,52 @@ class UserRegisterController extends Controller
 
         $this->validate($request, $rules);
 
-        $user->create([
-            'name' => $request['name'],
-            'sex_type' =>$request['sex_type'],
-            'height' =>$request['height'],
-            'weight' =>$request['weight'],
-            'fat_percentage' =>$request['fat_percentage'],
-            'sport_name' =>$request['sport_name'],
-            'sport_position' =>$request['sport_positon'] ,
-            'email' =>$request['email'],
-            'password' =>Hash::make($request['password']),
-            'auth_type' =>$request['auth_type'],
-            'create_user_id' => Auth::id(),
-        ]);
+        if($request->auth_type == 3){
+            $admin = new Admin();
+            $admin->create([
+                'name' => $request['name'],
+                'sex_type' =>$request['sex_type'],
+                'height' =>$request['height'],
+                'weight' =>$request['weight'],
+                'fat_percentage' =>$request['fat_percentage'],
+                'sport_name' =>$request['sport_name'],
+                'sport_position' =>$request['sport_positon'] ,
+                'email' =>$request['email'],
+                'password' =>Hash::make($request['password']),
+                'auth_type' =>$request['auth_type'],
+                'create_user_id' => Auth::id(),
+            ]);
+        }elseif($request->auth_type == 2){
+            $researcher = new Researcher();
+            $researcher->create([
+                'name' => $request['name'],
+                'sex_type' =>$request['sex_type'],
+                'height' =>$request['height'],
+                'weight' =>$request['weight'],
+                'fat_percentage' =>$request['fat_percentage'],
+                'sport_name' =>$request['sport_name'],
+                'sport_position' =>$request['sport_positon'] ,
+                'email' =>$request['email'],
+                'password' =>Hash::make($request['password']),
+                'auth_type' =>$request['auth_type'],
+                'create_user_id' => Auth::id(),
+            ]);
+        }else{
+            $user = new User();
+            $user->create([
+                'name' => $request['name'],
+                'sex_type' =>$request['sex_type'],
+                'height' =>$request['height'],
+                'weight' =>$request['weight'],
+                'fat_percentage' =>$request['fat_percentage'],
+                'sport_name' =>$request['sport_name'],
+                'sport_position' =>$request['sport_positon'] ,
+                'email' =>$request['email'],
+                'password' =>Hash::make($request['password']),
+                'auth_type' =>$request['auth_type'],
+                'create_user_id' => Auth::id(),
+            ]);
+        }
 
         return redirect()->route('admin.user');
     }
