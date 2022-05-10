@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Researcher;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
@@ -15,7 +17,12 @@ class UserController extends Controller
         //     abort(403);
         // }
         
-        $user = User::all();
-        return view('admin.user', ['user' => $user]);
+        $user = User::all()->toArray();
+        $researcher = Researcher::all()->toArray();
+        $admin = Admin::all()->toArray();
+
+        $accounts = array_merge($user,$researcher,$admin);
+
+        return view('admin.user', ['accounts' => $accounts]);
     }
 }
