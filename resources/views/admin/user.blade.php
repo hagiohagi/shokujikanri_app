@@ -50,8 +50,9 @@
               @else
               <td></td>
               @endif
-              
-              <!-- <td><a class="btn btn-secondary" href="/admin/user/{{ $data['id'] }}/edit">編集する</a></td> -->
+                @if($data['auth_type'] ==1)
+              <td><a class="btn btn-secondary" href="/admin/user/{{ $data['id'] }}/edit">編集する</a></td>
+              @endif
           </tr>
       </tbody>
       @endforeach
