@@ -7,10 +7,10 @@
     @csrf
       <div class="py-5 form-group text-center">
         <div class="h2 my-3">
-          ログイン
+          研究者用ページ
         </div>
         <div class="my-3">
-          <a href="/researchers/register" class="text-dark">初回登録はこちら</a>
+          <a href="/login" class="h3 text-dark">一般利用はこちら</a>
         </div>
         <div class="my-3">
           <input id="email" type="email" class="form-control mx-auto login-block @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="メールアドレス" autofocus>
@@ -58,7 +58,7 @@
 .title-screen{
   height:100vh;
   min-height:100vh;
-  background-color: #e5e5e5;
+  background-color: darkgrey;
 }
 
 .login-block{

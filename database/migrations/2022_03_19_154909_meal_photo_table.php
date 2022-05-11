@@ -14,9 +14,9 @@ class MealPhotoTable extends Migration
     public function up()
     {
         Schema::create('meal_photo',function(Blueprint $table) {
+            $table->increments('photo_num')->comment('写真番号');
             $table->unsignedInteger('meal_id')->comment('食事記録ID');
             $table->foreign('meal_id')->references('meal_id')->on('meal_record')->OnDelete('cascade');
-            $table->integer('photo_num')->unique()->comment('写真番号');
             $table->string('photo_path')->comment('写真パス');
             $table->string('order_num')->comment('表示順');
             $table->timestamp('created_at')->comment('登録日時');

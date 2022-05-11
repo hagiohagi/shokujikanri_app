@@ -12,6 +12,12 @@ class MealPhoto extends Model
      * @var string
      */
     protected $table = 'meal_photo';
+    protected $primaryKey = 'photo_num';
+
+    protected $fillable = [
+        'photo_path',
+        'order_num',
+    ];
 
     public function mealRecord()
     {
