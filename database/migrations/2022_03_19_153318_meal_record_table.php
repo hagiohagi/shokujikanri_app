@@ -15,8 +15,8 @@ class MealRecordTable extends Migration
     {
         Schema::create('meal_record',function(Blueprint $table) {
             $table->Increments('meal_id')->comment('食事記録ID');
-            $table->unsignedInteger('user_id')->comment('ユーザーID');
-            $table->foreign('user_id')->references('user_id')->on('users')->OnDelete('cascade');
+            $table->unsignedBigInteger('user_id')->comment('ユーザーID');
+            $table->foreign('user_id')->references('id')->on('users')->OnDelete('cascade');
             $table->integer('meal_type')->comment('食事区分'); // 1:朝食、2:昼食、3:間食、4:夕食、5:夜食
             $table->string('eat_place')->comment('場所');
             $table->date('eat_date')->comment('食事日付');

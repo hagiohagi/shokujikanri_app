@@ -32,6 +32,7 @@ class UploadController extends Controller
         $meal = new MealRecord();
 
         $meal->create([
+            'user_id' => Auth::user()->id,
             'meal_type' => $request['meal_type'],
             'eat_date' => $request['eat_date'],
             'eat_time' => $request['eat_time'],
