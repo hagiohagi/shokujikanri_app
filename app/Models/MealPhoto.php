@@ -19,6 +19,8 @@ class MealPhoto extends Model
         'meal_id',
         'photo_path',
         'order_num',
+        'create_user_id',
+        'update_user_id'
     ];
 
     public function mealRecord()
