@@ -12,6 +12,11 @@
             </span>
             <input type="file" id="photo" name="files[][photo]" multiple>
           </label>
+          @error('files[photo]')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+          @enderror
       </div>
       <div class="form-group mt-3">
         <label class="control-label">
@@ -46,14 +51,14 @@
         <label class="control-label">
           日時(必須）
         </label>
-        <div class="form-row">
-          <input class="form-control @error('eat_date') is-invalid @enderror" style="width:150px" type="date" name="eat_date">
+        <div class="row">
+          <input class="form-control col-2 @error('eat_date') is-invalid @enderror" style="width:150px" type="date" name="eat_date">
           @error('eat_date')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
           @enderror
-          <input class="form-control @error('eat_time') is-invalid @enderror" style="width:150px" type="time" name="eat_time">
+          <input class="form-control col-2 @error('eat_time') is-invalid @enderror" style="width:150px" type="time" name="eat_time">
           @error('eat_time')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -62,14 +67,50 @@
         </div>
       </div>
 
-      <meal-detail-component></meal-detail-component>
+      <!-- <meal-detail-component></meal-detail-component> -->
+      <div>
+        <label class="control-label mt-5 mb-3">
+          食事内容を入力してください（必須）&nbsp;<a href="#" name="help">ヘルプ</a>
+        </label>
+        <div class="row">
+          <label class="control-label text-center col-3">食事</label>
+          <label class="control-label text-center col-3">材料</label>
+          <label class="control-label text-center col-3">量</label>
+        </div>
+        <div class="row">
+          <div class="form-group col-3">
+            <input class="form-control @error('food') is-invalid @enderror" type="textarea" name="food">
+            @error('food')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+          @enderror
+        </div> 
+          <div class="form-group col-3">
+          <input class="form-control @error('ingredient') is-invalid @enderror" type="textarea" name="ingredient">
+          @error('ingredient')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+          @enderror
+          </div>
+          <div class="form-group col-3">
+          <input class="form-control @error('amount') is-invalid @enderror" type="textarea" name="amount">
+          @error('amount')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+          @enderror
+        </div>
+        </div>
+      </div>
 
       <div class="form-group mt-5">
         <label class="control-label">
           補足事項があれば入力してください（任意）
         </label>
         <textarea class="form-control @error('memo') is-invalid @enderror" name="memo" rows="3"></textarea>
-        @error('memo')
+          @error('memo')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>

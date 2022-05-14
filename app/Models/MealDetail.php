@@ -19,7 +19,9 @@ class MealDetail extends Model
         'food',
         'ingredient',
         'amount',
-        'order_num'
+        'order_num',
+        'create_user_id',
+        'update_user_id'
     ];
 
     public function mealRecord()

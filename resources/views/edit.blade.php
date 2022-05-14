@@ -58,7 +58,43 @@
         </div>
       </div>
 
-    <meal-detail-component></meal-detail-component>
+    <!-- <meal-detail-component></meal-detail-component> -->
+    <div>
+        <label class="control-label mt-5 mb-3">
+          食事内容を入力してください（必須）&nbsp;<a href="#" name="help">ヘルプ</a>
+        </label>
+        <div class="row">
+          <label class="control-label text-center col-3">食事</label>
+          <label class="control-label text-center col-3">材料</label>
+          <label class="control-label text-center col-3">量</label>
+        </div>
+        <div class="row">
+          <div class="form-group col-3">
+            <input class="form-control @error('food') is-invalid @enderror" type="textarea" name="food">
+            @error('food')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+          @enderror
+        </div> 
+          <div class="form-group col-3">
+          <input class="form-control @error('ingredient') is-invalid @enderror" type="textarea" name="ingredient">
+          @error('ingredient')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+          @enderror
+          </div>
+          <div class="form-group col-3">
+          <input class="form-control @error('amount') is-invalid @enderror" type="textarea" name="amount">
+          @error('amount')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+          @enderror
+        </div>
+        </div>
+      </div>
        
       <div class="form-group mt-5">
         <label class="control-label">

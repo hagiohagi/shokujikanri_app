@@ -173,9 +173,15 @@ return [
         'eat_time' => '食事時間',
         'memo' => '補足',
 
+        'photo' => '写真',
+
         'photo_num' => '写真番号',
         'photo_path' => '写真パス',
         'order_num' => '表示順',
+
+        'food' => '食事',
+        'ingredient' => '材料', 
+        'amount' => '量',
     ],
 
 ];
