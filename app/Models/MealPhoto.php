@@ -13,10 +13,10 @@ class MealPhoto extends Model
      */
     protected $table = 'meal_photo';
     protected $primaryKey = 'photo_num';
-    protected $guarded = ['meal_id'];
     
 
     protected $fillable = [
+        'meal_id',
         'photo_path',
         'order_num',
     ];
