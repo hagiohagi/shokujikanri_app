@@ -14,7 +14,13 @@ class MealDetail extends Model
     protected $table = 'meal_detail';
 
     protected $primaryKey = 'meal_sub_id';
-    protected $guarded = ['meal_id'];
+    protected $fillable = [
+        'meal_id',
+        'food',
+        'ingredient',
+        'amount',
+        'order_num'
+    ];
 
     public function mealRecord()
     {

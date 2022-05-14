@@ -46,9 +46,8 @@ class UploadController extends Controller
         if ($request->has('files')) {
             foreach($request->file('files') as $file){
                 
-                $file_name = $file->getClientOriginalName();
-                $file->storeAS('',$file_name); //画像をストレージに保存
-
+                $file_name = $file['photo']->getClientOriginalName();
+                $file['photo']->storeAS('',$file_name); //画像をストレージに保存
                 $photo->photo_path = $file_name;
                 $meal->mealPhotos()->save($photo);
             }
