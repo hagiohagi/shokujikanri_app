@@ -10,7 +10,7 @@
             <span class="mx-auto" title="ファイルを選択">
               <img :src="'images/upload.jpg'" width="450" alt="写真をアップロード">
             </span>
-            <input type="file" name="files[]" multiple>
+            <input type="file" id="photo" name="files[][photo]" multiple>
           </label>
       </div>
       <div class="form-group mt-3">

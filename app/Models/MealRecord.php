@@ -13,8 +13,12 @@ class MealRecord extends Model
      */
     protected $table = 'meal_record';
 
+
+
     protected $fillable = [
+        'user_id',
         'meal_type',
+        'eat_place',
         'eat_date',
         'eat_time',
         'memo',
@@ -24,7 +28,7 @@ class MealRecord extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function mealDetails()

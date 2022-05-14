@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MealRecord;
 use App\Models\MealPhoto;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -19,7 +20,7 @@ class UploadController extends Controller
     {
 
         $rules = [
-            'files.*.photo' => ['required','image|mimes:jpeg,bmp,png'],
+            'files.*.photo' => ['required','image|mimes:jpg,jpeg,bmp,png'],
             'meal_type' => ['required'],
             'eat_place' => ['required'],
             'eat_date' => ['required'],
@@ -30,9 +31,12 @@ class UploadController extends Controller
         $this->validate($request, $rules);
 
         $meal = new MealRecord();
+        $photo = new MealPhoto();
 
         $meal->create([
+            'user_id' => Auth::user()->id,
             'meal_type' => $request['meal_type'],
+            'eat_place' => $request['eat_place'],
             'eat_date' => $request['eat_date'],
             'eat_time' => $request['eat_time'],
             'memo' => $request['memo'],
@@ -45,8 +49,7 @@ class UploadController extends Controller
                 $file_name = $file->getClientOriginalName();
                 $file->storeAS('',$file_name); //画像をストレージに保存
 
-                $photo = new MealPhoto();
-                $photo->photo_path = $file->file('img_path');
+                $photo->photo_path = $file_name;
                 $meal->mealPhotos()->save($photo);
             }
         }
