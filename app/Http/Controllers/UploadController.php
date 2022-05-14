@@ -42,12 +42,15 @@ class UploadController extends Controller
             'memo' => $request['memo'],
             'create_user_id' => Auth::user()->id,
         ]);
+        
+        $meal_id = $meal->meal_id;
 
         if ($request->has('files')) {
             foreach($request->file('files') as $file){
                 
                 $file_name = $file['photo']->getClientOriginalName();
                 $file['photo']->storeAS('',$file_name); //画像をストレージに保存
+                $photo->meal_id = $meal_id;
                 $photo->photo_path = $file_name;
                 $meal->mealPhotos()->save($photo);
             }

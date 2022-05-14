@@ -12,7 +12,7 @@ class MealRecord extends Model
      * @var string
      */
     protected $table = 'meal_record';
-
+    protected $primaryKey = 'meal_id';
 
 
     protected $fillable = [
