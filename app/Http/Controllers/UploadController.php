@@ -74,6 +74,6 @@ class UploadController extends Controller
             }
         }
 
-        return view('/index');
+        return redirect()->route('index');
     }
 }
