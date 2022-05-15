@@ -8,13 +8,68 @@
   </div>
 
   @foreach($meals as $meal)
+  <a href="/edit/{{ $meal->meal_id }}">
   <div class="container mt-3 mx-2 border">
-  <div class="my-box w-25">{{$meal->meal_type}}</div>
-  <div class="col-7 mt-3">col-7</div>
-    <div class="d-flex justify-content-start">
-      <div class="my-box w-25">{{$meal->meal_date}}{{$meal->meal_time}}</div>
+    
+  @if($meal->meal_type == 1)
+  <div class="badge bg-primary text-white">朝食</div>
+  @elseif($meal->meal_type == 2)
+  <div class="badge bg-success text-white">昼食</div>
+  @elseif($meal->meal_type == 3)
+  <div class="badge bg-info">間食</div>
+  @elseif($meal->meal_type == 4)
+  <div class="badge bg-danger text-white">夕食</div>
+  @elseif($meal->meal_type == 5)
+  <div class="badge bg-dark text-white">夜食</div>
+  @endif
+
+  <div class="col-7 mt-3">
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" style="width:18rem">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="..." class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <div class="h5">First slide</div>
+              <p>This is first slide.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="..." class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <div class="h5">Second slide</div>
+              <p>This is seconde slide.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="..." class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <div class="h5">Third slide</div>
+              <p>This is third slide.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    </a>
+
+    <div class="d-flex justify-content-end">
+      <div class="my-box w-25">{{$meal->eat_date}} {{$meal->eat_time}}</div>
       <div class="my-box w-25">{{$meal->eat_place}}</div>
     </div>
+    
   </div>
   @endforeach
 
