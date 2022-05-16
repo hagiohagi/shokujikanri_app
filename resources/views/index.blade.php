@@ -32,21 +32,21 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="..." class="d-block w-100" alt="...">
+            <img src="/images/computer_typing_osoi.png" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
               <div class="h5">First slide</div>
               <p>This is first slide.</p>
             </div>
           </div>
           <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
+            <img src="/images/jiko_computer_coffee_kobosu.png" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
               <div class="h5">Second slide</div>
               <p>This is seconde slide.</p>
             </div>
           </div>
           <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
+            <img src="/images/neochi_computer_women.png" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
               <div class="h5">Third slide</div>
               <p>This is third slide.</p>
