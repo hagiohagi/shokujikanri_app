@@ -31,7 +31,7 @@
         </div> -->
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="{{ asset('/public/images/' . $meal->photo_path)}}" class="d-block w-100" alt="...">
+            <img src="{{ asset('images/' . $meal->photo_path)}}" class="d-block w-100" alt="...">
             <!-- <div class="carousel-caption d-none d-md-block">
               <div class="h5">First slide</div>
               <p>This is first slide.</p>
