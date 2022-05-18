@@ -31,7 +31,7 @@ class EditController extends Controller
             'ingredient' => ['required'],
             'amount' => ['required'],
 
-            'files.*.photo' => ['required','image|mimes:jpg,jpeg,bmp,png'],
+            'files.*.photo' => ['image|mimes:jpg,jpeg,bmp,png'],
         ];
 
         $this->validate($request, $rules);

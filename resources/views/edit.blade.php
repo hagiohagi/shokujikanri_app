@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
   
-  <form method="POST" action="/edit">
+  <form method="POST" action="/edit/{{ $meal_record->meal_id }}">
   {{csrf_field()}}
     <div style="background-color:#f5f5f5">
       画像一覧
