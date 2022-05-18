@@ -12,7 +12,7 @@ class EditController extends Controller
 {
     public function index(Request $request, $meal_id)
     {
-        $meal_record = MealRecord::find($meal_id);
+        $meal_record = MealRecord::with(['mealPhotos', 'mealDetails'])->find($meal_id);
         return view('/edit', ['meal_record' => $meal_record]);
     }
 
@@ -31,7 +31,7 @@ class EditController extends Controller
             'ingredient' => ['required'],
             'amount' => ['required'],
 
-            'files.*.photo' => ['required','image|mimes:jpg,jpeg,bmp,png'],
+            'files.*.photo' => ['image|mimes:jpg,jpeg,bmp,png'],
         ];
 
         $this->validate($request, $rules);
