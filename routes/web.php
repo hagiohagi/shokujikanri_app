@@ -70,6 +70,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/project', 'App\Http\Controllers\Admin\ProjectController@index')->name('admin.project');
             Route::get('/project/register', 'App\Http\Controllers\Admin\ProjectRegisterController@index');
             Route::post('/project/register', 'App\Http\Controllers\Admin\ProjectRegisterController@register');
+            Route::get('/project/{survey_id}/list', 'App\Http\Controllers\Admin\ProjectListController@index');
             Route::get('/project/{id}/edit', 'App\Http\Controllers\Admin\ProjectEditController@index');
             Route::post('/project/{id}/edit', 'App\Http\Controllers\Admin\ProjectEditController@update');
             Route::get('/user/import', 'App\Http\Controllers\Admin\UserImportController@index');
