@@ -30,13 +30,17 @@
           <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div> -->
         <div class="carousel-inner">
+          @foreach($meal->mealPhotos as $meal_photo)
+          @if($loop->first)
           <div class="carousel-item active">
-            <img src="{{ asset('images/' . $meal->photo_path)}}" class="d-block w-100" alt="...">
+            <img src="{{ asset('images/' . $meal_photo['photo_path'])}}" class="d-block w-100" alt="...">
             <!-- <div class="carousel-caption d-none d-md-block">
               <div class="h5">First slide</div>
               <p>This is first slide.</p>
             </div> -->
           </div>
+          @endif
+          @endforeach
           <!-- <div class="carousel-item">
             <img src="/images/jiko_computer_coffee_kobosu.png" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
