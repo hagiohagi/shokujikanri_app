@@ -6,7 +6,28 @@
   <form method="POST" action="/edit">
   {{csrf_field()}}
     <div style="background-color:#f5f5f5">
-      画像一覧が表示される予定
+      画像一覧
+      <div class="carousel-inner">
+          @foreach($meal_record->mealPhotos as $meal_photo)
+          
+          <div class="carousel-item active">
+            <img src="{{ asset('images/' . $meal_photo['photo_path'])}}" class="d-block w-25" alt="...">
+          </div>
+          @endforeach
+          
+      </div>
+      <div>
+          <label>
+            <span class="mx-auto" title="ファイルを選択">
+            </span>
+            <input type="file" id="photo" name="files[][photo]" multiple>
+          </label>
+          @error('files[photo]')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+          @enderror
+      </div>
       <delete-picture-component></delete-picture-component>
     </div>
     <div class="form-group mt-3">
@@ -31,7 +52,7 @@
         <label class="control-label">
         場所（必須）
         </label>
-        <input class="form-control @error('eat_place') is-invalid @enderror" style="width:200px" type="text" value="{{ $meal_record->meal_eat_place }}" name="eat_place">
+        <input class="form-control @error('eat_place') is-invalid @enderror" style="width:200px" type="text" value="{{ $meal_record->eat_place }}" name="eat_place">
         @error('eat_place')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -68,17 +89,18 @@
           <label class="control-label text-center col-3">材料</label>
           <label class="control-label text-center col-3">量</label>
         </div>
+        @foreach($meal_record->mealDetails as $meal_detail)
         <div class="row">
           <div class="form-group col-3">
-            <input class="form-control @error('food') is-invalid @enderror" type="textarea" value="{{ $meal_record->mealDetails()->food }}" name="food">
+            <input class="form-control @error('food') is-invalid @enderror" type="textarea" value="{{ $meal_detail->food }}" name="food">
             @error('food')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
           @enderror
-        </div> 
+          </div> 
           <div class="form-group col-3">
-          <input class="form-control @error('ingredient') is-invalid @enderror" type="textarea" value="{{ $meal_record->mealDetails()->ingredient }}"name="ingredient">
+          <input class="form-control @error('ingredient') is-invalid @enderror" type="textarea" value="{{ $meal_detail->ingredient }}"name="ingredient">
           @error('ingredient')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -86,7 +108,7 @@
           @enderror
           </div>
           <div class="form-group col-3">
-          <input class="form-control @error('amount') is-invalid @enderror" type="textarea" value="{{ $meal_record->mealDetails()->amount }}"name="amount">
+          <input class="form-control @error('amount') is-invalid @enderror" type="textarea" value="{{ $meal_detail->amount }}"name="amount">
           @error('amount')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -94,6 +116,7 @@
           @enderror
         </div>
         </div>
+        @endforeach
       </div>
        
       <div class="form-group mt-5">
