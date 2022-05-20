@@ -29,9 +29,8 @@ use Inertia\Inertia;
 // ルートディレクトリへのアクセスはログイン画面にリダイレクト
 Route::redirect('/', '/login');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// ファイルパス取得用
+Route::get('/get_request_image/{$meal_photo}', 'FileController@get_request_image')->where('path', '.*');
 
 require __DIR__.'/auth.php';
 
