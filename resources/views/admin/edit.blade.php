@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
@@ -148,7 +148,7 @@
                     <div class="modal-body text-center">
                         <h5 class="modal-title" id="exampleModalLabel">登録を削除してよろしいですか？</h5>
                         <div class="d-flex justify-content-around mt-5">
-                            <input type="button" class="btn btn-secondary" style="width:100px" data-dismiss="modal" value="戻る">
+                            <input type="button" class="btn btn-secondary" style="width:100px" data-bs-dismiss="modal" value="戻る">
                             <form method="post" action="/admin/user/{{ $user->id }}/delete/{{ $meal_record->meal_id }}">
                             @csrf
                               <input type="submit" class="btn btn-secondary" style="width:100px" value="削除する">

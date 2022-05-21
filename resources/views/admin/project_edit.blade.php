@@ -101,7 +101,7 @@
                 </div>
               </div>
  -->
-          <button type="submit" class="btn btn-secondary mx-2" style="width:200px">登録する</button>
+          <button type="submit" class="btn btn-secondary mx-2" style="width:200px">更新する</button>
       </div>
   </div>
 @endsection
