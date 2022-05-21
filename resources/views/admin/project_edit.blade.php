@@ -75,27 +75,28 @@
       </div>
       <div class="row mt-5">
           <!-- <delete-record-component></delete-record-component> -->
-          <button type="button" class="btn btn-secondary mx-2" style="width:200px" data-bs-toggle="modal" data-bs-target="#exampleModal-1">
+          <!-- <button type="button" class="btn btn-secondary mx-2" style="width:200px" data-bs-toggle="modal" data-bs-target="#exampleModal-1">
             削除する
-          </button>
+          </button> -->
 
             <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <!-- <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                     <div class="modal-body text-center">
-                        <h5 class="modal-title" id="logoutModalLabel">登録を削除してよろしいですか？</h5>
-                        <div class="row justify-content-around mt-5">
+                        <h5 class="modal-title" id="exampleModalLabel">登録を削除してよろしいですか？</h5>
+                        <div class="d-flex justify-content-around mt-5">
                             <input type="button" class="btn btn-secondary" style="width:100px" data-dismiss="modal" value="戻る">
-                            <a href="/admin/project/{{ $survey_info->survey_id }}/delete }}">
-                              <input type="button" class="btn btn-secondary" style="width:100px" value="削除する">
-                            </a>
+                            <form method="post" action="/admin/project/{{ $survey_info->survey_id }}/delete }}">
+                            @csrf
+                              <input type="submit" class="btn btn-secondary" style="width:100px" value="削除する">
+                            </form>
                         </div>
                     </div>
                     </div>
                 </div>
               </div>
-
+ -->
           <button type="submit" class="btn btn-secondary mx-2" style="width:200px">登録する</button>
       </div>
   </div>
