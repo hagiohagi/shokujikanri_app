@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/upload', 'App\Http\Controllers\UploadController@create');
     Route::get('/edit/{meal_id}', 'App\Http\Controllers\EditController@index');
     Route::post('edit/{meal_id}', 'App\Http\Controllers\EditController@update');
+    Route::post('delete/{meal_id}', 'App\Http\Controllers\EditController@delete');
 });
     
     // 研究者側
@@ -66,12 +67,14 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/user/register', 'App\Http\Controllers\Admin\UserRegisterController@register');
             Route::get('/user/{id}/edit', 'App\Http\Controllers\Admin\UserEditController@index');
             Route::post('/user/{id}/edit', 'App\Http\Controllers\Admin\UserEditController@update');
+            Route::post('/user/{id}/delete', 'App\Http\Controllers\Admin\UserEditController@delete');
             Route::get('/project', 'App\Http\Controllers\Admin\ProjectController@index')->name('admin.project');
             Route::get('/project/register', 'App\Http\Controllers\Admin\ProjectRegisterController@index');
             Route::post('/project/register', 'App\Http\Controllers\Admin\ProjectRegisterController@register');
             Route::get('/project/{survey_id}/list', 'App\Http\Controllers\Admin\ProjectListController@index');
             Route::get('/project/{id}/edit', 'App\Http\Controllers\Admin\ProjectEditController@index');
             Route::post('/project/{id}/edit', 'App\Http\Controllers\Admin\ProjectEditController@update');
+            Route::post('/project/{id}/delete', 'App\Http\Controllers\Admin\ProjectEditController@delete');
             Route::get('/user/import', 'App\Http\Controllers\Admin\UserImportController@index');
         
     });

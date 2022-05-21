@@ -71,4 +71,11 @@ class EditController extends Controller
 
         return redirect()->route('index');
     }
+
+    public function delete(Request $request, $meal_id) {
+
+        $meal = MealRecord::find($meal_id);
+        $meal->delete();
+
+    }
 }
