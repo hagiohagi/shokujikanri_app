@@ -13,12 +13,13 @@ use App\Http\Controllers\Controller;
 
 class UploadController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $id)
     {
-        return view('/upload');
+        $user = User::find($id);
+        return view('admin.upload', ['user' => $user]);
     }
 
-    public function create(Request $request)
+    public function create(Request $request, $id)
     {
 
         $rules = [
@@ -75,6 +76,6 @@ class UploadController extends Controller
             }
         }
 
-        return redirect()->route('index');
+        return redirect()->route('admin.index', ['id' => $id]);
     }
 }

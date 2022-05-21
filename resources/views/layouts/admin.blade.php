@@ -35,7 +35,7 @@
                             <div class="modal-body text-center">
                                 <h5 class="modal-title" id="logoutModalLabel">ログアウトしてよろしいですか？</h5>
                                 <div class="d-flex justify-content-around mt-5">
-                                    <input type="button" class="btn btn-secondary" data-dismiss="modal" style="width:100px" value="戻る">
+                                    <input type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="width:100px" value="戻る">
                                     <form method="POST" action="{{ route('admin.logout') }}">
                                     @csrf
                                     <input type="submit" class="btn btn-secondary" style="width:150px" value="ログアウトする">

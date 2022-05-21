@@ -1,14 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
+  <ul class="nav nav-tabs bg-light ">
+    <li class="nav-item"><a class="nav-link" href="/admin/project">調査一覧</a></li>
+    <li class="nav-item "><a class="nav-link" href="/admin/user">ユーザー一覧</a></li>
+  </ul>
 @csrf
   <div class="p-3 my-3 text-center" style="background-color:#f5f5f5">
-    <a href="#" class="h2 text-dark "><u>調査に関する注意</u></a>
+  {{ $user->name }}さんの投稿
   </div>
-
   @foreach($meals as $meal)
-  <a href="/edit/{{ $meal->meal_id }}">
+  <a href="/admin/user/{{ $user->id }}/edit/{{ $meal->meal_id }}">
   <div class="container m-3 pt-3 border mx-auto">
 
   @if($meal->meal_type == 1)
@@ -45,10 +48,14 @@
     </div>
   </div>
   @endforeach
-
-    <a href="/upload">
-      <input type="button" class="m-5 btn btn-secondary" style="width:200px" value="回答を追加する">
+  <div class="d-flex">
+    <a href="/admin/user">
+    <input type="button" class="m-2 btn btn-secondary" style="width:200px" value="一覧に戻る">
+  </a>
+    <a href="/admin/user/{{ $user->id }}/upload">
+      <input type="button" class="m-2 btn btn-secondary" style="width:200px" value="回答を追加する">
     </a>
+  </div>
   
   </div>
 @endsection

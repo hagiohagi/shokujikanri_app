@@ -2,6 +2,10 @@
 
 @section('content')
 <div class="container">
+<ul class="nav nav-tabs bg-light ">
+    <li class="nav-item"><a class="nav-link" href="/admin/project">調査一覧</a></li>
+    <li class="nav-item "><a class="nav-link" href="/admin/user">ユーザー一覧</a></li>
+  </ul>
     <form class="form-horizontal" method="POST" action="/admin/project/{{ $survey_info->survey_id }}/edit">
     {{csrf_field()}}
       <div class="p-3 my-3" style="background-color:#f5f5f5">
@@ -97,7 +101,7 @@
                 </div>
               </div>
  -->
-          <button type="submit" class="btn btn-secondary mx-2" style="width:200px">登録する</button>
+          <button type="submit" class="btn btn-secondary mx-2" style="width:200px">更新する</button>
       </div>
   </div>
 @endsection

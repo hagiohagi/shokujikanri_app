@@ -15,6 +15,6 @@ class IndexController extends Controller
         $user = User::find($id);
         $meals = MealRecord::with('mealPhotos')->where('user_id', $user->id)->get();
 
-        return view('index',['meals' => $meals]);
+        return view('admin.index',['user' => $user,'meals' => $meals]);
     }
 }

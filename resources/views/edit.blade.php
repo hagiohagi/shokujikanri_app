@@ -134,7 +134,7 @@
           <button type="button" class="btn btn-secondary mx-2" style="width:200px" data-bs-toggle="modal" data-bs-target="#exampleModal">
             削除する
           </button>
-          <button type="submit" class="btn btn-secondary mx-2" style="width:200px">登録する</button>
+          <button type="submit" class="btn btn-secondary mx-2" style="width:200px">更新する</button>
       </div>
   </form>
 
@@ -145,7 +145,7 @@
                     <div class="modal-body text-center">
                         <h5 class="modal-title" id="exampleModalLabel">登録を削除してよろしいですか？</h5>
                         <div class="d-flex justify-content-around mt-5">
-                            <input type="button" class="btn btn-secondary" style="width:100px" data-dismiss="modal" value="戻る">
+                            <input type="button" class="btn btn-secondary" style="width:100px" data-bs-dismiss="modal" value="戻る">
                             <form method="post" action="/delete/{{ $meal_record->meal_id }}">
                             @csrf
                               <input type="submit" class="btn btn-secondary" style="width:100px" value="削除する">

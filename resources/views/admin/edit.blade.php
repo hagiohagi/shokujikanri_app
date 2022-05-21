@@ -1,9 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
-  
-  <form method="POST" action="/edit/{{ $meal_record->meal_id }}">
+<ul class="nav nav-tabs bg-light ">
+    <li class="nav-item"><a class="nav-link" href="/admin/project">調査一覧</a></li>
+    <li class="nav-item "><a class="nav-link" href="/admin/user">ユーザー一覧</a></li>
+  </ul>
+  <form method="POST" action="/admin/user/{{ $user->id }}/edit/{{ $meal_record->meal_id }}">
   {{csrf_field()}}
     <div style="background-color:#f5f5f5">
       画像一覧
@@ -134,7 +137,7 @@
           <button type="button" class="btn btn-secondary mx-2" style="width:200px" data-bs-toggle="modal" data-bs-target="#exampleModal">
             削除する
           </button>
-          <button type="submit" class="btn btn-secondary mx-2" style="width:200px">登録する</button>
+          <button type="submit" class="btn btn-secondary mx-2" style="width:200px">更新する</button>
       </div>
   </form>
 
@@ -145,8 +148,8 @@
                     <div class="modal-body text-center">
                         <h5 class="modal-title" id="exampleModalLabel">登録を削除してよろしいですか？</h5>
                         <div class="d-flex justify-content-around mt-5">
-                            <input type="button" class="btn btn-secondary" style="width:100px" data-dismiss="modal" value="戻る">
-                            <form method="post" action="/delete/{{ $meal_record->meal_id }}">
+                            <input type="button" class="btn btn-secondary" style="width:100px" data-bs-dismiss="modal" value="戻る">
+                            <form method="post" action="/admin/user/{{ $user->id }}/delete/{{ $meal_record->meal_id }}">
                             @csrf
                               <input type="submit" class="btn btn-secondary" style="width:100px" value="削除する">
                             </form>

@@ -3,10 +3,10 @@
 @section('content')
 <div class="container">
 @csrf
-<ul class="nav nav-tabs">
-    <li class="nav-item"><a class="nav-link disabled" href="/admin/project">調査一覧</a></li>
+<ul class="nav nav-tabs bg-light ">
+    <li class="nav-item"><a class="nav-link active disabled" href="/admin/project">調査一覧</a></li>
     <li class="nav-item "><a class="nav-link" href="/admin/user">ユーザー一覧</a></li>
-</ul>
+  </ul>
   
     <h1>調査一覧</h1>
 
