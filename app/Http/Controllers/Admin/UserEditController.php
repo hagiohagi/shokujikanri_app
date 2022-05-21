@@ -46,13 +46,17 @@ class UserEditController extends Controller
         return redirect()->route('admin.user');
     }
 
-    public function delete(Request $request, $id) {
+    // public function delete(Request $request, $id) {
 
-        $user = User::find($id);
-        $user->mealRecords()->mealPhotos()->delete();
-        $user->mealRecords()->mealDetails()->delete();
-        $user->mealRecords()->delete();
-        $user->delete();
+    //     $user = User::find($id);
+    //     $user->mealRecords()->each(function ($meal_record) {
+    //         $meal_record->mealPhotos()->delete();
+    //         $meal_record->mealDetails()->delete();
+    //     });
+    //     $user->mealRecords()->delete();
+    //     $user->delete();
 
-    }
+    //     return redirect()->route('admin.user');
+
+    // }
 }

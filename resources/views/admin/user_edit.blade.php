@@ -174,7 +174,7 @@
       </div> -->
       
       <div class="form-group form-inline">
-        <label class="col-sm-3 control-label">
+        <label class="col-sm-3 control-label mt-5">
         権限（必須）
         </label>
         <div class="col-sm-7">
@@ -193,9 +193,9 @@
       </div>
       <div class="row mt-5">
           <!-- <delete-record-component></delete-record-component> -->
-          <button type="button" class="btn btn-secondary mx-2" style="width:200px" data-bs-toggle="modal" data-bs-target="#deleteModal">
+          <!-- <button type="button" class="btn btn-secondary mx-2" style="width:200px" data-bs-toggle="modal" data-bs-target="#deleteModal">
             削除する
-          </button>
+          </button> -->
           <button type="submit" class="btn btn-secondary mx-2" style="width:200px">登録する</button>
       </div>
     </form>

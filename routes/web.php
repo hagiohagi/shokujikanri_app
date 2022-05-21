@@ -67,7 +67,14 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/user/register', 'App\Http\Controllers\Admin\UserRegisterController@register');
             Route::get('/user/{id}/edit', 'App\Http\Controllers\Admin\UserEditController@index');
             Route::post('/user/{id}/edit', 'App\Http\Controllers\Admin\UserEditController@update');
-            Route::post('/user/{id}/delete', 'App\Http\Controllers\Admin\UserEditController@delete');
+            // Route::post('/user/{id}/delete', 'App\Http\Controllers\Admin\UserEditController@delete');
+            Route::get('/user/index', 'App\Http\Controllers\Admin\IndexController@index');
+            Route::get('/user/upload', 'App\Http\Controllers\Admin\UploadController@index');
+            Route::post('/user/upload', 'App\Http\Controllers\Admin\UploadController@create');
+            Route::get('/user/edit/{meal_id}', 'App\Http\Controllers\Admin\EditController@index');
+            Route::post('/user/edit/{meal_id}', 'App\Http\Controllers\Admin\EditController@update');
+            Route::post('/user/delete/{meal_id}', 'App\Http\Controllers\Admin\EditController@delete');
+
             Route::get('/project', 'App\Http\Controllers\Admin\ProjectController@index')->name('admin.project');
             Route::get('/project/register', 'App\Http\Controllers\Admin\ProjectRegisterController@index');
             Route::post('/project/register', 'App\Http\Controllers\Admin\ProjectRegisterController@register');
