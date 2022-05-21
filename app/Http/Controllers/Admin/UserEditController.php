@@ -49,7 +49,9 @@ class UserEditController extends Controller
     public function delete(Request $request, $id) {
 
         $user = User::find($id);
-
+        $user->mealRecords()->mealPhotos()->delete();
+        $user->mealRecords()->mealDetails()->delete();
+        $user->mealRecords()->delete();
         $user->delete();
 
     }

@@ -39,9 +39,9 @@ class ProjectEditController extends Controller
         return redirect()->route('admin.project');
     }
 
-    public function delete(Request $request, $survey_id) {
+    // public function delete(Request $request, $survey_id) {
 
-        $survey_info = SurveyInfo::find($survey_id);
-        $survey_info->delete();
-    }
+    //     $survey_info = SurveyInfo::find($survey_id);
+    //     $survey_info->delete();
+    // }
 }

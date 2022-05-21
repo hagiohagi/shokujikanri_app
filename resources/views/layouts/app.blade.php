@@ -24,15 +24,29 @@
                 @if( Auth::check() )
                 <div class="d-flex justify-content-end">
                     {{ Auth::user()->name}}さん
-                <logout-component></logout-component>
-                <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('ログアウト') }}
-                            </x-dropdown-link>
-                        </form>
+                    <!-- <logout-component></logout-component> -->
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                        <img src="/images/logout.jpg" width="40" alt="ログアウト">
+                    </button> 
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="logoutModal" aria-labelledby="logoutModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body text-center">
+                                <h5 class="modal-title" id="logoutModalLabel">ログアウトしてよろしいですか？</h5>
+                                <div class="d-flex justify-content-around mt-5">
+                                    <input type="button" class="btn btn-secondary" data-dismiss="modal" style="width:100px" value="戻る">
+                                    <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <input type="submit" class="btn btn-secondary" style="width:150px" value="ログアウトする">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 </div>
                 @else
                 @endguest

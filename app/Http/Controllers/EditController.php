@@ -75,7 +75,11 @@ class EditController extends Controller
     public function delete(Request $request, $meal_id) {
 
         $meal = MealRecord::find($meal_id);
+        $meal->mealPhotos()->delete();
+        $meal->mealDetails()->delete();
         $meal->delete();
+
+        return redirect()->route('index');
 
     }
 }
