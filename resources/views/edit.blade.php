@@ -9,9 +9,8 @@
       画像一覧
       <div class="carousel-inner">
           @foreach($meal_record->mealPhotos as $meal_photo)
-          
           <div class="carousel-item active">
-            <img src="{{ Storage::path('/public/images/' . $meal_photo['photo_path'])}}" class="d-block w-25" alt="...">
+            <img src="{{ url('/images/'. $meal_photo->photo_path)}}" class="d-block w-25" alt="...">
           </div>
           @endforeach
           

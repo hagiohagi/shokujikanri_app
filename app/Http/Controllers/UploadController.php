@@ -63,7 +63,7 @@ class UploadController extends Controller
             foreach($request->file('files') as $file){
                 
                 $file_name = $file['photo']->getClientOriginalName();
-                $file['photo']->storeAS('public/images',$file_name); //画像をストレージに保存
+                $file['photo']->storeAS('images',$file_name); //画像をストレージに保存
                 
                 MealPhoto::create([
                     'meal_id' => $meal_id,
