@@ -3,7 +3,11 @@
 @section('content')
 
 <div class="container">
-    <form method="POST" enctype="multipart/form-data" action="/upload">
+<ul class="nav nav-tabs bg-light ">
+    <li class="nav-item"><a class="nav-link" href="/admin/project">調査一覧</a></li>
+    <li class="nav-item "><a class="nav-link" href="/admin/user">ユーザー一覧</a></li>
+  </ul>
+    <form method="POST" enctype="multipart/form-data" action="/admin/user/{{ $user->id }}/upload">
     {{csrf_field()}}
       <div class="py-5 text-center border" style="width:500 ">
           <label>
@@ -120,6 +124,3 @@
     </form>
   </div>
 @endsection
-
-
-<script src="{{ mix('/js/app.js') }}" defer></script>

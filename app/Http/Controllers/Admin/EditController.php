@@ -6,18 +6,20 @@ use Illuminate\Http\Request;
 use App\Models\MealRecord;
 use App\Models\MealDetail;
 use App\Models\MealPhoto;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class EditController extends Controller
 {
-    public function index(Request $request, $meal_id)
+    public function index(Request $request, $id, $meal_id)
     {
+        $user = User::find($id);
         $meal_record = MealRecord::with(['mealPhotos', 'mealDetails'])->find($meal_id);
-        return view('/edit', ['meal_record' => $meal_record]);
+        return view('admin.edit', ['user' => $user, 'meal_record' => $meal_record]);
     }
 
-    public function update(Request $request, $meal_id)
+    public function update(Request $request, $id, $meal_id)
     {
         $meal = MealRecord::find($meal_id);
 
@@ -70,17 +72,17 @@ class EditController extends Controller
             }
         }
 
-        return redirect()->route('index');
+        return redirect()->route('admin.index', ['id' => $id]);
     }
 
-    public function delete(Request $request, $meal_id) {
+    public function delete(Request $request, $id, $meal_id) {
 
         $meal = MealRecord::find($meal_id);
         $meal->mealPhotos()->delete();
         $meal->mealDetails()->delete();
         $meal->delete();
 
-        return redirect()->route('index');
+        return redirect()->route('admin.index', ['id' => $id]);
 
     }
 }

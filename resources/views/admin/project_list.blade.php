@@ -2,6 +2,10 @@
 
 @section('content')
 <div class="container">
+<ul class="nav nav-tabs bg-light ">
+    <li class="nav-item"><a class="nav-link" href="/admin/project">調査一覧</a></li>
+    <li class="nav-item "><a class="nav-link" href="/admin/user">ユーザー一覧</a></li>
+  </ul>
 @csrf
   <div class="row mt-3">
     <h1>{{ $survey_info->survey_name }}</h1>
