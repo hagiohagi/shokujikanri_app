@@ -11,7 +11,7 @@
           @foreach($meal_record->mealPhotos as $meal_photo)
           
           <div class="carousel-item active">
-            <img src="{{ asset('images/' . $meal_photo['photo_path'])}}" class="d-block w-25" alt="...">
+            <img src="{{ Storage::path('/public/images/' . $meal_photo['photo_path'])}}" class="d-block w-25" alt="...">
           </div>
           @endforeach
           
@@ -131,10 +131,32 @@
           @enderror
       </div>
       <div class="row mt-5">
-          <delete-record-component></delete-record-component>
-          <button type="submit" class="btn btn-secondary" style="width:200px">登録する</button>
+          <!-- <delete-record-component></delete-record-component> -->
+          <button type="button" class="btn btn-secondary mx-2" style="width:200px" data-bs-toggle="modal" data-bs-target="#exampleModal-1">
+            削除する
+          </button>
+
+            <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <h5 class="modal-title" id="logoutModalLabel">登録を削除してよろしいですか？</h5>
+                        <div class="row justify-content-around mt-5">
+                            <input type="button" class="btn btn-secondary" style="width:100px" data-dismiss="modal" value="戻る">
+                            <a href="delete/{{ $meal_record->meal_id }}">
+                              <input type="button" class="btn btn-secondary" style="width:100px" value="削除する">
+                            </a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+              </div>
+
+          <button type="submit" class="btn btn-secondary mx-2" style="width:200px">登録する</button>
       </div>
   </form>
 
   @endsection
-  <script src="{{ mix('/js/app.js') }}" defer></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>

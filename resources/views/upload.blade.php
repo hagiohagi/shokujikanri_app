@@ -5,10 +5,10 @@
 <div class="container">
     <form method="POST" enctype="multipart/form-data" action="/upload">
     {{csrf_field()}}
-      <div class="py-5 text-center" style="width:500">
+      <div class="py-5 text-center border" style="width:500 ">
           <label>
             <span class="mx-auto" title="ファイルを選択">
-              <img :src="'images/upload.jpg'" width="450" alt="写真をアップロード">
+              <img src="/images/upload.png" width="450" alt="写真をアップロード">
             </span>
             <input type="file" id="photo" name="files[][photo]" multiple>
           </label>

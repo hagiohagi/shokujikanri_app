@@ -29,7 +29,7 @@
           @foreach($meal->mealPhotos as $meal_photo)
           @if($loop->first)
           <div class="carousel-item active">
-            <img src="{{ asset('images/' . $meal_photo['photo_path'])}}" class="d-block w-100" alt="...">
+            <img src="{{ url('/get_request_image/'. $meal_photo->photo_path)}}" class="d-block w-100" alt="...">
           </div>
           @endif
           @endforeach
@@ -39,7 +39,7 @@
         
       </a>
       <div class="d-flex justify-content-end">
-        <div class="my-box w-25">{{$meal->eat_date}} {{$meal->eat_time}}</div>
+        <div class="my-box w-50">{{$meal->eat_date}} {{$meal->eat_time}}</div>
         <div class="my-box w-25">{{$meal->eat_place}}</div>
       </div>
     </div>
@@ -47,7 +47,7 @@
   @endforeach
 
     <a href="/upload">
-      <input type="button" class="m-5 btn btn-secondary col-sm-2" value="回答を追加する">
+      <input type="button" class="m-5 btn btn-secondary" style="width:200px" value="回答を追加する">
     </a>
   
   </div>

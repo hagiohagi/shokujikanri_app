@@ -45,4 +45,12 @@ class UserEditController extends Controller
         ]);
         return redirect()->route('admin.user');
     }
+
+    public function delete(Request $request, $id) {
+
+        $user = User::find($id);
+
+        $user->delete();
+
+    }
 }
