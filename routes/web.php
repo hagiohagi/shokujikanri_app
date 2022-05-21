@@ -30,7 +30,7 @@ use Inertia\Inertia;
 Route::redirect('/', '/login');
 
 // ファイルパス取得用
-Route::get('/get_request_image/{$meal_photo}', 'FileController@get_request_image')->where('meal_photo', '.*');
+Route::get('/images/{$meal_photo}', 'FileController@get_request_image')->where('meal_photo', '.*');
 
 require __DIR__.'/auth.php';
 
