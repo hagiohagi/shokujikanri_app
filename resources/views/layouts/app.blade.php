@@ -18,12 +18,12 @@
 <body>
     <div id="app">
         <div class="container-fluid bg-white">
-        <div class="container">
             <nav class="navbar navbar-light">
                 <span class="navbar-brand mb-0 h1">食事記録</span>
-            </div>
 
                 @if( Auth::check() )
+                <div class="d-flex justify-content-end">
+                    {{ Auth::user()->name}}さん
                 <logout-component></logout-component>
                 <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -33,6 +33,7 @@
                                 {{ __('ログアウト') }}
                             </x-dropdown-link>
                         </form>
+</div>
                 @else
                 @endguest
             </nav>

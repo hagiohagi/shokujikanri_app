@@ -39,7 +39,7 @@
         
       </a>
       <div class="d-flex justify-content-end">
-        <div class="my-box w-25">{{$meal->eat_date}} {{$meal->eat_time}}</div>
+        <div class="my-box w-50">{{$meal->eat_date}} {{$meal->eat_time}}</div>
         <div class="my-box w-25">{{$meal->eat_place}}</div>
       </div>
     </div>
@@ -47,7 +47,7 @@
   @endforeach
 
     <a href="/upload">
-      <input type="button" class="m-5 btn btn-secondary col-sm-2" value="回答を追加する">
+      <input type="button" class="m-5 btn btn-secondary" style="width:200px" value="回答を追加する">
     </a>
   
   </div>
