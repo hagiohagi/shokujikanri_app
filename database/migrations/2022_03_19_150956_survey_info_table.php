@@ -20,6 +20,7 @@ class SurveyInfoTable extends Migration
             $table->string('era')->comment('年代');
             $table->string('sex')->comment('性別');
             $table->string('sport')->comment('競技');
+            $table->integer('research_number')->unique()->comment('調査番号');
             $table->timestamp('created_at')->comment('登録日時');
             $table->unsignedInteger('create_user_id')->comment('登録ユーザーID');
             $table->timestamp('updated_at')->nullable()->comment('更新日時');
