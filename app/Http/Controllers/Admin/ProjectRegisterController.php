@@ -25,6 +25,7 @@ class ProjectRegisterController extends Controller
             'era' => ['required', 'string'],
             'sex' => ['required', 'string'],
             'sport' => ['required', 'string'],
+            'research_number' => ['required', 'integer', 'unique:survey_info', 'digits:6'],
         ];
 
         $this->validate($request, $rules);
@@ -35,6 +36,7 @@ class ProjectRegisterController extends Controller
             'era' =>$request['era'],
             'sex' =>$request['sex'],
             'sport' =>$request['sport'],
+            'research_number' => $request['research_number'],
             'create_user_id' => Auth::id(),
         ]);
 

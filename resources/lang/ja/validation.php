@@ -157,7 +157,7 @@ return [
         'email_confirmation' => 'メールアドレス（確認用）',
         'password' => 'パスワード',
         'password_confirmation' => 'パスワード（確認用）',
-        'resarch_number' => '調査番号',
+        'research_number' => '調査番号',
 
         'survey_id' => '調査ID',
         'survey_name' => '調査名',

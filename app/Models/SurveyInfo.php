@@ -24,6 +24,7 @@ class SurveyInfo extends Model
         'era',
         'sex',
         'sport',
+        'research_number',
         'create_user_id',
         'update_user_id',
     ];

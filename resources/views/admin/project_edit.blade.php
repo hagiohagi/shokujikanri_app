@@ -77,6 +77,17 @@
           @enderror
         </div>
       </div>
+      <div class="form-group form-inline">
+        <label class="col-sm-3 control-label">
+        調査番号(編集不可)
+        </label>
+        <div class="col-sm-7">
+        <input id="research_number" type="text" class="col-sm-2 form-control @error('research_number') is-invalid @enderror" name="research_number" value="{{ $survey_info->research_number }}" autocomplete="research_number" disabled>
+            
+        </div>
+      </div>
+
+
       <div class="row mt-5">
           <!-- <delete-record-component></delete-record-component> -->
           <!-- <button type="button" class="btn btn-secondary mx-2" style="width:200px" data-bs-toggle="modal" data-bs-target="#exampleModal-1">
