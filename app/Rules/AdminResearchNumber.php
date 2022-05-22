@@ -26,7 +26,7 @@ class AdminResearchNumber implements Rule
      */
     public function passes($attribute, $value)
     {
-        return $value = 123456;
+        return $value == 123456;
     }
 
     /**
@@ -36,6 +36,6 @@ class AdminResearchNumber implements Rule
      */
     public function message()
     {
-        return '有効な調査番号ではありません。';
+        return '有効な暗証番号ではありません。';
     }
 }

@@ -184,12 +184,12 @@
       </div>
 
       <div class="p-3 my-3" style="background-color:#f5f5f5">
-        調査番号を入力してください
+        暗証番号
       </div>
       
       <div class="form-group">
         <label class="control-label">
-        説明時に共有された、6桁の番号を入力してください。(必須)
+          暗証番号を入力してください。(必須)
         </label>
         <!-- <input class="col-sm-2 form-control" type="text" v-model="research_number"> -->
         <input id="research_number" type="text" class="col-sm-2 form-control @error('research_number') is-invalid @enderror" name="research_number" value="{{ old('research_number') }}" autocomplete="research_number">
