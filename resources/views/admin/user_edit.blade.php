@@ -179,15 +179,17 @@
       
       <div class="form-group form-inline">
         <label class="col-sm-3 control-label mt-5">
-        権限（必須）
+        権限（編集不可）
         </label>
         <div class="col-sm-7">
-          <select class="form-control @error('auth_type') is-invalid @enderror" id="auth_type" name="auth_type">
-            <option value="" hidden>選択してください</option>
-            <option value="1">回答者</option>
-            <option value="2">研究者</option>
-            <option value="3">管理者</option>
-          </select>
+        @if($user->auth_type ==1)
+        <input id="auth_type" type="text" class="col-sm-2 form-control @error('auth_type') is-invalid @enderror" name="auth_type" value="回答者" autocomplete="auth_type" disabled>
+              @elseif($user->auth_type ==2)
+              <input id="auth_type" type="text" class="col-sm-2 form-control @error('auth_type') is-invalid @enderror" name="auth_type" value="研究者" autocomplete="auth_type" disabled>
+              @elseif($user->auth_type ==3)
+              <input id="auth_type" type="text" class="col-sm-2 form-control @error('auth_type') is-invalid @enderror" name="auth_type" value="管理者" autocomplete="auth_type" disabled>
+              @else
+              @endif
           @error('auth_type')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

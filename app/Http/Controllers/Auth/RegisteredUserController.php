@@ -65,6 +65,9 @@ class RegisteredUserController extends Controller
             'create_user_id' => 1, ##とりあえずテスト用
         ]);
 
+        $survey_info = SurveyInfo::where('research_number','=', $request['research_number'])->first();
+        $survey_info->users()->attach($user->id,['create_user_id' => $user->id]);
+
         event(new Registered($user));
 
         Auth::login($user);
