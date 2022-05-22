@@ -27,7 +27,6 @@ class UserEditController extends Controller
             'fat_percentage' =>['required','integer','max:99'],
             'sport_name' =>['required','string'],
             'sport_position' =>['string'],
-            'auth_type' => ['required','integer'],
         ];
 
         $this->validate($request, $rules);
@@ -40,8 +39,7 @@ class UserEditController extends Controller
             'fat_percentage' =>$request['fat_percentage'],
             'sport_name' =>$request['sport_name'],
             'sport_position' =>$request['sport_positon'] ,
-            'auth_type' =>$request['auth_type'],
-            'updatete_user_id' => Auth::id(),
+            'update_user_id' => Auth::id(),
         ]);
         return redirect()->route('admin.user');
     }

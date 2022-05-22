@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
+use App\Rules\AdminResearchNumber;
 
 class RegisteredUserController extends Controller
 {
@@ -46,7 +47,7 @@ class RegisteredUserController extends Controller
             'email' => 'required|string|email|max:255|unique:admins',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'password_confirmation' => ['required', 'string'],
-            'research_number' => ['required', 'integer'],
+            'research_number' => ['required', 'integer', 'digits:6', new AdminResearchNumber],
         ]);
 
         $user = Admin::create([
