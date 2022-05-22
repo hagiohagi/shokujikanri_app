@@ -191,9 +191,9 @@
         <label class="control-label">
         説明時に共有された、6桁の番号を入力してください。(必須)
         </label>
-        <!-- <input class="col-sm-2 form-control" type="text" v-model="resarch_number"> -->
-        <input id="resarch_number" type="text" class="col-sm-2 form-control @error('resarch_number') is-invalid @enderror" name="resarch_number" value="{{ old('resarch_number') }}" autocomplete="resarch_number">
-            @error('resarch_number')
+        <!-- <input class="col-sm-2 form-control" type="text" v-model="research_number"> -->
+        <input id="research_number" type="text" class="col-sm-2 form-control @error('research_number') is-invalid @enderror" name="research_number" value="{{ old('research_number') }}" autocomplete="research_number">
+            @error('research_number')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>

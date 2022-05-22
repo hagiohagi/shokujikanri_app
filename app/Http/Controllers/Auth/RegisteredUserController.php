@@ -46,7 +46,7 @@ class RegisteredUserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'password_confirmation' => ['required', 'string'],
-            'resarch_number' => ['required', 'integer'],
+            'research_number' => ['required', 'integer'],
         ]);
 
         $user = User::create([
@@ -60,12 +60,16 @@ class RegisteredUserController extends Controller
             'email' =>$request['email'],
             'password' =>Hash::make($request['password']),
             'auth_type' => 1,
-            'create_user_id' => Auth::id(),
+            'create_user_id' => 1, ##とりあえずテスト用
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
+
+        $user->update([
+            'create_user_id' => Auth::id(),
+        ]);
 
         return redirect(RouteServiceProvider::HOME);
     }
