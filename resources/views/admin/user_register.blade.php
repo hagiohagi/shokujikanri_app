@@ -202,7 +202,7 @@
       </div>
       <div class="form-group form-inline">
         <label class="col-sm-7 control-label">
-        【回答者のみ】6桁の番号を入力してください。(必須)
+        【回答者のみ】6桁の番号を入力してください。(正しくない場合NOT FOUNDと表示されます)
         </label>
         <div class="col-sm-7">
         <input id="research_number" type="text" class="col-sm-2 form-control @error('research_number') is-invalid @enderror" name="research_number" value="{{ old('research_number') }}" autocomplete="research_number">

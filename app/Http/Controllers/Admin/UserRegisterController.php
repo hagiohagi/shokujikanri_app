@@ -7,8 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Researcher;
 use App\Models\Admin;
+use App\Models\SurveyInfo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Rules\ResearchNumber;
 
 class UserRegisterController extends Controller
 {
@@ -37,7 +39,13 @@ class UserRegisterController extends Controller
 
         $this->validate($request, $rules);
 
-        if($request->auth_type == 3){
+        if($request['auth_type'] == 1 && SurveyInfo::where('research_number','=', $request['research_number'])->doesntExist()) {
+            abort(404);
+        }
+
+
+            // 管理者の場合
+        if($request->auth_type == 3){ 
             $admin = new Admin();
             $admin->create([
                 'name' => $request['name'],
@@ -52,7 +60,9 @@ class UserRegisterController extends Controller
                 'auth_type' =>$request['auth_type'],
                 'create_user_id' => Auth::id(),
             ]);
-        }elseif($request->auth_type == 2){
+        }
+        // 研究者の場合
+        elseif($request->auth_type == 2){
             $researcher = new Researcher();
             $researcher->create([
                 'name' => $request['name'],
@@ -67,7 +77,9 @@ class UserRegisterController extends Controller
                 'auth_type' =>$request['auth_type'],
                 'create_user_id' => Auth::id(),
             ]);
-        }else{
+        }
+        // 回答者の場合
+        else{
             $user = new User();
             $user->create([
                 'name' => $request['name'],
