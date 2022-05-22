@@ -60,6 +60,6 @@ class User extends Authenticatable
 
     public function surveyInfos()
     {
-        return $this->belongsToMany(SurveyInfo::class, 'user_survey_mapping');
+        return $this->belongsToMany(SurveyInfo::class, 'user_survey_mapping','user_id','survey_id')->withPivot('create_user_id','update_user_id')->withTimestamps();
     }
 }

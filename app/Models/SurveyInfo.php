@@ -33,6 +33,6 @@ class SurveyInfo extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_survey_mapping');
+        return $this->belongsToMany(User::class, 'user_survey_mapping','survey_id','user_id')->withPivot('create_user_id','update_user_id')->withTimestamps();
     }
 }
