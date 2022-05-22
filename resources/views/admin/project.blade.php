@@ -22,6 +22,7 @@
               <th>年代</th>
               <th>性別</th>
               <th>競技</th>
+              <th>調査番号</th>
               <th></th>
               <th></th>
           </tr>
@@ -34,6 +35,7 @@
               <td>{{ $data->era }}</td>
               <td>{{ $data->sex }}</td>
               <td>{{ $data->sport }}</td>
+              <td>{{ $data->research_number }}</td>
               <td><a class="btn btn-secondary" href="/admin/project/{{ $data->survey_id }}/list">回答を確認する</a></td>
               <td><a class="btn btn-secondary" href="/admin/project/{{ $data->survey_id }}/edit">編集する</a></td>
           </tr>

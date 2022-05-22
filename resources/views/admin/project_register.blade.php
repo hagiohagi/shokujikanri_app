@@ -77,6 +77,20 @@
           @enderror
         </div>
       </div>
+      
+      <div class="form-group form-inline">
+        <label class="col-sm-7 control-label">
+        回答者と調査との紐づけるための、6桁の番号を入力してください。(必須)
+        </label>
+        <div class="col-sm-7">
+        <input id="research_number" type="text" class="col-sm-2 form-control @error('research_number') is-invalid @enderror" name="research_number" value="{{ old('research_number') }}" autocomplete="research_number">
+            @error('research_number')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+      </div>
       <div class="col-sm-3">
         <button type="submit" class="p-10 btn btn-secondary" style="width:150px">登録する</button>
       </div>
