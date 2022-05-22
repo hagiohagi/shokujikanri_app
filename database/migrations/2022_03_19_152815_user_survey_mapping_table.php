@@ -15,9 +15,9 @@ class UserSurveyMappingTable extends Migration
     {
         Schema::create('user_survey_mapping',function(Blueprint $table) {
             $table->increments('u_p_map_id')->comment('ユーザー調査マッピングID');
-            $table->unsignedBigInteger('user_id')->unique()->comment('ユーザーID');
+            $table->unsignedBigInteger('user_id')->comment('ユーザーID');
             $table->foreign('user_id')->references('id')->on('users')->OnDelete('cascade');
-            $table->unsignedInteger('survey_id')->unique()->comment('調査ID');
+            $table->unsignedInteger('survey_id')->comment('調査ID');
             $table->foreign('survey_id')->references('survey_id')->on('survey_info')->OnDelete('cascade');
             $table->timestamp('created_at')->comment('登録日時');
             $table->unsignedInteger('create_user_id')->comment('登録ユーザーID');

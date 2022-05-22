@@ -10,7 +10,6 @@ use App\Models\Admin;
 use App\Models\SurveyInfo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Rules\ResearchNumber;
 
 class UserRegisterController extends Controller
 {
@@ -94,6 +93,9 @@ class UserRegisterController extends Controller
                 'auth_type' =>$request['auth_type'],
                 'create_user_id' => Auth::id(),
             ]);
+            
+                $survey_info = SurveyInfo::where('research_number','=', $request['research_number'])->first();
+                $survey_info->users()->attach($user->id,['create_user_id' => $user->id]);
         }
 
         return redirect()->route('admin.user');
