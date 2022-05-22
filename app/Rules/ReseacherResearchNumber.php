@@ -25,7 +25,7 @@ class ReseacherResearchNumber implements Rule
      */
     public function passes($attribute, $value)
     {
-        return $value = 654321;
+        return $value == 654321;
     }
 
     /**
@@ -35,6 +35,6 @@ class ReseacherResearchNumber implements Rule
      */
     public function message()
     {
-        return '有効な調査番号ではありません。';
+        return '有効な暗証番号ではありません。';
     }
 }
