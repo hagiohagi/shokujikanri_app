@@ -4,8 +4,8 @@
 <div class="container">
 @csrf
   <div class="row mt-3">
-    <h1>{{ $survey_info->survey_name }}</h1>
-    <h2>調査対象期間:{{ $survey_info->term }}</h2>
+    <div class="col-5 h2">{{ $survey_info->survey_name }}</div>
+    <div class="col-5 h3">調査対象期間:{{ $survey_info->term }}</div>
   </div>
 
   <div class="row">
@@ -45,10 +45,10 @@
 
   <div class="container mt-3 mx-2 border">
     <div class="d-flex justify-content-start">
-      <div class="my-box w-25">田中太郎</div>
-      <div class="my-box w-25">朝食</div>
-      <div class="my-box w-25">2022 01/01</div>
-      <div class="my-box w-25">自宅</div>
+      <div class="col-2">田中太郎</div>
+      <div class="col-2">朝食</div>
+      <div class="col-2">2022 01/01</div>
+      <div class="col-2">自宅</div>
     </div>
     <div class="row">
       <div class="col-7 mt-3">
@@ -98,10 +98,22 @@
   @foreach($user->mealrecords as $mealrecord)
   <div class="container mt-3 mx-2 border">
     <div class="d-flex justify-content-start">
-      <div class="my-box w-25">{{$user->name}}</div>
-      <div class="my-box w-25">朝食</div>
-      <div class="my-box w-25">{{$mealrecord->eat_date}}{{$mealrecord->eat_time}}</div>
-      <div class="my-box w-25">{{$mealrecord->eat_place}}</div>
+      <div class="col-2">{{$user->name}}</div>
+      <div class="col-2">
+        @if($mealrecord->meal_type == 1)
+        <div class="badge bg-primary text-white">朝食</div>
+        @elseif($mealrecord->meal_type == 2)
+        <div class="badge bg-success text-white">昼食</div>
+        @elseif($mealrecord->meal_type == 3)
+        <div class="badge bg-info">間食</div>
+        @elseif($mealrecord->meal_type == 4)
+        <div class="badge bg-danger text-white">夕食</div>
+        @elseif($mealrecord->meal_type == 5)
+        <div class="badge bg-dark text-white">夜食</div>
+        @endif
+      </div>
+      <div class="col-2">{{$mealrecord->eat_date}}&nbsp;{{$mealrecord->eat_time}}</div>
+      <div class="col-2">{{$mealrecord->eat_place}}</div>
     </div>
     <div class="row">
       <div class="col-7 mt-3">
@@ -117,7 +129,7 @@
           <div class="carousel-inner">
             @foreach($mealrecord->mealPhotos as $meal_photo)
             <div class="carousel-item">
-              <img src="{{ url('/images/'. $meal_photo->photo_path)}}" class="d-block w-100" alt="/images/upload.png">
+              <img src="{{ url('/images/'. $meal_photo->photo_path)}}" class="d-block w-100" alt="{{ url('/images/'. $meal_photo->photo_path)}}">
             </div>
             @endforeach
           </div>

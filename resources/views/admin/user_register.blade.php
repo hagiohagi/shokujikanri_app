@@ -184,7 +184,7 @@
       
       <div class="form-group form-inline">
         <label class="col-sm-3 control-label">
-        権限（必須）
+        権限（必須)  (※途中での変更はできません）
         </label>
         <div class="col-sm-7">
           <select class="form-control @error('auth_type') is-invalid @enderror" id="auth_type" name="auth_type">
@@ -202,7 +202,7 @@
       </div>
       <div class="form-group form-inline">
         <label class="col-sm-7 control-label">
-        【回答者のみ】6桁の番号を入力してください。(正しくない場合NOT FOUNDと表示されます)
+        【回答者のみ】6桁の番号を入力してください。(※正しくない場合NOT FOUNDと表示されます)
         </label>
         <div class="col-sm-7">
         <input id="research_number" type="text" class="col-sm-2 form-control @error('research_number') is-invalid @enderror" name="research_number" value="{{ old('research_number') }}" autocomplete="research_number">
