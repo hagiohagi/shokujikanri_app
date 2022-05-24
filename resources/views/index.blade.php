@@ -29,7 +29,6 @@
           @foreach($meal->mealPhotos as $meal_photo)
           @if($loop->first)
           <div class="carousel-item active">
-            
             <img src="{{ url('/images/'. $meal_photo->photo_path)}}" class="d-block w-100" alt="...">
           </div>
           @endif

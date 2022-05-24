@@ -78,9 +78,9 @@
         </div>
       </div>
       
-      <div class="form-group form-inline">
+      <div class="form-group form-inline mt-3">
         <label class="col-sm-7 control-label">
-        6桁の番号を入力してください。(必須)
+        6桁の調査番号を入力してください。<p>（※一度登録したら変更できません。  ※すでに設定した6桁の調査番号は指定できません。）
         </label>
         <div class="col-sm-7">
         <input id="research_number" type="text" class="col-sm-2 form-control @error('research_number') is-invalid @enderror" name="research_number" value="{{ old('research_number') }}" autocomplete="research_number">
