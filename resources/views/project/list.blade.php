@@ -43,57 +43,6 @@
       </div>
   </div>
 
-  <div class="container mt-3 mx-2 border">
-    <div class="d-flex justify-content-start">
-      <div class="col-2">田中太郎</div>
-      <div class="col-2">朝食</div>
-      <div class="col-2">2022 01/01</div>
-      <div class="col-2">自宅</div>
-    </div>
-    <div class="row">
-      <div class="col-7 mt-3">
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-          </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="/images/upload.png" class="d-block w-100" alt="/images/upload.png">
-            </div>
-            <div class="carousel-item">
-              <img src="/images/upload.png" class="d-block w-100" alt="/images/upload.png">
-            </div>
-            <div class="carousel-item">
-              <img src="/images/upload.png" class="d-block w-100" alt="/images/upload.png">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="false"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="false"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-      </div>
-      <div class="col-5 mt-3">
-        <table class="table display-none">
-          <tr>
-              <td>食事</td>
-              <td>材料</td>
-              <td>量</td>
-          </tr>
-        </table>
-        <div>
-          補足
-        </div>
-      </div>
-    </div>
-  </div>
-
   @foreach($survey_info->users as $user)
   @foreach($user->mealrecords as $mealrecord)
   <div class="container mt-3 mx-2 border">
@@ -128,7 +77,7 @@
           </div>
           <div class="carousel-inner">
             @foreach($mealrecord->mealPhotos as $meal_photo)
-            <div class="carousel-item">
+            <div class="carousel-item @if($loop->first) active @endif data-interval="50000">
               <img src="{{ url('/images/'. $meal_photo->photo_path)}}" class="d-block w-100" alt="{{ url('/images/'. $meal_photo->photo_path)}}">
             </div>
             @endforeach
