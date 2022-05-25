@@ -69,10 +69,10 @@
       @foreach($mealrecord->mealPhotos as $meal_photo)
 
       @endforeach
-      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div id="carouselExampleIndicators-{{$mealrecord->meal_id}}" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-indicators">
           @foreach($mealrecord->mealPhotos as $meal_photo)
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$meal_photo->photo_num - 1}}" class="active" aria-current="true" aria-label="Slide {{$meal_photo->photo_num}}"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators-{{$mealrecord->meal_id}}" data-bs-slide-to="{{$meal_photo->photo_num - 1}}" class="active" aria-current="true" aria-label="Slide {{$meal_photo->photo_num}}"></button>
             @endforeach
           </div>
           <div class="carousel-inner">
@@ -82,11 +82,11 @@
             </div>
             @endforeach
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-{{$mealrecord->meal_id}}" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="false"></span>
             <span class="visually-hidden">Previous</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators-{{$mealrecord->meal_id}}" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="false"></span>
             <span class="visually-hidden">Next</span>
           </button>
