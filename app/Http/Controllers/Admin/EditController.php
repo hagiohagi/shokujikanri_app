@@ -7,6 +7,7 @@ use App\Models\MealRecord;
 use App\Models\MealDetail;
 use App\Models\MealPhoto;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
@@ -34,7 +35,8 @@ class EditController extends Controller
             'ingredient' => ['required'],
             'amount' => ['required'],
 
-            'files.*.photo' => ['image|mimes:jpg,jpeg,bmp,png'],
+            // 'files.*.photo' => ['file|image|mimes:jpg,jpeg,bmp,png'],
+            'files.*.photo' => ['regex:/(.jpg|.jpeg|.bmp|.png|)\z/'],
         ];
 
         $this->validate($request, $rules);
@@ -60,14 +62,25 @@ class EditController extends Controller
         if ($request->has('files')) {
             foreach($request->file('files') as $file){
                 
-                $file_name = $file['photo']->getClientOriginalName();
-                $file['photo']->storeAS('images',$file_name); //画像をストレージに保存
+                // $file_name = $file['photo']->getClientOriginalName();
+                // $file['photo']->storeAS('images',$file_name); //画像をストレージに保存
+                
+                // MealPhoto::query()->update([
+                //     'meal_id' => $meal_id,
+                //     'photo_path' => $file_name,
+                //     'order_num' => 1,
+                //     'update_user_id' => FacadesAuth::user()->id
+                // ]);
+                do {
+                    $fileName = uniqid(rand()) + $file['photo']->getClientOriginalExtension();
+                } while(Storage::exists("images/$fileName"));
+                $file['photo']->storeAS('images', $fileName); 
                 
                 MealPhoto::query()->update([
                     'meal_id' => $meal_id,
-                    'photo_path' => $file_name,
+                    'photo_path' => $fileName,
                     'order_num' => 1,
-                    'update_user_id' => FacadesAuth::user()->id
+                    'update_user_id' => FacadesAuth::user()->id,
                 ]);
             }
         }

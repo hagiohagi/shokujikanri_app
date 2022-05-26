@@ -96,14 +96,14 @@
         <table class="table display-none">
         @foreach($mealrecord->mealDetails as $meal_detail)
           <tr>
-              <td>{{$meal_detail->food}}</td>
-              <td>{{$meal_detail->ingredient}}</td>
-              <td>{{$meal_detail->amount}}</td>
+              <td><pre>{{$meal_detail->food}}</pre></td>
+              <td><pre>{{$meal_detail->ingredient}}</pre></td>
+              <td><pre>{{$meal_detail->amount}}</pre></td>
           </tr>
           @endforeach
         </table>
         <div>
-        {{$mealrecord->memo}}
+          <pre>{{$mealrecord->memo}}</pre>
         </div>
       </div>
     </div>

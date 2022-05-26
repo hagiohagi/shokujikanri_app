@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+<div class="container-fluid">
 <div class="container">
 @csrf
 <ul class="nav nav-tabs bg-light ">
@@ -11,8 +12,9 @@
     <h1>ユーザー一覧</h1>
 
     <a href="/admin/user/register">
-      <input type="button" class="mt-5 btn btn-secondary col-sm-2" value="ユーザーを追加する">
+      <input type="button" class="my-5 btn btn-secondary col-sm-2" value="ユーザーを追加する">
     </a>
+</div>
 
     <table class="table">
       <thead>
@@ -60,4 +62,5 @@
       @endforeach
 
   </div>
+</div>
 @endsection
