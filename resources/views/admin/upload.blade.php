@@ -77,29 +77,29 @@
           食事内容を入力してください（必須）&nbsp;<a href="#" name="help">ヘルプ</a>
         </label>
         <div class="row">
-          <label class="control-label text-center col-3">食事</label>
-          <label class="control-label text-center col-3">材料</label>
-          <label class="control-label text-center col-3">量</label>
+          <label class="control-label text-center col-4">食事</label>
+          <label class="control-label text-center col-4">材料</label>
+          <label class="control-label text-center col-4">量</label>
         </div>
         <div class="row">
-          <div class="form-group col-3">
-            <input class="form-control @error('food') is-invalid @enderror" type="textarea" name="food">
+          <div class="form-group col-4">
+            <textarea class="form-control @error('food') is-invalid @enderror" name="food" rows="5"></textarea>
             @error('food')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
           @enderror
         </div> 
-          <div class="form-group col-3">
-          <input class="form-control @error('ingredient') is-invalid @enderror" type="textarea" name="ingredient">
+          <div class="form-group col-4">
+          <textarea class="form-control @error('ingredient') is-invalid @enderror" name="ingredient" rows="5"></textarea>
           @error('ingredient')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
           @enderror
           </div>
-          <div class="form-group col-3">
-          <input class="form-control @error('amount') is-invalid @enderror" type="textarea" name="amount">
+          <div class="form-group col-4">
+          <textarea class="form-control @error('amount') is-invalid @enderror" name="amount" rows="5"></textarea>
           @error('amount')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
