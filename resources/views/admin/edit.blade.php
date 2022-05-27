@@ -6,7 +6,7 @@
     <li class="nav-item"><a class="nav-link" href="/admin/project">調査一覧</a></li>
     <li class="nav-item "><a class="nav-link" href="/admin/user">ユーザー一覧</a></li>
   </ul>
-  <form method="POST" action="/admin/user/{{ $user->id }}/edit/{{ $meal_record->meal_id }}">
+  <form method="POST" enctype="multipart/form-data" action="/admin/user/{{ $user->id }}/edit/{{ $meal_record->meal_id }}">
   {{csrf_field()}}
     <div style="background-color:#f5f5f5">
       画像一覧
