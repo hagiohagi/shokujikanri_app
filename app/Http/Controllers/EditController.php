@@ -32,8 +32,8 @@ class EditController extends Controller
             'ingredient' => ['required'],
             'amount' => ['required'],
 
-            // 'files.*.photo' => ['file|image|mimes:jpg,jpeg,bmp,png'],
-            'files.*.photo' => ['regex:/(.jpg|.jpeg|.bmp|.png|)\z/'],
+            'files.*.photo' => ['file|image|mimes:jpg,jpeg,bmp,png'],
+            // 'files.*.photo' => ['regex:/(.jpg|.jpeg|.bmp|.png|)\z/'],
         ];
 
         $this->validate($request, $rules);
@@ -70,11 +70,11 @@ class EditController extends Controller
                 // ]);
 
                 do {
-                    $fileName = uniqid(rand()) + $file['photo']->getClientOriginalExtension();
+                    $fileName = uniqid(rand()) + $file['photo']->getClientOriginalName();
                 } while(Storage::exists("images/$fileName"));
                 $file['photo']->storeAS('images', $fileName); 
                 
-                MealPhoto::query()->update([
+                MealPhoto::where('meal_id',$meal_id)->update([
                     'meal_id' => $meal_id,
                     'photo_path' => $fileName,
                     'order_num' => 1,
