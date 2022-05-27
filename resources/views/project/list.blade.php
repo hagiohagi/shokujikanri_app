@@ -17,7 +17,7 @@
         <select class="form-control">
           <option value="" hidden>名前を選択してください</option>
           @foreach($survey_info->users as $user)
-            <option value="{{$user->id}}">{{$user->name}}</option>
+            <option value="{{$user->id}}" name="{{$user->id}}">{{$user->name}}</option>
           @endforeach
         </select>
         <!-- @error('')

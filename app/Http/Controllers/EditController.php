@@ -47,7 +47,7 @@ class EditController extends Controller
             'update_user_id' => FacadesAuth::user()->id
         ]);
 
-        MealDetail::query()->update([
+        MealDetail::where('meal_id',$meal_id)->update([
             'meal_id' => $meal_id,
             'food' => $request['food'],
             'ingredient' => $request['ingredient'],
