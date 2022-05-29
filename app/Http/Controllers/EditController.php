@@ -33,7 +33,6 @@ class EditController extends Controller
             'amount' => ['required'],
 
             'files.*.photo' => ['file|image|mimes:jpg,jpeg,bmp,png'],
-            // 'files.*.photo' => ['regex:/(.jpg|.jpeg|.bmp|.png|)\z/'],
         ];
 
         $this->validate($request, $rules);
@@ -74,7 +73,8 @@ class EditController extends Controller
                 } while(Storage::exists("images/$fileName"));
                 $file['photo']->storeAS('images', $fileName); 
                 
-                MealPhoto::where('meal_id',$meal_id)->update([
+                $meal_photo = MealPhoto::where('meal_id',$meal_id)->where('photo_num',$meal['photo_num']);
+                $meal_photo->update([
                     'meal_id' => $meal_id,
                     'photo_path' => $fileName,
                     'order_num' => 1,
