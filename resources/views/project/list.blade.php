@@ -10,23 +10,26 @@
 
   <div class="row">
   <div class="form-group form-inline mx-2 mt-3">
+    <form method="GET" action="/project/list/{{ $survey_info->survey_id }}">
         <label class="control-label">
         絞込み：
         </label>
-
         <select class="form-control">
           <option value="" hidden>名前を選択してください</option>
           @foreach($survey_info->users as $user)
-            <option value="{{$user->id}}" name="{{$user->id}}">{{$user->name}}</option>
+
+            <option value="{{$user->id}}" name="user_name">{{$user->name}}</option>
+
           @endforeach
         </select>
+        <button type="submit" class="btn-sm btn-secondary ">検索</button>
         <!-- @error('')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror -->
       </div>
-      <div class="form-group form-inline mx-2 mt-3">
+      <!-- <div class="form-group form-inline mx-2 mt-3">
         <label class="control-label">
         並び替え：
         </label>
@@ -35,12 +38,13 @@
             <option value="2">日付の新しい順</option>
             <option value="3">日付の古い順</option>
         </select>
-        <!-- @error('')
+         @error('')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror -->
-      </div>
+        @enderror
+      </div> -->
+    </form>
   </div>
 
   @foreach($survey_info->users as $user)
