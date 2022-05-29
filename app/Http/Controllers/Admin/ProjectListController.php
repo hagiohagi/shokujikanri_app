@@ -16,7 +16,7 @@ class ProjectListController extends Controller
         if (isset($request->user_name)) {
             $survey_info->whereHas('user_name',$request->user_name)->get();
         }
-        var_dump($survey_info);
+
         return view('admin.project_list',['survey_info' => $survey_info]);
     }
     

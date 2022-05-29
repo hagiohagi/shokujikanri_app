@@ -56,7 +56,7 @@ class EditController extends Controller
             'update_user_id' => FacadesAuth::user()->id
         ]);
 
-        if ($request->hasFile('files')) {
+        if ($request->has('files')) {
             foreach($request->file('files') as $file){
                 
                 // $file_name = $file['photo']->getClientOriginalName();
@@ -70,7 +70,7 @@ class EditController extends Controller
                 // ]);
 
                 do {
-                    $fileName = uniqid(rand()) + $file['photo']->getClientOriginalName();
+                    $fileName = uniqid(rand());
                 } while(Storage::exists("images/$fileName"));
                 $file['photo']->storeAS('images', $fileName); 
                 
