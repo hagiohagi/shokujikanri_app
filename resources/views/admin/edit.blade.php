@@ -30,7 +30,6 @@
             </span>
           @enderror
       </div>
-      <delete-picture-component></delete-picture-component>
     </div>
     <div class="form-group mt-3">
         <label class="control-label">

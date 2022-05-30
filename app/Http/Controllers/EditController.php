@@ -19,7 +19,7 @@ class EditController extends Controller
 
     public function update(Request $request, $meal_id)
     {
-        $meal = MealRecord::find($meal_id);
+        $meal = MealRecord::with(['mealPhotos', 'mealDetails'])->find($meal_id);
 
         $rules = [
             'meal_type' => ['required'],
@@ -56,29 +56,22 @@ class EditController extends Controller
         ]);
 
         if ($request->has('files')) {
+
+            $meal_photo = MealPhoto::where('meal_id',$meal_id);
+            $meal_photo->delete();
+
             foreach($request->file('files') as $file){
-                
-                // $file_name = $file['photo']->getClientOriginalName();
-                // $file['photo']->storeAS('images',$file_name); //画像をストレージに保存
-                
-                // MealPhoto::query()->update([
-                //     'meal_id' => $meal_id,
-                //     'photo_path' => $file_name,
-                //     'order_num' => 1,
-                //     'update_user_id' => FacadesAuth::user()->id
-                // ]);
 
                 do {
                     $fileName = uniqid(rand());
                 } while(Storage::exists("images/$fileName"));
                 $file['photo']->storeAS('images', $fileName); 
                 
-                $meal_photo = MealPhoto::where('meal_id',$meal_id)->where('photo_num',$meal['photo_num']);
-                $meal_photo->update([
+                $meal_photo->create([
                     'meal_id' => $meal_id,
                     'photo_path' => $fileName,
                     'order_num' => 1,
-                    'update_user_id' => FacadesAuth::user()->id,
+                    'create_user_id' => FacadesAuth::user()->id,
                 ]);
             }
         }
