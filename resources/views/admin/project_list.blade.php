@@ -18,7 +18,7 @@
         絞込み：
         </label>
 
-        <select class="form-control">
+        <select class="form-control" name="user_name">
           <option value="" hidden>名前を選択してください</option>
           @foreach($survey_info->users as $user)
             <option value="{{$user->id}}">{{$user->name}}</option>
@@ -34,10 +34,10 @@
         <label class="control-label">
         並び替え：
         </label>
-          <select class="form-control">
-            <option value="1">あいうえお順</option>
-            <option value="2">日付の新しい順</option>
-            <option value="3">日付の古い順</option>
+          <select class="form-control" name="survey_sort">
+            <option value="1" @if($request->sort == 1) selected @endif>あいうえお順</option>
+            <option value="2" @if($request->sort == 2) selected @endif>日付の新しい順</option>
+            <option value="3" @if($request->sort == 3) selected @endif>日付の古い順</option>
         </select>
         <!-- @error('')
             <span class="invalid-feedback" role="alert">
