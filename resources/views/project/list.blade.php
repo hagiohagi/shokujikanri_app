@@ -51,8 +51,8 @@
   @foreach($user->mealrecords as $mealrecord)
   <div class="container mt-3 mx-2 border">
     <div class="d-flex justify-content-start">
-      <div class="col-2">{{$user->name}}</div>
-      <div class="col-2">
+      <div class="col-1">{{$user->name}}</div>
+      <div class="col-1">
         @if($mealrecord->meal_type == 1)
         <div class="badge bg-primary text-white">朝食</div>
         @elseif($mealrecord->meal_type == 2)
@@ -66,13 +66,87 @@
         @endif
       </div>
       <div class="col-2">{{$mealrecord->eat_date}}&nbsp;{{$mealrecord->eat_time}}</div>
-      <div class="col-2">{{$mealrecord->eat_place}}</div>
+      <div class="col-1">{{$mealrecord->eat_place}}</div>
+      <div class="col-1 offset-6">
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#FullModal-{{$mealrecord->meal_id}}">
+          拡大する
+        </button>
+        <div class="modal fade" id="FullModal-{{$mealrecord->meal_id}}" tabindex="-1" aria-labelledby="FullModal-{{$mealrecord->meal_id}}Label" aria-hidden="true">
+          <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <!-- 以下モーダル -->
+                        <div class="modal-body">
+                        <div class=" container-fluid d-flex justify-content-start">
+                          <div class="col-1">{{$user->name}}</div>
+                          <div class="col-1">
+                            @if($mealrecord->meal_type == 1)
+                            <div class="badge bg-primary text-white">朝食</div>
+                            @elseif($mealrecord->meal_type == 2)
+                            <div class="badge bg-success text-white">昼食</div>
+                            @elseif($mealrecord->meal_type == 3)
+                            <div class="badge bg-info">間食</div>
+                            @elseif($mealrecord->meal_type == 4)
+                            <div class="badge bg-danger text-white">夕食</div>
+                            @elseif($mealrecord->meal_type == 5)
+                            <div class="badge bg-dark text-white">夜食</div>
+                            @endif
+                          </div>
+                          <div class="col-2">{{$mealrecord->eat_date}}&nbsp;{{$mealrecord->eat_time}}</div>
+                          <div class="col-1">{{$mealrecord->eat_place}}</div>
+                          <div class="row">
+                            <div class="col-7 mt-3">
+                            <div id="carouselExampleIndicators-{{$mealrecord->meal_id}}" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                @foreach($mealrecord->mealPhotos as $meal_photo)
+                                  <button type="button" data-bs-target="#carouselExampleIndicators-{{$mealrecord->meal_id}}" data-bs-slide-to="{{$meal_photo->photo_num - 1}}" class="active" aria-current="true" aria-label="Slide {{$meal_photo->photo_num}}"></button>
+                                  @endforeach
+                                </div>
+                                <div class="carousel-inner">
+                                  @foreach($mealrecord->mealPhotos as $meal_photo)
+                                  <div class="carousel-item @if($loop->first) active @endif data-interval="50000">
+                                    <img src="{{ url('/images/'. $meal_photo->photo_path)}}" class="d-block w-100" alt="{{ url('/images/'. $meal_photo->photo_path)}}">
+                                  </div>
+                                  @endforeach
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-{{$mealrecord->meal_id}}" data-bs-slide="prev">
+                                  <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+                                  <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators-{{$mealrecord->meal_id}}" data-bs-slide="next">
+                                  <span class="carousel-control-next-icon" aria-hidden="false"></span>
+                                  <span class="visually-hidden">Next</span>
+                                </button>
+                              </div>
+                            </div>
+                    <div class="col-5 mt-3">
+                      <table class="table display-none">
+                      @foreach($mealrecord->mealDetails as $meal_detail)
+                        <tr>
+                            <td><pre>{{$meal_detail->food}}</pre></td>
+                            <td><pre>{{$meal_detail->ingredient}}</pre></td>
+                            <td><pre>{{$meal_detail->amount}}</pre></td>
+                        </tr>
+                        @endforeach
+                      </table>
+                      <div>
+                        <pre>{{$mealrecord->memo}}</pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 以上モーダル -->
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col-7 mt-3">
-      @foreach($mealrecord->mealPhotos as $meal_photo)
-
-      @endforeach
       <div id="carouselExampleIndicators-{{$mealrecord->meal_id}}" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-indicators">
           @foreach($mealrecord->mealPhotos as $meal_photo)
