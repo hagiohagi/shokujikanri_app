@@ -96,8 +96,9 @@
                           </div>
                           <div class="col-2">{{$mealrecord->eat_date}}&nbsp;{{$mealrecord->eat_time}}</div>
                           <div class="col-1">{{$mealrecord->eat_place}}</div>
+                        </div>
                           <div class="row">
-                            <div class="col-7 mt-3">
+                            <div class="col-8 mt-3">
                             <div id="carouselExampleIndicators-{{$mealrecord->meal_id}}" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-indicators">
                                 @foreach($mealrecord->mealPhotos as $meal_photo)
@@ -106,7 +107,7 @@
                                 </div>
                                 <div class="carousel-inner">
                                   @foreach($mealrecord->mealPhotos as $meal_photo)
-                                  <div class="carousel-item @if($loop->first) active @endif data-interval="50000">
+                                  <div class="carousel-item @if($loop->first) active @endif" data-interval="5000000">
                                     <img src="{{ url('/images/'. $meal_photo->photo_path)}}" class="d-block w-100" alt="{{ url('/images/'. $meal_photo->photo_path)}}">
                                   </div>
                                   @endforeach
@@ -121,7 +122,7 @@
                                 </button>
                               </div>
                             </div>
-                    <div class="col-5 mt-3">
+                    <div class="col-4 mt-3">
                       <table class="table display-none">
                       @foreach($mealrecord->mealDetails as $meal_detail)
                         <tr>
@@ -137,7 +138,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+                
 
               <!-- 以上モーダル -->
             </div>
@@ -155,7 +156,7 @@
           </div>
           <div class="carousel-inner">
             @foreach($mealrecord->mealPhotos as $meal_photo)
-            <div class="carousel-item @if($loop->first) active @endif data-interval="50000">
+            <div class="carousel-item @if($loop->first) active @endif" data-interval="5000000">
               <img src="{{ url('/images/'. $meal_photo->photo_path)}}" class="d-block w-100" alt="{{ url('/images/'. $meal_photo->photo_path)}}">
             </div>
             @endforeach
