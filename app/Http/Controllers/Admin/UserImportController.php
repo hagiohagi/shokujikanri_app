@@ -11,4 +11,9 @@ class UserImportController extends Controller
     {
         return view('admin.user_import');
     }
+
+    public function upload(Request $request)
+    {
+        
+    }
 }

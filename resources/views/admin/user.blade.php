@@ -4,16 +4,22 @@
 <div class="container-fluid">
 <div class="container">
 @csrf
-<ul class="nav nav-tabs bg-light ">
+  <ul class="nav nav-tabs bg-light ">
     <li class="nav-item"><a class="nav-link" href="/admin/project">調査一覧</a></li>
     <li class="nav-item "><a class="nav-link active disabled" href="/admin/user">ユーザー一覧</a></li>
   </ul>
   
     <h1>ユーザー一覧</h1>
 
+    <div class="d-flex">
     <a href="/admin/user/register">
-      <input type="button" class="my-5 btn btn-secondary col-sm-2" value="ユーザーを追加する">
+      <input type="button" class="my-5 btn btn-secondary" value="ユーザーを追加する">
     </a>
+    &nbsp;
+    <a href="/admin/user/import">
+      <input type="button" class="my-5 btn btn-secondary" value="CSVアップロード">
+    </a>
+    </div>
 </div>
 
     <table class="table">
@@ -38,12 +44,12 @@
           <tr>
               <td>{{ $data['name'] }}</td>
               <td>{{ $data['email'] }}</td>
-              <td>{{ $data['sex_type'] }}</td>
-              <td>{{ $data['height'] }}cm</td>
-              <td>{{ $data['weight'] }}kg</td>
-              <td>{{ $data['fat_percentage'] }}%</td>
-              <td>{{ $data['sport_name'] }}</td>
-              <td>{{ $data['sport_position'] }}</td>
+              <td>{{ $data['sex_type'] ?? '-' }}</td>
+              <td>{{ $data['height'] ?? '-' }}cm</td>
+              <td>{{ $data['weight'] ?? '-' }}kg</td>
+              <td>{{ $data['fat_percentage'] ?? '-' }}%</td>
+              <td>{{ $data['sport_name'] ?? '-' }}</td>
+              <td>{{ $data['sport_position'] ?? '-' }}</td>
               @if($data['auth_type'] ==1)
               <td>回答者</td>
               @elseif($data['auth_type'] ==2)
