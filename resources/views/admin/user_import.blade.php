@@ -28,7 +28,7 @@
     </div>
     <form action="/admin/user/import" method="post" enctype="multipart/form-data">
       @csrf
-      <input type="file" name="csvdata" />
+      <input type="file" name="usersCsv" />
       <button class="p-10 text-center btn btn-secondary">送信</button>
     </form>
   </div>

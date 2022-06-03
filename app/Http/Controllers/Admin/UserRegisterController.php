@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Researcher;
 use App\Models\Admin;
 use App\Models\SurveyInfo;
+use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -31,7 +32,7 @@ class UserRegisterController extends Controller
             'sport_position' =>['string'],
             'email' => ['required', 'email'],
             'email_confirmation' => ['required', 'string'],
-            'password' => ['required', 'string'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'password_confirmation' => ['required', 'string'],
             'auth_type' => ['required','integer'],
         ];
