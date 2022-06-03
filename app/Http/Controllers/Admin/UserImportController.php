@@ -35,7 +35,7 @@ class UserImportController extends Controller
 
     public function upload(Request $request)
     {
-
+        // CSV読み込む
         $assoc_array = [];
         if (($handle = fopen("usersCsv", "r")) !== false) {                 // open for reading
             while (($data = fgetcsv($handle, 1000, ",")) !== false) {      // loop remaining rows of data
@@ -44,8 +44,10 @@ class UserImportController extends Controller
             fclose($handle);                                               // close when done
         }
 
+        // 行の数だけユーザー登録
         foreach($assoc_array as $item){
 
+            // ユーザーデータベース用配列作る
             $data = [
             'name' => $item[0],
             'sex_type' =>  $item[1],
@@ -60,6 +62,7 @@ class UserImportController extends Controller
             'research_number' => $item[9], 
             ];
 
+            // バリデーション
             $validator = Validator::make($data,[
                 'name' => ['required', 'string'],
                 'sex_type' =>['required','string'],
@@ -72,11 +75,12 @@ class UserImportController extends Controller
                 'password' => ['required','confirmed', Rules\Password::defaults()],
                 'research_number' => ['required', 'integer', 'digits:6', new ResearchNumber],
             ]);
+            // ハッシュ化
+            $data['password'] = Hash::make($item[8]);
 
+            // ユーザーデータベースに登録
             $user = new User();
-            $user->fill([
-                'password' =>Hash::make($item[8]),
-            ])->save();
+            $user->insert($data);
         };
     }
 }
