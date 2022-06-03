@@ -14,22 +14,14 @@
     <div>
       <label class="col-7">
       <p>※回答者ユーザーのデータのみ受け付けています</p>
-      <p>※CSVファイルには以下の値を順に設定してください</p>
-      <p>・お名前</p>
-      <p>・性別（男性or女性）</p>
-      <p>・身長</p>
-      <p>・体重</p>
-      <p>・競技名</p>
-      <p>・ポジション</p>
-      <p>・メールアドレス</p>
-      <p>・パスワード</p>
-      <p>・調査番号</p>
+      <p>※CSVファイルは1行ごとに以下の値を順にカンマ区切りで記入してください</p>
+      <p>お名前,性別（男性or女性）,身長,体重,体脂肪率,競技名,ポジション,メールアドレス,パスワード,調査番号</p>
       </label>
     </div>
     <form action="/admin/user/import" method="post" enctype="multipart/form-data">
       @csrf
-      <input type="file" name="usersCsv" />
-      <button class="p-10 text-center btn btn-secondary">送信</button>
+      <input type="file" name="usersCsv">
+      <button type="submit" class="p-10 text-center btn btn-secondary">送信</button>
     </form>
   </div>
 
