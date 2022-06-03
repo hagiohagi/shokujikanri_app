@@ -10,23 +10,10 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Exception;
 
 class UserImportController extends Controller
 {
 
-    // const CSV_HEADER = [
-    //     'name',
-    //     'sex_type',
-    //     'height',
-    //     'weight',
-    //     'fat_percentage',
-    //     'sport_name',
-    //     'sport_position',
-    //     'email',
-    //     'password',
-    //     'research_number'
-    // ];
 
     public function index(Request $request)
     {
@@ -48,7 +35,7 @@ class UserImportController extends Controller
         foreach($assoc_array as $item){
 
             // ユーザーデータベース用配列作る
-            $data = [
+            $user_data = [
             'name' => $item[0],
             'sex_type' =>  $item[1],
             'height' => $item[2],
@@ -60,10 +47,11 @@ class UserImportController extends Controller
             'password' => $item[8],
             'auth_type' => 1,
             'research_number' => $item[9], 
+            'create_user_id' => Auth::id(),
             ];
 
             // バリデーション
-            $validator = Validator::make($data,[
+            $validator = Validator::make($user_data,[
                 'name' => ['required', 'string'],
                 'sex_type' =>['required','string'],
                 'height' =>['required','integer','max:999'],
@@ -76,11 +64,11 @@ class UserImportController extends Controller
                 'research_number' => ['required', 'integer', 'digits:6', new ResearchNumber],
             ]);
             // ハッシュ化
-            $data['password'] = Hash::make($item[8]);
+            $user_data['password'] = Hash::make($item[8]);
 
             // ユーザーデータベースに登録
             $user = new User();
-            $user->insert($data);
+            $user->insert($user_data);
         };
     }
 }
