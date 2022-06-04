@@ -62,7 +62,6 @@ class EditController extends Controller
         if ($request->has('files')) {
 
             $meal_photo = MealPhoto::where('meal_id',$meal_id);
-            $meal_photo->delete();
 
             foreach($request->file('files') as $file){
 
@@ -91,6 +90,15 @@ class EditController extends Controller
         $meal->delete();
 
         return redirect()->route('admin.index', ['id' => $id]);
+
+    }
+    public function photoDelete(Request $request, $id, $meal_id, $photo_num) {
+
+        $meal = MealRecord::find($meal_id);
+        $meal_photo = $meal->mealPhotos()->find($photo_num);
+        $meal_photo->delete();
+
+        return redirect()->route('admin.edit', ['id' => $id, 'meal_id' => $meal_id]);
 
     }
 }

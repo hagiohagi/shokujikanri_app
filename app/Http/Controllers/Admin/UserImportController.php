@@ -31,6 +31,8 @@ class UserImportController extends Controller
                 $assoc_array[] = array($data);              // push associative subarrays
             }
             fclose($handle);                                               // close when done
+        }else{
+            abort(404);
         }
 
         // dd($assoc_array);

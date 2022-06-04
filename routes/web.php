@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/edit/{meal_id}', 'App\Http\Controllers\EditController@index');
     Route::post('edit/{meal_id}', 'App\Http\Controllers\EditController@update');
     Route::post('delete/{meal_id}', 'App\Http\Controllers\EditController@delete');
+    Route::post('delete/{meal_id}/{photo_num}', 'App\Http\Controllers\EditController@photoDelete');
 });
     
     // 研究者側
@@ -72,9 +73,10 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/user/{id}/index', 'App\Http\Controllers\Admin\IndexController@index')->name('admin.index');
             Route::get('/user/{id}/upload', 'App\Http\Controllers\Admin\UploadController@index');
             Route::post('/user/{id}/upload', 'App\Http\Controllers\Admin\UploadController@create');
-            Route::get('/user/{id}/edit/{meal_id}', 'App\Http\Controllers\Admin\EditController@index');
+            Route::get('/user/{id}/edit/{meal_id}', 'App\Http\Controllers\Admin\EditController@index')->name('admin.edit');;
             Route::post('/user/{id}/edit/{meal_id}', 'App\Http\Controllers\Admin\EditController@update');
             Route::post('/user/{id}/delete/{meal_id}', 'App\Http\Controllers\Admin\EditController@delete');
+            Route::post('/user/{id}/delete/{meal_id}/{photo_num}', 'App\Http\Controllers\Admin\EditController@photoDelete');
 
             Route::get('/project', 'App\Http\Controllers\Admin\ProjectController@index')->name('admin.project');
             Route::get('/project/register', 'App\Http\Controllers\Admin\ProjectRegisterController@index');
