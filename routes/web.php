@@ -48,7 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/index', 'App\Http\Controllers\IndexController@index')->name('index');
     Route::get('/upload', 'App\Http\Controllers\UploadController@index');
     Route::post('/upload', 'App\Http\Controllers\UploadController@create');
-    Route::get('/edit/{meal_id}', 'App\Http\Controllers\EditController@index');
+    Route::get('/edit/{meal_id}', 'App\Http\Controllers\EditController@index')->name('edit');
     Route::post('edit/{meal_id}', 'App\Http\Controllers\EditController@update');
     Route::post('delete/{meal_id}', 'App\Http\Controllers\EditController@delete');
     Route::post('delete/{meal_id}/{photo_num}', 'App\Http\Controllers\EditController@photoDelete');
@@ -73,7 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/user/{id}/index', 'App\Http\Controllers\Admin\IndexController@index')->name('admin.index');
             Route::get('/user/{id}/upload', 'App\Http\Controllers\Admin\UploadController@index');
             Route::post('/user/{id}/upload', 'App\Http\Controllers\Admin\UploadController@create');
-            Route::get('/user/{id}/edit/{meal_id}', 'App\Http\Controllers\Admin\EditController@index')->name('admin.edit');;
+            Route::get('/user/{id}/edit/{meal_id}', 'App\Http\Controllers\Admin\EditController@index')->name('admin.edit');
             Route::post('/user/{id}/edit/{meal_id}', 'App\Http\Controllers\Admin\EditController@update');
             Route::post('/user/{id}/delete/{meal_id}', 'App\Http\Controllers\Admin\EditController@delete');
             Route::post('/user/{id}/delete/{meal_id}/{photo_num}', 'App\Http\Controllers\Admin\EditController@photoDelete');
