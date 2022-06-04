@@ -80,8 +80,7 @@ class UserRegisterController extends Controller
         }
         // 回答者の場合
         else{
-            $user = new User();
-            $user->create([
+            $user = User::create([
                 'name' => $request['name'],
                 'sex_type' =>$request['sex_type'],
                 'height' =>$request['height'],

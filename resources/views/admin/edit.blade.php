@@ -10,20 +10,27 @@
   {{csrf_field()}}
     <div style="background-color:#f5f5f5">
       画像一覧
-      <div class="carousel-inner">
+          <div class="d-flex justify-content">
           @foreach($meal_record->mealPhotos as $meal_photo)
-          <div class="d-flex justify-content-left">
-            <img src="{{ url('/images/'. $meal_photo->photo_path)}}" class="d-block w-25" alt="...">
+          <div class="card d-block w-25">
+            <img src="{{ url('/images/'. $meal_photo->photo_path)}}" class="card-img " alt="...">
+            <div class="card-img-overlay">
+            <button type="button" class="btn-close" aria-label="Close" data-bs-toggle="modal" data-bs-target="#pictureDeleteModal-{{ $meal_photo->photo_num }}"></button>
+            </div>
           </div>
-          @endforeach
-          
-      </div>
+
+            @endforeach
+          </div>
+
+          <div class="card d-block w-25">
+            <label>
+              <span  title="ファイルを選択">
+                <img src="/images/add_photo.png" alt="写真をアップロード">
+              </span>
+              <input type="file" id="photo" name="files[][photo]" multiple>
+            </label>
+          </div>
       <div>
-          <label>
-            <span class="mx-auto" title="ファイルを選択">
-            </span>
-            <input type="file" id="photo" name="files[][photo]" multiple>
-          </label>
           @error('files[photo]')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -31,6 +38,8 @@
           @enderror
       </div>
     </div>
+          
+
     <div class="form-group mt-3">
         <label class="control-label">
         食事区分（必須）
@@ -81,7 +90,6 @@
         </div>
       </div>
 
-    <!-- <meal-detail-component></meal-detail-component> -->
     <div>
         <label class="control-label mt-5 mb-3">
           食事内容を入力してください（必須）&nbsp;<a href="#" name="help">ヘルプ</a>
@@ -133,7 +141,6 @@
           @enderror
       </div>
       <div class="row mt-5">
-          <!-- <delete-record-component></delete-record-component> -->
           <button type="button" class="btn btn-secondary mx-2" style="width:200px" data-bs-toggle="modal" data-bs-target="#exampleModal">
             削除する
           </button>
@@ -142,22 +149,41 @@
   </form>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                    <div class="modal-body text-center">
-                        <h5 class="modal-title" id="exampleModalLabel">登録を削除してよろしいですか？</h5>
-                        <div class="d-flex justify-content-around mt-5">
-                            <input type="button" class="btn btn-secondary" style="width:100px" data-bs-dismiss="modal" value="戻る">
-                            <form method="post" action="/admin/user/{{ $user->id }}/delete/{{ $meal_record->meal_id }}">
-                            @csrf
-                              <input type="submit" class="btn btn-secondary" style="width:100px" value="削除する">
-                            </form>
-                        </div>
-                    </div>
-                    </div>
-                </div>
+
+    <div class="modal fade" id="pictureDeleteModal-{{ $meal_photo->photo_num }}" aria-labelledby="pictureDeleteModal-{{ $meal_photo->photo_num }}Label" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+          <div class="modal-body text-center">
+              <h5 class="modal-title" id="pictureDeleteModal-{{ $meal_photo->photo_num }}Label">写真を削除してよろしいですか？</h5>
+              <div class="d-flex justify-content-around mt-5">
+                  <input type="button" class="btn btn-secondary" style="width:100px" data-bs-dismiss="modal" value="戻る">
+                  <form method="post" action="/admin/user/{{ $user->id }}/delete/{{ $meal_record->meal_id }}/{{ $meal_photo->photo_num }}">
+                  @csrf
+                    <input type="submit" class="btn btn-secondary" style="width:100px" value="削除する">
+                  </form>
               </div>
+          </div>
+          </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+          <div class="modal-body text-center">
+              <h5 class="modal-title" id="exampleModalLabel">登録を削除してよろしいですか？</h5>
+              <div class="d-flex justify-content-around mt-5">
+                  <input type="button" class="btn btn-secondary" style="width:100px" data-bs-dismiss="modal" value="戻る">
+                  <form method="post" action="/admin/user/{{ $user->id }}/delete/{{ $meal_record->meal_id }}">
+                  @csrf
+                    <input type="submit" class="btn btn-secondary" style="width:100px" value="削除する">
+                  </form>
+              </div>
+          </div>
+          </div>
+      </div>
+    </div>
 </div>
 
   @endsection

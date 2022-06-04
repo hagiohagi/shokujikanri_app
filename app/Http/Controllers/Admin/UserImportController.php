@@ -8,6 +8,7 @@ use App\Rules\ResearchNumber;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use App\Models\SurveyInfo;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,51 +25,70 @@ class UserImportController extends Controller
     {
         // CSV読み込む
         $assoc_array = [];
-        if (($handle = fopen("usersCsv", "r")) !== false) {                 // open for reading
+        $users_csv = $request->file('usersCsv');
+        if (($handle = fopen($users_csv, "r")) !== false) {                 // open for reading
             while (($data = fgetcsv($handle, 1000, ",")) !== false) {      // loop remaining rows of data
                 $assoc_array[] = array($data);              // push associative subarrays
             }
             fclose($handle);                                               // close when done
+        }else{
+            abort(404);
         }
 
+        // dd($assoc_array);
+
         // 行の数だけユーザー登録
-        foreach($assoc_array as $item){
+        foreach($assoc_array as $row){
+            foreach($row as $item){
 
-            // ユーザーデータベース用配列作る
-            $user_data = [
-            'name' => $item[0],
-            'sex_type' =>  $item[1],
-            'height' => $item[2],
-            'weight' => $item[3],
-            'fat_percentage' => $item[4],
-            'sport_name' => $item[5],
-            'sport_position' => $item[6],
-            'email' => $item[7],
-            'password' => $item[8],
-            'auth_type' => 1,
-            'research_number' => $item[9], 
-            'create_user_id' => Auth::id(),
-            ];
+                // ユーザーデータベース用配列作る
+                $user_data = [
+                'name' => $item[0],
+                'sex_type' => $item[1],
+                'height' => $item[2],
+                'weight' => $item[3],
+                'fat_percentage' => $item[4],
+                'sport_name' => $item[5],
+                'sport_position' => $item[6],
+                'email' => $item[7],
+                'password' => $item[8],
+                'auth_type' => 1,
+                'create_user_id' => Auth::id(),
+                ];
 
-            // バリデーション
-            $validator = Validator::make($user_data,[
-                'name' => ['required', 'string'],
-                'sex_type' =>['required','string'],
-                'height' =>['required','integer','max:999'],
-                'weight' =>['required','integer','max:999'],
-                'fat_percentage' =>['required','integer','max:99'],
-                'sport_name' =>['required','string'],
-                'sport_position' =>['string'],
-                'email' => ['required', 'email'],
-                'password' => ['required','confirmed', Rules\Password::defaults()],
-                'research_number' => ['required', 'integer', 'digits:6', new ResearchNumber],
-            ]);
-            // ハッシュ化
-            $user_data['password'] = Hash::make($item[8]);
+                $survey_data = [
+                'research_number' => $item[9], 
+                ];
 
-            // ユーザーデータベースに登録
-            $user = new User();
-            $user->insert($user_data);
-        };
+                // バリデーション
+                $validator = Validator::make($user_data,[
+                    'name' => ['required', 'string'],
+                    'sex_type' =>['required','string'],
+                    'height' =>['required','integer','max:999'],
+                    'weight' =>['required','integer','max:999'],
+                    'fat_percentage' =>['required','integer','max:99'],
+                    'sport_name' =>['required','string'],
+                    'sport_position' =>['string'],
+                    'email' => ['required', 'email'],
+                    'password' => ['required','confirmed', Rules\Password::defaults()],
+                    
+                ]);
+
+                $validator = Validator::make($survey_data,[
+                    'research_number' => ['required', 'integer', 'digits:6', new ResearchNumber],
+                ]);
+                // ハッシュ化
+                $user_data['password'] = Hash::make($item[8]);
+
+                // ユーザーデータベースに登録
+                $user = User::create($user_data);
+
+                $survey_info = SurveyInfo::where('research_number','=', $survey_data['research_number'])->first();
+                $survey_info->users()->attach($user->id,['create_user_id' => $user->id]);
+                
+            };
+        }
+
+        return redirect()->route('admin.user');
     }
 }
