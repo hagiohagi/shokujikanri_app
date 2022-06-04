@@ -15,8 +15,19 @@ class ListController extends Controller
         if (isset($request->user_name)) {
             $survey_info->whereHas('users',function($query) use ($request){
                 $query->where('name', $request->user_name);
-        })->get();
-    }
+            })->get();
+        }
+
+        if (isset($request->survey_sort)){
+            if($request->survey_sort == 1){
+                $survey_info->latest()->get();
+            }elseif($request->survey_sort == 2){
+                $survey_info->oldest()->get();
+            }elseif($request->survey_sort == 3){
+                $survey_info->get()->sortBy('users.name');
+            }
+        }
+
 
         return view('project.list',['survey_info' => $survey_info]);
     }
