@@ -2,28 +2,29 @@
 
 @section('content')
 <div class="container">
+
 <ul class="nav nav-tabs bg-light ">
     <li class="nav-item"><a class="nav-link" href="/admin/project">調査一覧</a></li>
     <li class="nav-item "><a class="nav-link" href="/admin/user">ユーザー一覧</a></li>
   </ul>
-  <form method="POST" enctype="multipart/form-data" action="/admin/user/{{ $user->id }}/edit/{{ $meal_record->meal_id }}">
-  {{csrf_field()}}
+
     <div style="background-color:#f5f5f5">
-      画像一覧
-          <div class="d-flex justify-content">
+      <p>画像一覧</p>
+          <div class="row row-cols-4 justify-content-start">
           @foreach($meal_record->mealPhotos as $meal_photo)
-          <div class="card d-block w-25">
-            <img src="{{ url('/images/'. $meal_photo->photo_path)}}" class="card-img " alt="...">
+          <div class="card col">
+            <img src="{{ url('/images/'. $meal_photo->photo_path ?? '')}}" alt="...">
             <div class="card-img-overlay">
-            <button type="button" class="btn-close" aria-label="Close" data-bs-toggle="modal" data-bs-target="#pictureDeleteModal-{{ $meal_photo->photo_num }}"></button>
+            <button type="button" class="btn-close" aria-label="Close" data-bs-toggle="modal" data-bs-target="#pictureDeleteModal-{{ $meal_photo->photo_num ?? '' }}"></button>
             </div>
           </div>
-
             @endforeach
           </div>
-
-          <div class="card d-block w-25">
-            <label>
+          
+          <form method="POST" enctype="multipart/form-data" action="/admin/user/{{ $user->id }}/edit/{{ $meal_record->meal_id }}">
+          {{csrf_field()}}
+          <div class="form-group card col-3">
+            <label class="control-label">
               <span  title="ファイルを選択">
                 <img src="/images/add_photo.png" alt="写真をアップロード">
               </span>
@@ -150,14 +151,14 @@
 
     <!-- Modal -->
 
-    <div class="modal fade" id="pictureDeleteModal-{{ $meal_photo->photo_num }}" aria-labelledby="pictureDeleteModal-{{ $meal_photo->photo_num }}Label" aria-hidden="true">
+    <div class="modal fade" id="pictureDeleteModal-{{ $meal_photo->photo_num ?? '' }}" aria-labelledby="pictureDeleteModal-{{ $meal_photo->photo_num ?? '' }}Label" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
           <div class="modal-body text-center">
-              <h5 class="modal-title" id="pictureDeleteModal-{{ $meal_photo->photo_num }}Label">写真を削除してよろしいですか？</h5>
+              <h5 class="modal-title" id="pictureDeleteModal-{{ $meal_photo->photo_num ?? '' }}Label">写真を削除してよろしいですか？</h5>
               <div class="d-flex justify-content-around mt-5">
                   <input type="button" class="btn btn-secondary" style="width:100px" data-bs-dismiss="modal" value="戻る">
-                  <form method="post" action="/admin/user/{{ $user->id }}/delete/{{ $meal_record->meal_id }}/{{ $meal_photo->photo_num }}">
+                  <form method="post" action="/admin/user/{{ $user->id }}/delete/{{ $meal_record->meal_id }}/{{ $meal_photo->photo_num ?? '' }}">
                   @csrf
                     <input type="submit" class="btn btn-secondary" style="width:100px" value="削除する">
                   </form>

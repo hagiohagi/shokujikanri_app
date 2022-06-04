@@ -35,8 +35,7 @@ class EditController extends Controller
             'ingredient' => ['required'],
             'amount' => ['required'],
 
-            // 'files.*.photo' => ['file|image|mimes:jpg,jpeg,bmp,png'],
-            'files.*.photo' => ['regex:/(.jpg|.jpeg|.bmp|.png|)\z/'],
+            'files.*.photo' => ['file|image|mimes:jpg,jpeg,bmp,png'],
         ];
 
         $this->validate($request, $rules);
@@ -61,8 +60,6 @@ class EditController extends Controller
 
         if ($request->has('files')) {
 
-            $meal_photo = MealPhoto::where('meal_id',$meal_id);
-
             foreach($request->file('files') as $file){
 
                 do {
@@ -70,7 +67,7 @@ class EditController extends Controller
                 } while(Storage::exists("images/$fileName"));
                 $file['photo']->storeAS('images', $fileName); 
                 
-                $meal_photo->create([
+                MealPhoto::create([
                     'meal_id' => $meal_id,
                     'photo_path' => $fileName,
                     'order_num' => 1,
