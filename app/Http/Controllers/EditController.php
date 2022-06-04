@@ -57,9 +57,6 @@ class EditController extends Controller
 
         if ($request->has('files')) {
 
-            $meal_photo = MealPhoto::where('meal_id',$meal_id);
-            $meal_photo->delete();
-
             foreach($request->file('files') as $file){
 
                 do {
@@ -67,7 +64,7 @@ class EditController extends Controller
                 } while(Storage::exists("images/$fileName"));
                 $file['photo']->storeAS('images', $fileName); 
                 
-                $meal_photo->create([
+                MealPhoto::create([
                     'meal_id' => $meal_id,
                     'photo_path' => $fileName,
                     'order_num' => 1,
@@ -87,6 +84,16 @@ class EditController extends Controller
         $meal->delete();
 
         return redirect()->route('index');
+
+    }
+
+    public function photoDelete(Request $request,  $meal_id, $photo_num) {
+
+        $meal = MealRecord::find($meal_id);
+        $meal_photo = $meal->mealPhotos()->find($photo_num);
+        $meal_photo->delete();
+
+        return redirect()->route('edit', ['meal_id' => $meal_id]);
 
     }
 }
