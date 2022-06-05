@@ -13,40 +13,33 @@
   </div>
 
   <div class="row">
-  <div class="form-group form-inline mx-2 mt-3">
+    <form method="GET" action="/admin/project/{{ $survey_info->survey_id }}/list">
+    <div class="form-group form-inline mx-2 mt-3">
         <label class="control-label">
         絞込み：
         </label>
-
         <select class="form-control" name="user_name">
           <option value="" hidden>名前を選択してください</option>
           @foreach($survey_info->users as $user)
-            <option value="{{$user->id}}">{{$user->name}}</option>
+            <option value="{{$user->name}}" @if(isset($params['user_name']) && $params['user_name'] == $user->name) selected @endif>{{$user->name}}</option>
           @endforeach
         </select>
-        <!-- @error('')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror -->
+     
       </div>
       <div class="form-group form-inline mx-2 mt-3">
         <label class="control-label">
         並び替え：
         </label>
           <select class="form-control" name="survey_sort">
-            <option value="1" @if($request->sort == 1) selected @endif>あいうえお順</option>
-            <option value="2" @if($request->sort == 2) selected @endif>日付の新しい順</option>
-            <option value="3" @if($request->sort == 3) selected @endif>日付の古い順</option>
+            <option value="1" @if(isset($params['survey_sort']) && $params['survey_sort'] == 1 ?? null) selected @endif>日付の新しい順</option>
+            <option value="2" @if(isset($params['survey_sort']) && $params['survey_sort'] == 2) selected @endif>日付の古い順</option>
+            <option value="3" @if(isset($params['survey_sort']) && $params['survey_sort'] == 2) selected @endif>あいうえお順</option>
         </select>
-        <!-- @error('')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror -->
       </div>
+      <button type="submit" class="btn-sm btn-secondary mx-2 mt-3">表示を変更</button>
+    </form>
   </div>
-
+  
   @foreach($survey_info->users as $user)
   @foreach($user->mealrecords as $mealrecord)
   <div class="container mt-3 mx-2 border">
