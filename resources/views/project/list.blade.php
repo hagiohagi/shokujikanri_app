@@ -17,7 +17,7 @@
         <select class="form-control" name="user_name">
           <option value="" hidden>名前を選択してください</option>
           @foreach($survey_info->users as $user)
-            <option value="{{$user->name}}">{{$user->name}}</option>
+            <option value="{{$user->name}}" @if(isset($params['user_name']) && $params['user_name'] == $user->name) selected @endif>{{$user->name}}</option>
           @endforeach
         </select>
      
@@ -27,9 +27,9 @@
         並び替え：
         </label>
           <select class="form-control" name="survey_sort">
-            <option value="1" selected>日付の新しい順</option>
-            <option value="2">日付の古い順</option>
-            <option value="3">あいうえお順</option>
+            <option value="1" @if(isset($params['survey_sort']) && $params['survey_sort'] == 1 ?? null) selected @endif>日付の新しい順</option>
+            <option value="2" @if(isset($params['survey_sort']) && $params['survey_sort'] == 2) selected @endif>日付の古い順</option>
+            <option value="3" @if(isset($params['survey_sort']) && $params['survey_sort'] == 2) selected @endif>あいうえお順</option>
         </select>
       </div>
       <button type="submit" class="btn-sm btn-secondary mx-2 mt-3">表示を変更</button>
