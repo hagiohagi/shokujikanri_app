@@ -4,46 +4,35 @@
 <div class="container">
 @csrf
   <div class="row mt-3">
-    <div class="col-5 h2">{{ $survey_info->survey_name }}</div>
-    <div class="col-5 h3">調査対象期間:{{ $survey_info->term }}</div>
+    <div class="col-5 h2">{{ $survey_info['survey_name'] ?? '' }}</div>
+    <div class="col-5 h3">調査対象期間:{{ $survey_info['term'] ?? '' }}</div>
   </div>
 
   <div class="row">
-  <div class="form-group form-inline mx-2 mt-3">
     <form method="GET" action="/project/list/{{ $survey_info->survey_id }}">
+    <div class="form-group form-inline mx-2 mt-3">
         <label class="control-label">
         絞込み：
         </label>
         <select class="form-control" name="user_name">
           <option value="" hidden>名前を選択してください</option>
           @foreach($survey_info->users as $user)
-
             <option value="{{$user->name}}">{{$user->name}}</option>
-
           @endforeach
         </select>
-        <button type="submit" class="btn-sm btn-secondary ">検索</button>
-        <!-- @error('')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror -->
+     
       </div>
-      <!-- <div class="form-group form-inline mx-2 mt-3">
+      <div class="form-group form-inline mx-2 mt-3">
         <label class="control-label">
         並び替え：
         </label>
           <select class="form-control" name="survey_sort">
-            <option value="1">あいうえお順</option>
-            <option value="2">日付の新しい順</option>
-            <option value="3">日付の古い順</option>
+            <option value="1" selected>日付の新しい順</option>
+            <option value="2">日付の古い順</option>
+            <option value="3">あいうえお順</option>
         </select>
-         @error('')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-      </div> -->
+      </div>
+      <button type="submit" class="btn-sm btn-secondary mx-2 mt-3">表示を変更</button>
     </form>
   </div>
 
