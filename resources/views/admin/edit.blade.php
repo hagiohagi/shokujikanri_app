@@ -151,6 +151,7 @@
 
     <!-- Modal -->
 
+    @foreach($meal_record->mealPhotos as $meal_photo)
     <div class="modal fade" id="pictureDeleteModal-{{ $meal_photo->photo_num ?? '' }}" aria-labelledby="pictureDeleteModal-{{ $meal_photo->photo_num ?? '' }}Label" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
@@ -167,6 +168,7 @@
           </div>
       </div>
     </div>
+    @endforeach
 
 
     <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
