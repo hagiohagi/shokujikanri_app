@@ -4,8 +4,8 @@
 <div class="container">
 @csrf
   <div class="row mt-3">
-    <div class="col-5 h2">{{ $survey_info['survey_name'] ?? '' }}</div>
-    <div class="col-5 h3">調査対象期間:{{ $survey_info['term'] ?? '' }}</div>
+    <div class="col-5 h2">{{ $survey_info->survey_name ?? '' }}</div>
+    <div class="col-5 h3">調査対象期間:{{ $survey_info->term ?? '' }}</div>
   </div>
 
   <div class="row">

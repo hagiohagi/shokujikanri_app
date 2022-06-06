@@ -10,7 +10,7 @@ class ListController extends Controller
 {
     public function index(Request $request, $survey_id)
     {
-        $survey_info = SurveyInfo::with('users.mealrecords','users.mealrecords.mealPhotos','users.mealrecords.mealDetails')->find($survey_id);
+        $survey_info = SurveyInfo::with('users','users.mealrecords','users.mealrecords.mealPhotos','users.mealrecords.mealDetails')->find($survey_id);
 
         if (isset($request->user_name)) {
             $survey_info->whereHas('users',function($query) use ($request){
