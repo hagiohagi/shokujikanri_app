@@ -12,15 +12,13 @@ class ListController extends Controller
     {
         // $survey_info = SurveyInfo::with('users','users.mealrecords','users.mealrecords.mealPhotos','users.mealrecords.mealDetails')->find($survey_id);
 
-                $survey_info = SurveyInfo::with('users','users.mealrecords','users.mealrecords.mealPhotos','users.mealrecords.mealDetails')->find($survey_id);
+        $survey_info = SurveyInfo::with('users','users.mealrecords','users.mealrecords.mealPhotos','users.mealrecords.mealDetails')->find($survey_id);
 
         if (isset($request->user_name)) {
             $survey_info = $survey_info->whereHas('users',function($query) use ($request){
                 $query->where('name', $request->user_name);
             })->get();
         }
-
-        dd($survey_info);
 
         // if (isset($request->survey_sort)){
         //     if($request->survey_sort == 1){
