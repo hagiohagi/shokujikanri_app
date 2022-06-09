@@ -58,6 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::prefix('project')->middleware(['auth:researchers'])->group(function () {
             Route::get('/index', 'App\Http\Controllers\Project\IndexController@index');
             Route::get('/list/{survey_id}', 'App\Http\Controllers\Project\ListController@index');
+            Route::get('/list/{survey_id}/search', 'App\Http\Controllers\Project\ListController@search');
             Route::get('/info/{survey_id}/{meal_id}', 'App\Http\Controllers\Project\InfoController@index');
         });
         
