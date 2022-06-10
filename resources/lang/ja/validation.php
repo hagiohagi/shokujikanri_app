@@ -182,6 +182,8 @@ return [
         'food' => '食事',
         'ingredient' => '材料', 
         'amount' => '量',
+
+        'auth_type' => '権限',
     ],
 
 ];
