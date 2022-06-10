@@ -85,7 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/project/{id}/edit', 'App\Http\Controllers\Admin\ProjectEditController@index');
             Route::post('/project/{id}/edit', 'App\Http\Controllers\Admin\ProjectEditController@update');
             // Route::post('/project/{id}/delete', 'App\Http\Controllers\Admin\ProjectEditController@delete');
-            Route::get('/user/import', 'App\Http\Controllers\Admin\UserImportController@index');
+            Route::get('/user/import', 'App\Http\Controllers\Admin\UserImportController@index')->name('admin.import');
             Route::post('/user/import', 'App\Http\Controllers\Admin\UserImportController@upload');
         
     });

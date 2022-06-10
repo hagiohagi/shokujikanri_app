@@ -15,9 +15,9 @@
         絞込み：
         </label>
         <select class="form-control" name="user_name">
-          <option value="" hidden>名前を選択してください</option>
+          <option value="">絞り込みなし</option>
           @foreach($survey_info->users as $user)
-            <option value="{{$user->name}}" @if(isset($params['user_name']) && $params['user_name'] == $user->name) selected @endif>{{$user->name}}</option>
+            <option value="{{$user->name}}" @if(request()->get('user_name') == $user->name) selected @endif>{{$user->name}}</option>
           @endforeach
         </select>
      
@@ -27,16 +27,16 @@
         並び替え：
         </label>
           <select class="form-control" name="survey_sort">
-            <option value="1" @if(isset($params['survey_sort']) && $params['survey_sort'] == 1 ?? null) selected @endif>日付の新しい順</option>
-            <option value="2" @if(isset($params['survey_sort']) && $params['survey_sort'] == 2) selected @endif>日付の古い順</option>
-            <option value="3" @if(isset($params['survey_sort']) && $params['survey_sort'] == 2) selected @endif>あいうえお順</option>
+            <option value="1" @if(request()->get('survey_sort') == 1 ?? null) selected @endif>日付の新しい順</option>
+            <option value="2" @if(request()->get('survey_sort') == 2) selected @endif>日付の古い順</option>
+            <option value="3" @if(request()->get('survey_sort') == 3) selected @endif>あいうえお順</option>
         </select>
       </div>
       <button type="submit" class="btn-sm btn-secondary mx-2 mt-3">表示を変更</button>
     </form>
   </div>
 
-  @foreach($survey_info->users as $user)
+  @foreach($users as $user)
   @foreach($user->mealrecords as $mealrecord)
   <div class="container mt-3 mx-2 border">
     <div class="d-flex justify-content-start">
