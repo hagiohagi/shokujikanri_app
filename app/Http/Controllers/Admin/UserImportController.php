@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\SurveyInfo;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class UserImportController extends Controller
 {
@@ -72,11 +73,22 @@ class UserImportController extends Controller
                     'email' => ['required', 'email'],
                     'password' => ['required','confirmed', Rules\Password::defaults()],
                     
+                ],
+                [
+                    '*' => 'CSVアップロード時にエラーが発生しました'
                 ]);
 
                 $validator = Validator::make($survey_data,[
                     'research_number' => ['required', 'integer', 'digits:6', new ResearchNumber],
+                ],
+                [
+                    '*' => 'CSVアップロード時にエラーが発生しました'
                 ]);
+
+                if ($validator->fails()) {
+                    $validator->errors();
+                    return redirect()->route('admin.import')->withErrors($validator)->withInput();
+                 }
                 // ハッシュ化
                 $user_data['password'] = Hash::make($item[8]);
 
@@ -85,6 +97,8 @@ class UserImportController extends Controller
 
                 $survey_info = SurveyInfo::where('research_number','=', $survey_data['research_number'])->first();
                 $survey_info->users()->attach($user->id,['create_user_id' => $user->id]);
+
+                event(new Registered($user));
                 
             };
         }
