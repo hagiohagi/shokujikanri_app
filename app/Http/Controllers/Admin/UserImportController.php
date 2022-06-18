@@ -39,6 +39,7 @@ class UserImportController extends Controller
         // dd($assoc_array);
 
         // 行の数だけユーザー登録
+
         foreach($assoc_array as $row){
             foreach($row as $item){
 
@@ -61,6 +62,8 @@ class UserImportController extends Controller
                 'research_number' => $item[9], 
                 ];
 
+            };
+
                 // バリデーション
                 $validator = Validator::make($user_data,[
                     'name' => ['required', 'string'],
@@ -75,14 +78,22 @@ class UserImportController extends Controller
                     
                 ],
                 [
-                    '*' => 'CSVアップロード時にエラーが発生しました'
+                    'name.*' => '名前の入力欄でエラーが発生しました',
+                    'sex_type.*' => '性別の入力欄でエラーが発生しました',
+                    'height.*' =>'身長の入力欄でエラーが発生しました',
+                    'weight.*' =>'体重の入力欄でエラーが発生しました',
+                    'fat_percentage.*' =>'体脂肪率の入力欄でエラーが発生しました',
+                    'sport_name.*' =>'競技名の入力欄でエラーが発生しました',
+                    'sport_position.*' =>'ポジションの入力欄でエラーが発生しました',
+                    'email.*' => 'Eメールの入力欄でエラーが発生しました',
+                    'password.*' => 'パスワードの入力欄でエラーが発生しました',
                 ]);
 
                 $validator = Validator::make($survey_data,[
                     'research_number' => ['required', 'integer', 'digits:6', new ResearchNumber],
                 ],
                 [
-                    '*' => 'CSVアップロード時にエラーが発生しました'
+                    '*' => '調査番号の部分でエラーが発生しました'
                 ]);
 
                 if ($validator->fails()) {
@@ -100,7 +111,7 @@ class UserImportController extends Controller
 
                 event(new Registered($user));
                 
-            };
+            
         }
 
         return redirect()->route('admin.user');
