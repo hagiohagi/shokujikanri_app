@@ -97,6 +97,9 @@ class UserRegisterController extends Controller
             $survey_info->users()->attach($user->id, ['create_user_id' => $user->id]);
 
             event(new Registered($user));
+
+            $user->request_password = $request['password'];
+            $user->registered($user);
         }
 
         return redirect()->route('admin.user');
