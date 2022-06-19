@@ -38,12 +38,12 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string'],
-            'sex_type' =>['required','string'],
-            'height' =>['required','integer','max:999'],
-            'weight' =>['required','integer','max:999'],
-            'fat_percentage' =>['required','integer','max:99'],
-            'sport_name' =>['required','string'],
-            'sport_position' =>['string'],
+            'sex_type' => ['required', 'string'],
+            'height' => ['required', 'integer', 'max:999'],
+            'weight' => ['required', 'integer', 'max:999'],
+            'fat_percentage' => ['required', 'integer', 'max:99'],
+            'sport_name' => ['required', 'string'],
+            'sport_position' => ['string'],
             'email_confirmation' => ['required', 'string'],
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -53,22 +53,25 @@ class RegisteredUserController extends Controller
 
         $user = User::create([
             'name' => $request['name'],
-            'sex_type' =>$request['sex_type'],
-            'height' =>$request['height'],
-            'weight' =>$request['weight'],
-            'fat_percentage' =>$request['fat_percentage'],
-            'sport_name' =>$request['sport_name'],
-            'sport_position' =>$request['sport_positon'] ,
-            'email' =>$request['email'],
-            'password' =>Hash::make($request['password']),
+            'sex_type' => $request['sex_type'],
+            'height' => $request['height'],
+            'weight' => $request['weight'],
+            'fat_percentage' => $request['fat_percentage'],
+            'sport_name' => $request['sport_name'],
+            'sport_position' => $request['sport_positon'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
             'auth_type' => 1,
             'create_user_id' => 1, ##とりあえずテスト用
         ]);
 
-        $survey_info = SurveyInfo::where('research_number','=', $request['research_number'])->first();
-        $survey_info->users()->attach($user->id,['create_user_id' => $user->id]);
+        $survey_info = SurveyInfo::where('research_number', '=', $request['research_number'])->first();
+        $survey_info->users()->attach($user->id, ['create_user_id' => $user->id]);
 
         event(new Registered($user));
+
+        $user->request_password = $request['password'];
+        $user->registered($user);
 
         Auth::login($user);
 

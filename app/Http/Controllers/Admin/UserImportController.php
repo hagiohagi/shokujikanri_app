@@ -32,7 +32,7 @@ class UserImportController extends Controller
                 $assoc_array[] = array($data);              // push associative subarrays
             }
             fclose($handle);                                               // close when done
-        }else{
+        } else {
             abort(404);
         }
 
@@ -40,78 +40,83 @@ class UserImportController extends Controller
 
         // 行の数だけユーザー登録
 
-        foreach($assoc_array as $row){
-            foreach($row as $item){
+        foreach ($assoc_array as $row) {
+            foreach ($row as $item) {
 
                 // ユーザーデータベース用配列作る
                 $user_data = [
-                'name' => $item[0],
-                'sex_type' => $item[1],
-                'height' => $item[2],
-                'weight' => $item[3],
-                'fat_percentage' => $item[4],
-                'sport_name' => $item[5],
-                'sport_position' => $item[6],
-                'email' => $item[7],
-                'password' => $item[8],
-                'auth_type' => 1,
-                'create_user_id' => Auth::id(),
+                    'name' => $item[0],
+                    'sex_type' => $item[1],
+                    'height' => $item[2],
+                    'weight' => $item[3],
+                    'fat_percentage' => $item[4],
+                    'sport_name' => $item[5],
+                    'sport_position' => $item[6],
+                    'email' => $item[7],
+                    'password' => $item[8],
+                    'auth_type' => 1,
+                    'create_user_id' => Auth::id(),
                 ];
 
                 $survey_data = [
-                'research_number' => $item[9], 
+                    'research_number' => $item[9],
                 ];
-
             };
 
-                // バリデーション
-                $validator = Validator::make($user_data,[
+            // バリデーション
+            $validator = Validator::make(
+                $user_data,
+                [
                     'name' => ['required', 'string'],
-                    'sex_type' =>['required','string'],
-                    'height' =>['required','integer','max:999'],
-                    'weight' =>['required','integer','max:999'],
-                    'fat_percentage' =>['required','integer','max:99'],
-                    'sport_name' =>['required','string'],
-                    'sport_position' =>['string'],
-                    'email' => ['required', 'email'],
-                    'password' => ['required','confirmed', Rules\Password::defaults()],
-                    
+                    'sex_type' => ['required', 'string'],
+                    'height' => ['required', 'integer', 'max:999'],
+                    'weight' => ['required', 'integer', 'max:999'],
+                    'fat_percentage' => ['required', 'integer', 'max:99'],
+                    'sport_name' => ['required', 'string'],
+                    'sport_position' => ['string'],
+                    'email' => ['required', 'email', 'unique:user'],
+                    'password' => ['required', 'confirmed', Rules\Password::defaults()],
+
                 ],
                 [
                     'name.*' => '名前の入力欄でエラーが発生しました',
                     'sex_type.*' => '性別の入力欄でエラーが発生しました',
-                    'height.*' =>'身長の入力欄でエラーが発生しました',
-                    'weight.*' =>'体重の入力欄でエラーが発生しました',
-                    'fat_percentage.*' =>'体脂肪率の入力欄でエラーが発生しました',
-                    'sport_name.*' =>'競技名の入力欄でエラーが発生しました',
-                    'sport_position.*' =>'ポジションの入力欄でエラーが発生しました',
+                    'height.*' => '身長の入力欄でエラーが発生しました',
+                    'weight.*' => '体重の入力欄でエラーが発生しました',
+                    'fat_percentage.*' => '体脂肪率の入力欄でエラーが発生しました',
+                    'sport_name.*' => '競技名の入力欄でエラーが発生しました',
+                    'sport_position.*' => 'ポジションの入力欄でエラーが発生しました',
                     'email.*' => 'Eメールの入力欄でエラーが発生しました',
                     'password.*' => 'パスワードの入力欄でエラーが発生しました',
-                ]);
+                ]
+            );
 
-                $validator = Validator::make($survey_data,[
+            $validator = Validator::make(
+                $survey_data,
+                [
                     'research_number' => ['required', 'integer', 'digits:6', new ResearchNumber],
                 ],
                 [
                     '*' => '調査番号の部分でエラーが発生しました'
-                ]);
+                ]
+            );
 
-                if ($validator->fails()) {
-                    $validator->errors();
-                    return redirect()->route('admin.import')->withErrors($validator)->withInput();
-                 }
-                // ハッシュ化
-                $user_data['password'] = Hash::make($item[8]);
+            if ($validator->fails()) {
+                $validator->errors();
+                return redirect()->route('admin.import')->withErrors($validator)->withInput();
+            }
+            // ハッシュ化
+            $user_data['password'] = Hash::make($item[8]);
 
-                // ユーザーデータベースに登録
-                $user = User::create($user_data);
+            // ユーザーデータベースに登録
+            $user = User::create($user_data);
 
-                $survey_info = SurveyInfo::where('research_number','=', $survey_data['research_number'])->first();
-                $survey_info->users()->attach($user->id,['create_user_id' => $user->id]);
+            $survey_info = SurveyInfo::where('research_number', '=', $survey_data['research_number'])->first();
+            $survey_info->users()->attach($user->id, ['create_user_id' => $user->id]);
 
-                event(new Registered($user));
-                
-            
+            event(new Registered($user));
+            $user->request_password = $request['password'];
+            $user->registered($user);
         }
 
         return redirect()->route('admin.user');
