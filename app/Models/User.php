@@ -54,9 +54,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function registered($val)
+    public function registered($user, $request_password)
      {
-          $this->notify(new Registered($val));
+          $this->notify(new Registered($user, $request_password));
      }
 
     public function mealrecords()
