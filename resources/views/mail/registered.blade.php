@@ -8,7 +8,7 @@
 
 {{ $user->name }}様のアカウント情報<br>
 メールアドレス：{{ $user->email }}<br>
-パスワード：{{ $user->request_password }}
+パスワード：{{ $request_password }}
 
 <!-- @component('mail::button', ['url' => ''])
 ログインはこちらから

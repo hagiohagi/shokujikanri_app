@@ -98,8 +98,8 @@ class UserRegisterController extends Controller
 
             event(new Registered($user));
 
-            $user->request_password = $request['password'];
-            $user->registered($user);
+            $request_password = $request['password'];
+            $user->registered($user, $request_password);
         }
 
         return redirect()->route('admin.user');

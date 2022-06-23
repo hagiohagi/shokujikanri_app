@@ -11,15 +11,17 @@ class Registered extends Notification
 {
     use Queueable;
     public $user;
+    public $request_password;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($user, $request_password)
     {
         $this->user = $user;
+        $this->request_password = $request_password;
     }
 
     /**
@@ -43,7 +45,8 @@ class Registered extends Notification
     {
         return (new MailMessage)->subject('アカウント登録が完了しました')
         ->markdown('mail.registered', [
-            'user' => $this->user
+            'user' => $this->user,
+            'request_password' => $this->request_password
         ]);
     }
 

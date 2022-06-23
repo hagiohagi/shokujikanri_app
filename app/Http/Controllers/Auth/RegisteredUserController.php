@@ -70,8 +70,8 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        $user->request_password = $request['password'];
-        $user->registered($user);
+        $request_password = $request['password'];
+        $user->registered($user, $request_password);
 
         Auth::login($user);
 
