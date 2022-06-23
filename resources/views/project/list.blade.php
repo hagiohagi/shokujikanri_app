@@ -36,10 +36,11 @@
     </form>
   </div>
 
-  @foreach($meal_records as $mealrecord)
+  @foreach($users as $user)
+  @foreach($user->mealrecords as $mealrecord)
   <div class="container mt-3 mx-2 border">
     <div class="d-flex justify-content-start">
-      <div class="col-1">{{$mealrecord->user->name}}</div>
+      <div class="col-1">{{$user->name}}</div>
       <div class="col-1">
         @if($mealrecord->meal_type == 1)
         <div class="badge bg-primary text-white">朝食</div>
@@ -174,7 +175,7 @@
     </div>
   </div>
   @endforeach
-
+  @endforeach
 
   <a class="mt-5 btn btn-secondary" href="/project/index">一覧に戻る</a>
 

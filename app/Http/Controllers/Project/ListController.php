@@ -12,8 +12,13 @@ class ListController extends Controller
     {
         $survey_info = SurveyInfo::with('users', 'users.mealrecords', 'users.mealrecords.mealPhotos', 'users.mealrecords.mealDetails')->find($survey_id);
         $users = $survey_info->users;
+        $meal_records = [];
+        foreach ($users as $user) {
+            $meal_records[] = $user->mealrecords;
+        }
 
-        return view('project.list', ['survey_info' => $survey_info, 'users' => $users]);
+
+        return view('project.list', ['survey_info' => $survey_info, 'users' => $users, 'meal_records' => $meal_records]);
     }
 
     public function search(Request $request, $survey_id)
