@@ -85,7 +85,8 @@
 
     <div>
         <label class="control-label mt-5 mb-3">
-          食事内容を入力してください（必須）&nbsp;<a href="#" name="help">ヘルプ</a>
+          食事内容を入力してください（必須）&nbsp;<a href="/pdf/request" target="_blank" rel="noopener noreferrer">ヘルプ</a>
+        </label>ヘルプ</a>
         </label>
         <div class="row">
           <label class="control-label text-center col-4">食事</label>

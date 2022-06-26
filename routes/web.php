@@ -29,8 +29,9 @@ use Inertia\Inertia;
 // ルートディレクトリへのアクセスはログイン画面にリダイレクト
 Route::redirect('/', '/login');
 
-// ファイルパス取得用
-Route::get('/images/{meal_photo}', 'App\Http\Controllers\FileController@get_request_image');
+// ストレージ取得用
+Route::get('/images/{meal_photo}', 'App\Http\Controllers\FileController@getRequestImage');
+Route::get('/pdf/request', 'App\Http\Controllers\FileController@getRequestPdf');
 
 require __DIR__.'/auth.php';
 

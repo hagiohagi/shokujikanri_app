@@ -4,7 +4,7 @@
 <div class="container-fluid">
 @csrf
   <div class="p-3 my-3 text-center" style="background-color:#f5f5f5">
-    <a href="#" class="h2 text-dark "><u>調査に関する注意</u></a>
+    <a href="/pdf/request" target="_blank" rel="noopener noreferrer" class="h2 text-dark "><u>調査に関する注意</u></a>
   </div>
 
   @foreach($meals as $meal)
