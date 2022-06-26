@@ -27,7 +27,7 @@ class ListController extends Controller
         $users = $survey_info->users;
         $meal_records = [];
         foreach ($users as $user) {
-            $meal_records = $user->mealrecords;
+            $meal_records[] = $user->mealrecords;
         }
 
         // dd($meal_records);
@@ -36,15 +36,31 @@ class ListController extends Controller
             $users = $users->where('name', '=', $request->user_name);
         }
 
-        if (isset($request->survey_sort)) {
-
-            if ($request->survey_sort == 1) {
-                $meal_records = $meal_records->sortBy('created_at')->values();
-            } elseif ($request->survey_sort == 2) {
-                $meal_records = $meal_records->sortByDesc('created_at')->values();
-            } elseif ($request->survey_sort == 3) {
-                $users = $users->sortBy('name')->values();
+        if($request->survey_sort == 1){
+            foreach($users as $user) {
+                $meal_records = $user->mealrecords;
+                $user->mealrecords = $meal_records->sort(function($first, $second) {
+                    if ($first['eat_date'] == $second['eat_date']) {
+                        return $first['eat_time'] < $second['eat_time'] ? 1 : -1;
+                    }
+                
+                    return $first['eat_date'] < $second['eat_date'] ? 1 : -1;
+                })->values();
             }
+            // $users = $users->sortBy('mealrecords.eat_date')->values();
+        }elseif($request->survey_sort == 2){
+            foreach($users as $user) {
+                $meal_records = $user->mealrecords;
+                $user->mealrecords = $meal_records->sort(function($first, $second) {
+                    if ($first['eat_date'] == $second['eat_date']) {
+                        return $first['eat_time'] > $second['eat_time'] ? 1 : -1;
+                    }
+                
+                    return $first['eat_date'] > $second['eat_date'] ? 1 : -1;
+                })->values();
+            }
+        }elseif($request->survey_sort == 3){
+            $users = $users->sortBy('name')->values();
         }
 
         return view('project.list', ['survey_info' => $survey_info, 'users' => $users, 'meal_records' => $meal_records]);
