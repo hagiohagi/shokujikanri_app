@@ -64,6 +64,7 @@ class UserImportController extends Controller
             };
 
             // バリデーション
+            $validator = [];
             $validator = Validator::make(
                 $user_data,
                 [
@@ -74,8 +75,8 @@ class UserImportController extends Controller
                     'fat_percentage' => ['required', 'integer', 'max:99'],
                     'sport_name' => ['required', 'string'],
                     'sport_position' => ['string'],
-                    'email' => ['required', 'email', 'unique:user'],
-                    'password' => ['required', 'confirmed', Rules\Password::defaults()],
+                    'email' => ['required', 'email', 'unique:users'],
+                    'password' => ['required', Rules\Password::defaults()],
 
                 ],
                 [
@@ -86,10 +87,15 @@ class UserImportController extends Controller
                     'fat_percentage.*' => '体脂肪率の入力欄でエラーが発生しました',
                     'sport_name.*' => '競技名の入力欄でエラーが発生しました',
                     'sport_position.*' => 'ポジションの入力欄でエラーが発生しました',
+                    'email.unique' => 'すでにデータベースに登録されているEメールが値として入力されています',
                     'email.*' => 'Eメールの入力欄でエラーが発生しました',
                     'password.*' => 'パスワードの入力欄でエラーが発生しました',
                 ]
             );
+            if ($validator->fails()) {
+                $validator->errors();
+                return redirect()->route('admin.import')->withErrors($validator)->withInput();
+            }
 
             $validator = Validator::make(
                 $survey_data,
@@ -97,9 +103,11 @@ class UserImportController extends Controller
                     'research_number' => ['required', 'integer', 'digits:6', new ResearchNumber],
                 ],
                 [
-                    '*' => '調査番号の部分でエラーが発生しました'
+                    '*' => '調査番号の部分でエラーが発生しました。CSVに入力した調査番号が実在するか確認してください。'
                 ]
             );
+
+            
 
             if ($validator->fails()) {
                 $validator->errors();
@@ -115,8 +123,8 @@ class UserImportController extends Controller
             $survey_info->users()->attach($user->id, ['create_user_id' => $user->id]);
 
             event(new Registered($user));
-            $user->request_password = $request['password'];
-            $user->registered($user);
+            $request_password = $request['password'];
+            $user->registered($user, $request_password);
         }
 
         return redirect()->route('admin.user');
