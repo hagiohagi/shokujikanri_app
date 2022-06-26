@@ -13,7 +13,7 @@
   </div>
 
   <div class="row">
-    <form method="GET" action="/admin/project/{{ $survey_info->survey_id }}/list">
+    <form method="GET" action="/admin/project/{{ $survey_info->survey_id }}/search">
     <div class="form-group form-inline mx-2 mt-3">
         <label class="control-label">
         絞込み：

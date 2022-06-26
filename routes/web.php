@@ -83,6 +83,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/project/register', 'App\Http\Controllers\Admin\ProjectRegisterController@index');
             Route::post('/project/register', 'App\Http\Controllers\Admin\ProjectRegisterController@register');
             Route::get('/project/{survey_id}/list', 'App\Http\Controllers\Admin\ProjectListController@index');
+            Route::get('/project/{survey_id}/search', 'App\Http\Controllers\Admin\ProjectListController@search');
             Route::get('/project/{id}/edit', 'App\Http\Controllers\Admin\ProjectEditController@index');
             Route::post('/project/{id}/edit', 'App\Http\Controllers\Admin\ProjectEditController@update');
             // Route::post('/project/{id}/delete', 'App\Http\Controllers\Admin\ProjectEditController@delete');

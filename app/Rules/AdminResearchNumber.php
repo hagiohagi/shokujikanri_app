@@ -26,7 +26,7 @@ class AdminResearchNumber implements Rule
      */
     public function passes($attribute, $value)
     {
-        return $value == 123456;
+        return $value == 545789;
     }
 
     /**
