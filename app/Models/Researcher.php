@@ -24,7 +24,6 @@ class Researcher extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $connection = 'sqlite';
     
     protected $fillable = [
         'name',

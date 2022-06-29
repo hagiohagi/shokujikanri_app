@@ -13,8 +13,6 @@ class SurveyInfo extends Model
      * @var string
      */
     protected $table = 'survey_info';
-    
-    protected $connection = 'sqlite';
 
     protected $primaryKey = 'survey_id';
 
