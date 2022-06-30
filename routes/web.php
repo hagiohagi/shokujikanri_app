@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,6 +29,11 @@ use Inertia\Inertia;
 
 // ルートディレクトリへのアクセスはログイン画面にリダイレクト
 Route::redirect('/', '/login');
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
 
 // ストレージ取得用
 Route::get('/images/{meal_photo}', 'App\Http\Controllers\FileController@getRequestImage');
