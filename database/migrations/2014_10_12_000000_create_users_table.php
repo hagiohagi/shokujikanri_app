@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->comment('パスワード');
             $table->rememberToken();
-            $table->boolean('sex_type')->comment('性別');
+            $table->string('sex_type')->comment('性別');
             $table->integer('height')->comment('身長');
             $table->integer('weight')->comment('体重');
             $table->integer('fat_percentage')->nullable()->comment('体脂肪率');
