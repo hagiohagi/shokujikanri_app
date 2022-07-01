@@ -30,6 +30,15 @@ use Inertia\Inertia;
 // ルートディレクトリへのアクセスはログイン画面にリダイレクト
 Route::redirect('/', '/login');
 
+Route::prefix('researchers')->name('researchers.')->group(function(){
+    require __DIR__.'/researchers.php';
+});
+
+Route::prefix('admin')->name('admin.')->group(function(){
+    require __DIR__.'/admin.php';
+});
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -41,13 +50,6 @@ Route::get('/pdf/request', 'App\Http\Controllers\FileController@getRequestPdf');
 
 require __DIR__.'/auth.php';
 
-Route::prefix('researchers')->name('researchers.')->group(function(){
-    require __DIR__.'/researchers.php';
-});
-
-Route::prefix('admin')->name('admin.')->group(function(){
-    require __DIR__.'/admin.php';
-});
 
 // 回答者側
 Route::group(['middleware' => 'auth'], function () {

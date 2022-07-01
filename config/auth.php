@@ -74,7 +74,7 @@ return [
         ],
         'researchers' => [
             'driver' => 'eloquent',
-            'model' => App\Models\researcher::class,
+            'model' => App\Models\Researcher::class,
         ],
         'admins' => [
             'driver' => 'eloquent',
