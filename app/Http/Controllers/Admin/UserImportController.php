@@ -70,9 +70,9 @@ class UserImportController extends Controller
                 [
                     'name' => ['required', 'string'],
                     'sex_type' => ['required', 'string'],
-                    'height' => ['required', 'integer', 'max:999'],
-                    'weight' => ['required', 'integer', 'max:999'],
-                    'fat_percentage' => ['required', 'integer', 'max:99'],
+                    'height' => ['required', 'numeric', 'max:999'],
+                    'weight' => ['required', 'numeric', 'max:999'],
+                    'fat_percentage' => ['required', 'numeric', 'max:99'],
                     'sport_name' => ['required', 'string'],
                     'sport_position' => ['string'],
                     'email' => ['required', 'email', 'unique:users'],

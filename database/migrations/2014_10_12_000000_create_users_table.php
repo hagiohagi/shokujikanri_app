@@ -21,9 +21,9 @@ return new class extends Migration
             $table->string('password')->comment('パスワード');
             $table->rememberToken();
             $table->string('sex_type')->comment('性別');
-            $table->integer('height')->comment('身長');
-            $table->integer('weight')->comment('体重');
-            $table->integer('fat_percentage')->nullable()->comment('体脂肪率');
+            $table->float('height')->comment('身長');
+            $table->float('weight')->comment('体重');
+            $table->float('fat_percentage')->nullable()->comment('体脂肪率');
             $table->string('sport_name')->comment('競技名');
             $table->string('sport_position')->nullable()->comment('ポジション');
             $table->integer('auth_type')->comment('権限区分'); // 1:回答者,2:研究者,3:管理者 
