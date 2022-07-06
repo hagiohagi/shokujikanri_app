@@ -28,21 +28,20 @@
       </div>
 
       <div class="form-group form-inline">
-        <label class="col-sm-3 form-check-label">
-          性別（必須）
-        </label>
-          <div class="row radio-inline mx-2">
-            <input class="form-check-input @error('sex_type') is-invalid @enderror" id="man" type="radio" name="sex_type" value="男性">&nbsp;<label for="男性">男性</label>
-          </div>
-          <div class="row radio-inline mx-2">
-            <input class="form-check-input @error('sex_type') is-invalid @enderror" id="women" type="radio" name="sex_type" value="女性">&nbsp;<label for="女性">女性</label>
-          </div>
+      <label class="col-sm-3 form-check-label">
+        性別（必須）
+      </label>
+      <div>
+        <label class="form-check-label" for="男性">男性</label><input class="form-check-input @error('sex_type') is-invalid @enderror" id="man" type="radio" name="sex_type" value="男性">
+        <p>
+          <label class="form-check-label" for="女性">女性</label><input class="form-check-input @error('sex_type') is-invalid @enderror" id="women" type="radio" name="sex_type" value="女性">
           @error('sex_type')
-              <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-              </span>
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+          </span>
           @enderror
       </div>
+    </div>
 
       <div class="form-group form-inline">
         <label class="col-sm-3 control-label">

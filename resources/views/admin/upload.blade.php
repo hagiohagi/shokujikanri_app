@@ -30,8 +30,8 @@
             <option value="" hidden>選択してください</option>
             <option value="1">朝食</option>
             <option value="2">昼食</option>
-            <option value="3">間食</option>
             <option value="4">夕食</option>
+            <option value="3">間食</option>
             <option value="5">夜食</option>
         </select>
         @error('meal_type')

@@ -42,8 +42,8 @@
             <option value="" hidden>選択してください</option>
             <option value="1" @if($meal_record->meal_type == 1) selected @endif>朝食</option>
             <option value="2" @if($meal_record->meal_type == 2) selected @endif>昼食</option>
-            <option value="3" @if($meal_record->meal_type == 3) selected @endif>間食</option>
             <option value="4" @if($meal_record->meal_type == 4) selected @endif>夕食</option>
+            <option value="3" @if($meal_record->meal_type == 3) selected @endif>間食</option>
             <option value="5" @if($meal_record->meal_type == 5) selected @endif>夜食</option>
         </select>
         @error('meal_type')
