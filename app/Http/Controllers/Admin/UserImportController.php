@@ -100,7 +100,7 @@ class UserImportController extends Controller
             $validator = Validator::make(
                 $survey_data,
                 [
-                    'research_number' => ['required', 'integer', 'digits:6', new ResearchNumber],
+                    'research_number' => ['required', 'string', 'digits:6', new ResearchNumber],
                 ],
                 [
                     '*' => '調査番号の部分でエラーが発生しました。CSVに入力した調査番号が実在するか確認してください。'

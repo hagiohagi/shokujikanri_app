@@ -47,7 +47,7 @@ class RegisteredUserController extends Controller
             'email' => 'required|string|email|max:255|unique:admins',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'password_confirmation' => ['required', 'string'],
-            'research_number' => ['required', 'integer', 'digits:6', new AdminResearchNumber],
+            'research_number' => ['required', 'string', 'digits:6', new AdminResearchNumber],
         ]);
 
         $user = Admin::create([

@@ -25,7 +25,7 @@ class ProjectRegisterController extends Controller
             'era' => ['required', 'string'],
             'sex' => ['required', 'string'],
             'sport' => ['required', 'string'],
-            'research_number' => ['required', 'integer', 'unique:survey_info', 'digits:6'],
+            'research_number' => ['required', 'string', 'unique:survey_info', 'digits:6'],
         ];
 
         $this->validate($request, $rules);
