@@ -2382,6 +2382,19 @@ textarea.form-control-sm {
 textarea.form-control-lg {
   min-height: calc(1.6em + 1rem + 2px);
 }
+textarea#textarea-with-border {
+  background-image:
+    repeating-linear-gradient(
+      #fff,
+      #fff calc(1.5rem - 1px),
+      #ced4da calc(1.5rem - 1px),
+      #ced4da 1.5rem,
+      #fff 1.5rem
+    );
+  background-origin: content-box;
+  background-clip: content-box;
+  background-attachment: local;
+}
 
 .form-control-color {
   width: 3rem;

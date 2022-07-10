@@ -103,7 +103,7 @@
         @foreach($meal_record->mealDetails as $meal_detail)
         <div class="row">
           <div class="form-group col-4">
-            <textarea class="form-control @error('food') is-invalid @enderror" name="food" rows="5">{{ $meal_detail->food }}</textarea>
+            <textarea id="textarea-with-border" class="form-control @error('food') is-invalid @enderror" name="food" rows="5">{{ $meal_detail->food }}</textarea>
             @error('food')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -111,7 +111,7 @@
           @enderror
         </div> 
           <div class="form-group col-4">
-          <textarea class="form-control @error('ingredient') is-invalid @enderror" name="ingredient" rows="5">{{ $meal_detail->ingredient }}</textarea>
+          <textarea id="textarea-with-border" class="form-control @error('ingredient') is-invalid @enderror" name="ingredient" rows="5">{{ $meal_detail->ingredient }}</textarea>
           @error('ingredient')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -119,7 +119,7 @@
           @enderror
           </div>
           <div class="form-group col-4">
-          <textarea class="form-control @error('amount') is-invalid @enderror" name="amount" rows="5">{{ $meal_detail->amount }}</textarea>
+          <textarea id="textarea-with-border" class="form-control @error('amount') is-invalid @enderror" name="amount" rows="5">{{ $meal_detail->amount }}</textarea>
           @error('amount')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
