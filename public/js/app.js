@@ -24583,12 +24583,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  setup: function setup() {
+    console.log("start vue");
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
+      console.log("start mounted !");
+    });
+  },
   data: function data() {
     return {
-      foods: [],
-      ingredients: [],
-      amounts: []
+      foods: [""],
+      ingredients: [""],
+      amounts: [""]
     };
   },
   methods: {
@@ -24608,9 +24616,9 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     addForm: function addForm() {
-      this.foods.push('');
-      this.ingredients.push('');
-      this.amounts.push('');
+      this.foods.push("");
+      this.ingredients.push("");
+      this.amounts.push("");
     },
     deleteForm: function deleteForm(index) {
       this.foods.splice(index, 1);
@@ -26209,84 +26217,64 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "control-label mt-3"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 食事内容を入力してください（必須） "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "/pdf/request",
-  target: "_blank",
-  rel: "noopener noreferrer"
-}, "ヘルプ")], -1
-/* HOISTED */
-);
-
-var _hoisted_2 = {
-  "class": "form-row"
+var _hoisted_1 = {
+  "class": "col-12 mb-3 row d-flex justify-content-between"
 };
+var _hoisted_2 = ["onUpdate:modelValue"];
 var _hoisted_3 = ["onUpdate:modelValue"];
 var _hoisted_4 = ["onUpdate:modelValue"];
-var _hoisted_5 = ["onUpdate:modelValue"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.foods, function (food, index) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.foods, function (food, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      "class": "form-group",
+      "class": "form-group col-4",
       key: index
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       "class": "form-control",
-      style: {
-        "width": "150px"
-      },
       type: "text",
       "onUpdate:modelValue": function onUpdateModelValue($event) {
         return $data.foods[index] = $event;
       }
     }, null, 8
     /* PROPS */
-    , _hoisted_3), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.foods[index]]])]);
+    , _hoisted_2), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.foods[index]]])]);
   }), 128
   /* KEYED_FRAGMENT */
   )), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ingredients, function (ingredient, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      "class": "form-group",
+      "class": "form-group col-4",
       key: index
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       "class": "form-control",
-      style: {
-        "width": "150px"
-      },
       type: "text",
       "onUpdate:modelValue": function onUpdateModelValue($event) {
         return $data.ingredients[index] = $event;
       }
     }, null, 8
     /* PROPS */
-    , _hoisted_4), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.ingredients[index]]])]);
+    , _hoisted_3), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.ingredients[index]]])]);
   }), 128
   /* KEYED_FRAGMENT */
   )), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.amounts, function (amount, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      "class": "form-group",
+      "class": "form-group col-4",
       key: index
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       "class": "form-control",
-      style: {
-        "width": "150px"
-      },
       type: "text",
       "onUpdate:modelValue": function onUpdateModelValue($event) {
         return $data.amounts[index] = $event;
       }
     }, null, 8
     /* PROPS */
-    , _hoisted_5), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.amounts[index]]])]);
+    , _hoisted_4), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.amounts[index]]])]);
   }), 128
   /* KEYED_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "batsu",
     onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.deleteForm(_ctx.index);
     }, ["prevent"]))
-  }, " × ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, " × "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-secondary",
     style: {
       "width": "450px"
@@ -26294,7 +26282,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.addForm();
     }, ["prevent"]))
-  }, "入力欄を追加")]);
+  }, " 入力欄を追加 ")]);
 }
 
 /***/ }),
@@ -26344,11 +26332,11 @@ var appName = ((_window$document$getE = window.document.getElementsByTagName('ti
     }).mount(el);
   }
 });
-app.component('meal-detail-component', _components_MealDetailComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
 _inertiajs_progress__WEBPACK_IMPORTED_MODULE_2__.InertiaProgress.init({
   color: '#4B5563'
 });
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({});
+(0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_components_MealDetailComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]).mount('#meal-detail');
 app.mount('#app');
 
 /***/ }),
@@ -26509,7 +26497,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.batsu{\n    font-size: 200%;\n    font-weight: bold;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.batsu {\n  font-size: 200%;\n  font-weight: bold;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

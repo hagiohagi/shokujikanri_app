@@ -20,10 +20,10 @@ createInertiaApp({
 });
 
 
-app.component('meal-detail-component', MealDetailComponent);
-
-
 InertiaProgress.init({ color: '#4B5563' });
 
-const app = createApp({})
-app.mount('#app')
+const app = createApp({});
+
+createApp(MealDetailComponent).mount('#meal-detail')
+
+app.mount('#app');

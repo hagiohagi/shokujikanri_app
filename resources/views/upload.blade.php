@@ -67,7 +67,7 @@
         </div>
       </div>
 
-      <!-- <meal-detail-component></meal-detail-component> -->
+      
       <div>
         <label class="control-label mt-5 mb-3">
           食事内容を入力してください（必須）&nbsp;<a href="/pdf/request" target="_blank" rel="noopener noreferrer">ヘルプ</a>
@@ -77,7 +77,9 @@
           <label class="control-label text-center col-4">材料</label>
           <label class="control-label text-center col-4">量</label>
         </div>
-        <div class="row">
+        <div id="meal-detail">
+        </div>
+        <!-- <div class="row">
           <div class="form-group col-4">
             <textarea id="textarea-with-border" class="form-control @error('food') is-invalid @enderror" name="food" rows="5"></textarea>
             @error('food')
@@ -102,7 +104,7 @@
             </span>
           @enderror
         </div>
-        </div>
+        </div> -->
       </div>
 
       <div class="form-group mt-5">
