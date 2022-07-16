@@ -40,7 +40,7 @@ class RegisteredUserController extends Controller
             'sex_type' =>['required','string'],
             'height' =>['required','numeric','max:999'],
             'weight' =>['required','numeric','max:999'],
-            'fat_percentage' =>['numeric','max:99'],
+            'fat_percentage' =>['nullable','numeric','max:99'],
             'sport_name' =>['required','string'],
             'sport_position' =>['string'],
             'email_confirmation' => ['required', 'string'],

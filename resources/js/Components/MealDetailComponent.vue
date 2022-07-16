@@ -3,11 +3,6 @@
         <label class="control-label mt-3">
           食事内容を入力してください（必須）&nbsp;<a href="/pdf/request" target="_blank" rel="noopener noreferrer">ヘルプ</a>
         </label>
-        <div class="row">
-          <label class="control-label text-center" style="width:150px">食事</label>
-          <label class="control-label text-center" style="width:150px">材料</label>
-          <label class="control-label text-center" style="width:150px">量</label>
-        </div>
         <div class="form-row">
           <div class="form-group" v-for="(food,index) in foods" :key="index">
             <input class="form-control" style="width:150px" type="text" v-model="foods[index]">

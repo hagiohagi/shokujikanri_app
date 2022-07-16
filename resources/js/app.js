@@ -4,13 +4,7 @@ window.Vue = require('vue').default;
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
-
-// import LogoutComponent from './components/LogoutComponent.vue';
-// import MealDetailComponent from './components/MealDetailComponent.vue';
-// import DeleteRecordComponent from './components/DeleteRecordComponent.vue';
-// import DeletePictureComponent from './components/DeletePictureComponent.vue';
-
-
+import MealDetailComponent from './components/MealDetailComponent.vue';
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
@@ -25,10 +19,8 @@ createInertiaApp({
     },
 });
 
-// app.component('logout-component', LogoutComponent);
-// app.component('meal-detail-component', MealDetailComponent);
-// app.component('delete-record-component', DeleteRecordComponent);
-// app.component('delete-picture-component', DeletePictureComponent);
+
+app.component('meal-detail-component', MealDetailComponent);
 
 
 InertiaProgress.init({ color: '#4B5563' });
