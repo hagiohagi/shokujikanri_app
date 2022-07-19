@@ -24584,6 +24584,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+var data_array = ["1", "2", "3"];
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   setup: function setup() {
@@ -24594,6 +24595,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      mealDetails: data_array,
       foods: [""],
       ingredients: [""],
       amounts: [""]
@@ -24616,14 +24618,16 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     addForm: function addForm() {
-      this.foods.push("");
-      this.ingredients.push("");
-      this.amounts.push("");
+      this.mealDetails.push("");
     },
     deleteForm: function deleteForm(index) {
-      this.foods.splice(index, 1);
-      this.ingredients.splice(index, 1);
-      this.amounts.splice(index, 1);
+      this.mealDetails.splice(index, 1);
+    }
+  },
+  components: {
+    "input-field": {
+      template: "\n\t\t\t<div class=\"form-group col-4\">\n        <input class=\"form-control\" type=\"text\" v-model=\"mealDetail.foods\" />\n      </div>\n      <div class=\"form-group col-4\">\n        <input class=\"form-control\" type=\"text\" v-model=\"mealDetail.ingredients\" />\n      </div>\n      <div class=\"form-group col-4\">\n        <input class=\"form-control\" type=\"text\" v-model=\"mealDetail.amounts\" />\n      </div>",
+      props: ["mealDetail"]
     }
   }
 });
@@ -26220,53 +26224,16 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "col-12 mb-3 row d-flex justify-content-between"
 };
-var _hoisted_2 = ["onUpdate:modelValue"];
-var _hoisted_3 = ["onUpdate:modelValue"];
-var _hoisted_4 = ["onUpdate:modelValue"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.foods, function (food, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      "class": "form-group col-4",
+  var _component_input_field = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("input-field");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.mealDetails, function (mealDetail, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_input_field, {
+      mealDetail: mealDetail,
       key: index
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-      "class": "form-control",
-      type: "text",
-      "onUpdate:modelValue": function onUpdateModelValue($event) {
-        return $data.foods[index] = $event;
-      }
     }, null, 8
     /* PROPS */
-    , _hoisted_2), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.foods[index]]])]);
-  }), 128
-  /* KEYED_FRAGMENT */
-  )), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.ingredients, function (ingredient, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      "class": "form-group col-4",
-      key: index
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-      "class": "form-control",
-      type: "text",
-      "onUpdate:modelValue": function onUpdateModelValue($event) {
-        return $data.ingredients[index] = $event;
-      }
-    }, null, 8
-    /* PROPS */
-    , _hoisted_3), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.ingredients[index]]])]);
-  }), 128
-  /* KEYED_FRAGMENT */
-  )), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.amounts, function (amount, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      "class": "form-group col-4",
-      key: index
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-      "class": "form-control",
-      type: "text",
-      "onUpdate:modelValue": function onUpdateModelValue($event) {
-        return $data.amounts[index] = $event;
-      }
-    }, null, 8
-    /* PROPS */
-    , _hoisted_4), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.amounts[index]]])]);
+    , ["mealDetail"]);
   }), 128
   /* KEYED_FRAGMENT */
   ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -26274,7 +26241,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.deleteForm(_ctx.index);
     }, ["prevent"]))
-  }, " × "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, "×"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-secondary",
     style: {
       "width": "450px"
