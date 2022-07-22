@@ -13,12 +13,13 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>プロジェクト名</th>
-                                            <th>調査対象期間</th>
-                                            <th>年代</th>
-                                            <th>性別</th>
-                                            <th>競技</th>
-                                            <th></th>
+                                            <th class="col-2">プロジェクト名</th>
+                                            <th class="col-2">調査対象期間</th>
+                                            <th class="col-1">年代</th>
+                                            <th class="col-1">性別</th>
+                                            <th class="col-2">競技</th>
+                                            <th class="col-2"></th>
+                                            <th class="col-2"></th>
                                         </tr>
                                     </thead>
                                     @foreach($survey_info as $data)
@@ -30,6 +31,7 @@
                                         <td>{{ $data->sex }}</td>
                                         <td>{{ $data->sport }}</td>
                                             <td><a class="btn btn-secondary" href="/project/list/{{ $data->survey_id }}">回答を確認する</a></td>
+                                            <td><a class="btn btn-secondary" href="/project/userlist/{{ $data->survey_id }}">調査回答者を見る</a></td>
                                         </tr>
                                     </tbody>
                                     @endforeach

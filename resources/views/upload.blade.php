@@ -77,9 +77,7 @@
           <label class="control-label text-center col-4">材料</label>
           <label class="control-label text-center col-4">量</label>
         </div>
-        <!-- <div id="meal-detail"
-          :mealDetails="@json($meal_details)"
-          :old="{{ json_encode(Session::getOldInput()) }}">
+        <!-- <div id="meal-detail">
         </div> -->
         <div class="row">
           <div class="form-group col-4">
