@@ -77,11 +77,11 @@
           <label class="control-label text-center col-4">材料</label>
           <label class="control-label text-center col-4">量</label>
         </div>
-        <div id="meal-detail"
+        <!-- <div id="meal-detail"
           :mealDetails="@json($meal_details)"
           :old="{{ json_encode(Session::getOldInput()) }}">
-        </div>
-        <!-- <div class="row">
+        </div> -->
+        <div class="row">
           <div class="form-group col-4">
             <textarea id="textarea-with-border" class="form-control @error('food') is-invalid @enderror" name="food" rows="5"></textarea>
             @error('food')
@@ -106,7 +106,7 @@
             </span>
           @enderror
         </div>
-        </div> -->
+        </div>
       </div>
 
       <div class="form-group mt-5">
