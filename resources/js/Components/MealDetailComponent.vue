@@ -37,6 +37,16 @@ export default {
       amounts: [""],
     };
   },
+  props: {
+    mealDetails: {
+      type: Array,
+      required: false
+    },
+    old: {
+      type: String,
+      required: false
+    }
+  },
   methods: {
     edit() {
       axios
