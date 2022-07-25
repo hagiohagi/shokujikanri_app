@@ -24601,43 +24601,12 @@ var data_array = ["1", "2", "3"];
       amounts: [""]
     };
   },
-  props: {
-    mealDetails: {
-      type: Array,
-      required: false
-    },
-    old: {
-      type: String,
-      required: false
-    }
-  },
   methods: {
-    edit: function edit() {
-      var _this = this;
-
-      axios.post("/api/meal/edit", {
-        foods: this.foods,
-        ingredients: this.ingredients,
-        amounts: this.amounts
-      }).then(function (response) {
-        console.log(response);
-
-        _this.$router.push("/index");
-      })["catch"](function (error) {
-        _this.errors = error.response.data.errors;
-      });
-    },
     addForm: function addForm() {
       this.mealDetails.push("");
     },
     deleteForm: function deleteForm(index) {
       this.mealDetails.splice(index, 1);
-    }
-  },
-  components: {
-    "input-field": {
-      template: "\n\t\t\t<div class=\"form-group col-4\">\n        <input class=\"form-control\" type=\"text\" v-model=\"mealDetail.foods\" />\n      </div>\n      <div class=\"form-group col-4\">\n        <input class=\"form-control\" type=\"text\" v-model=\"mealDetail.ingredients\" />\n      </div>\n      <div class=\"form-group col-4\">\n        <input class=\"form-control\" type=\"text\" v-model=\"mealDetail.amounts\" />\n      </div>",
-      props: ["mealDetail"]
     }
   }
 });
@@ -26231,22 +26200,55 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = {
-  "class": "col-12 mb-3 row d-flex justify-content-between"
+var _hoisted_1 = ["mealDetail"];
+var _hoisted_2 = {
+  "class": "form-group col-4"
 };
+var _hoisted_3 = ["onUpdate:modelValue"];
+var _hoisted_4 = {
+  "class": "form-group col-4"
+};
+var _hoisted_5 = ["onUpdate:modelValue"];
+var _hoisted_6 = {
+  "class": "form-group col-4"
+};
+var _hoisted_7 = ["onUpdate:modelValue"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_input_field = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("input-field");
-
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.mealDetails, function (mealDetail, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_input_field, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.mealDetails, function (mealDetail, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      "class": "mb-3 row d-flex justify-content-between",
       mealDetail: mealDetail,
       key: index
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      "class": "form-control",
+      type: "text",
+      "onUpdate:modelValue": function onUpdateModelValue($event) {
+        return mealDetail.foods = $event;
+      }
     }, null, 8
     /* PROPS */
-    , ["mealDetail"]);
+    , _hoisted_3), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, mealDetail.foods]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      "class": "form-control",
+      type: "text",
+      "onUpdate:modelValue": function onUpdateModelValue($event) {
+        return mealDetail.ingredients = $event;
+      }
+    }, null, 8
+    /* PROPS */
+    , _hoisted_5), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, mealDetail.ingredients]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      "class": "form-control",
+      type: "text",
+      "onUpdate:modelValue": function onUpdateModelValue($event) {
+        return mealDetail.amounts = $event;
+      }
+    }, null, 8
+    /* PROPS */
+    , _hoisted_7), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, mealDetail.amounts]])])], 8
+    /* PROPS */
+    , _hoisted_1);
   }), 128
   /* KEYED_FRAGMENT */
-  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "batsu",
     onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.deleteForm(_ctx.index);

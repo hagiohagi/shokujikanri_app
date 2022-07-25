@@ -1,11 +1,24 @@
 <template>
   <div>
-    <div class="col-12 mb-3 row d-flex justify-content-between">
-      <input-field
-        v-for="(mealDetail, index) in mealDetails"
-        :mealDetail="mealDetail"
-        :key="index"
-      ></input-field>
+    <div
+      class="mb-3 row d-flex justify-content-between"
+      v-for="(mealDetail, index) in mealDetails"
+      :mealDetail="mealDetail"
+      :key="index"
+    >
+      <div class="form-group col-4">
+        <input class="form-control" type="text" v-model="mealDetail.foods" />
+      </div>
+      <div class="form-group col-4">
+        <input
+          class="form-control"
+          type="text"
+          v-model="mealDetail.ingredients"
+        />
+      </div>
+      <div class="form-group col-4">
+        <input class="form-control" type="text" v-model="mealDetail.amounts" />
+      </div>
     </div>
     <div class="batsu" @click.prevent="deleteForm(index)">×</div>
 
@@ -37,53 +50,12 @@ export default {
       amounts: [""],
     };
   },
-  props: {
-    mealDetails: {
-      type: Array,
-      required: false
-    },
-    old: {
-      type: String,
-      required: false
-    }
-  },
   methods: {
-    edit() {
-      axios
-        .post("/api/meal/edit", {
-          foods: this.foods,
-          ingredients: this.ingredients,
-          amounts: this.amounts,
-        })
-        .then((response) => {
-          console.log(response);
-          this.$router.push("/index");
-        })
-        .catch((error) => {
-          this.errors = error.response.data.errors;
-        });
-    },
-
     addForm() {
       this.mealDetails.push("");
     },
     deleteForm(index) {
       this.mealDetails.splice(index, 1);
-    },
-  },
-  components: {
-    "input-field": {
-      template: `
-			<div class="form-group col-4">
-        <input class="form-control" type="text" v-model="mealDetail.foods" />
-      </div>
-      <div class="form-group col-4">
-        <input class="form-control" type="text" v-model="mealDetail.ingredients" />
-      </div>
-      <div class="form-group col-4">
-        <input class="form-control" type="text" v-model="mealDetail.amounts" />
-      </div>`,
-      props: ["mealDetail"],
     },
   },
 };
