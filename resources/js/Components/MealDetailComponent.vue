@@ -32,7 +32,6 @@
   </div>
 </template>
 <script>
-var data_array = ["1", "2", "3"];
 import { onMounted } from "vue";
 export default {
   setup() {
@@ -44,18 +43,31 @@ export default {
   },
   data() {
     return {
-      mealDetails: data_array,
-      foods: [""],
-      ingredients: [""],
-      amounts: [""],
+      mealDetails: [
+        {
+          foods: [""],
+          ingredients: [""],
+          amounts: [""],
+        },
+      ],
     };
   },
   methods: {
     addForm() {
-      this.mealDetails.push("");
+      this.mealDetails.push(
+        [
+        {
+          foods: [""],
+          ingredients: [""],
+          amounts: [""],
+        },
+      ]
+      );
+      console.log(mealDetails);
     },
     deleteForm(index) {
       this.mealDetails.splice(index, 1);
+      console.log(mealDetails);
     },
   },
 };

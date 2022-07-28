@@ -24584,26 +24584,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-var data_array = ["1", "2", "3"];
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   setup: function setup() {
     console.log("start vue");
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       console.log("start mounted !");
+      console.log(mealDetails);
     });
   },
   data: function data() {
     return {
-      mealDetails: data_array,
-      foods: [""],
-      ingredients: [""],
-      amounts: [""]
+      mealDetails: [{
+        foods: [""],
+        ingredients: [""],
+        amounts: [""]
+      }]
     };
   },
   methods: {
     addForm: function addForm() {
-      this.mealDetails.push("");
+      this.mealDetails.push([{
+        foods: [""],
+        ingredients: [""],
+        amounts: [""]
+      }]);
     },
     deleteForm: function deleteForm(index) {
       this.mealDetails.splice(index, 1);
