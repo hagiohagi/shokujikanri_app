@@ -29,9 +29,9 @@ class UploadController extends Controller
             'eat_time' => ['required'],
             'memo' => ['max:500'],
 
-            'food' => ['required'],
-            'ingredient' => ['required'],
-            'amount' => ['required'],
+            'mealDetails.*.food' => ['required'],
+            'mealDetails.*.ingredient' => ['required'],
+            'mealDetails.*.amount' => ['required'],
 
             'files.*.photo' => ['required','image|mimes:jpg,jpeg,bmp,png'],
         ];
@@ -50,15 +50,16 @@ class UploadController extends Controller
 
         $meal_id = $meal->meal_id;
 
-        MealDetail::create([
-            'meal_id' => $meal_id,
-            'food' => $request['food'],
-            'ingredient' => $request['ingredient'],
-            'amount' => $request['amount'],
-            'order_num' => 1,
-            'create_user_id' => Auth::user()->id,
-        ]);
-
+        foreach ($request->mealDetails as $meal_detail) {
+            MealDetail::create([
+                'meal_id' => $meal_id,
+                'food' => $meal_detail['food'],
+                'ingredient' => $meal_detail['ingredient'],
+                'amount' => $meal_detail['amount'],
+                'order_num' => 1,
+                'create_user_id' => Auth::user()->id,
+            ]);
+        }
 
 
         if ($request->has('files')) {

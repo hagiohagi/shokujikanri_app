@@ -182,6 +182,9 @@ return [
         'food' => '食事',
         'ingredient' => '材料', 
         'amount' => '量',
+        'mealDetails.*.food' => '食事の入力欄',
+        'mealDetails.*.ingredient' => '材料の入力欄', 
+        'mealDetails.*.amount' => '量の入力欄',
 
         'auth_type' => '権限',
     ],

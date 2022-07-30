@@ -1,26 +1,37 @@
 <template>
   <div>
     <div
-      class="mb-3 row d-flex justify-content-between"
+      class="d-flex"
       v-for="(mealDetail, index) in mealDetails"
       :mealDetail="mealDetail"
       :key="index"
     >
-      <div class="form-group col-4">
-        <input class="form-control" type="text" v-model="mealDetail.foods" />
+      <div class="form-group" style="width:150px">
+        <input
+          class="form-control"
+          type="text"
+          v-model="mealDetail.foods"
+          :name="'mealDetails&#91;' + index + '&#93;&#91;food&#93;'"
+        />
       </div>
-      <div class="form-group col-4">
+      <div class="form-group" style="width:150px">
         <input
           class="form-control"
           type="text"
           v-model="mealDetail.ingredients"
+          :name="'mealDetails&#91;' + index + '&#93;&#91;ingredient&#93;'"
         />
       </div>
-      <div class="form-group col-4">
-        <input class="form-control" type="text" v-model="mealDetail.amounts" />
+      <div class="form-group" style="width:150px">
+        <input
+          class="form-control"
+          type="text"
+          v-model="mealDetail.amounts"
+          :name="'mealDetails&#91;' + index + '&#93;&#91;amount&#93;'"
+        />
       </div>
+      <div class="batsu" style="width:30px" @click.prevent="deleteForm(index)">×</div>
     </div>
-    <div class="batsu" @click.prevent="deleteForm(index)">×</div>
 
     <button
       class="btn btn-secondary"
@@ -54,15 +65,13 @@ export default {
   },
   methods: {
     addForm() {
-      this.mealDetails.push(
-        [
+      this.mealDetails.push([
         {
           foods: [""],
           ingredients: [""],
           amounts: [""],
         },
-      ]
-      );
+      ]);
       console.log(mealDetails);
     },
     deleteForm(index) {

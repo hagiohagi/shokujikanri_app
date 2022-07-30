@@ -24590,7 +24590,6 @@ __webpack_require__.r(__webpack_exports__);
     console.log("start vue");
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       console.log("start mounted !");
-      console.log(mealDetails);
     });
   },
   data: function data() {
@@ -24609,9 +24608,11 @@ __webpack_require__.r(__webpack_exports__);
         ingredients: [""],
         amounts: [""]
       }]);
+      console.log(mealDetails);
     },
     deleteForm: function deleteForm(index) {
       this.mealDetails.splice(index, 1);
+      console.log(mealDetails);
     }
   }
 });
@@ -26207,21 +26208,31 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = ["mealDetail"];
 var _hoisted_2 = {
-  "class": "form-group col-4"
+  "class": "form-group",
+  style: {
+    "width": "150px"
+  }
 };
-var _hoisted_3 = ["onUpdate:modelValue"];
+var _hoisted_3 = ["onUpdate:modelValue", "name"];
 var _hoisted_4 = {
-  "class": "form-group col-4"
+  "class": "form-group",
+  style: {
+    "width": "150px"
+  }
 };
-var _hoisted_5 = ["onUpdate:modelValue"];
+var _hoisted_5 = ["onUpdate:modelValue", "name"];
 var _hoisted_6 = {
-  "class": "form-group col-4"
+  "class": "form-group",
+  style: {
+    "width": "150px"
+  }
 };
-var _hoisted_7 = ["onUpdate:modelValue"];
+var _hoisted_7 = ["onUpdate:modelValue", "name"];
+var _hoisted_8 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.mealDetails, function (mealDetail, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      "class": "mb-3 row d-flex justify-content-between",
+      "class": "d-flex",
       mealDetail: mealDetail,
       key: index
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -26229,7 +26240,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       type: "text",
       "onUpdate:modelValue": function onUpdateModelValue($event) {
         return mealDetail.foods = $event;
-      }
+      },
+      name: 'mealDetails[' + index + '][food]'
     }, null, 8
     /* PROPS */
     , _hoisted_3), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, mealDetail.foods]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -26237,7 +26249,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       type: "text",
       "onUpdate:modelValue": function onUpdateModelValue($event) {
         return mealDetail.ingredients = $event;
-      }
+      },
+      name: 'mealDetails[' + index + '][ingredient]'
     }, null, 8
     /* PROPS */
     , _hoisted_5), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, mealDetail.ingredients]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -26245,25 +26258,31 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       type: "text",
       "onUpdate:modelValue": function onUpdateModelValue($event) {
         return mealDetail.amounts = $event;
-      }
+      },
+      name: 'mealDetails[' + index + '][amount]'
     }, null, 8
     /* PROPS */
-    , _hoisted_7), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, mealDetail.amounts]])])], 8
+    , _hoisted_7), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, mealDetail.amounts]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+      "class": "batsu",
+      style: {
+        "width": "30px"
+      },
+      onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+        return $options.deleteForm(index);
+      }, ["prevent"])
+    }, "×", 8
+    /* PROPS */
+    , _hoisted_8)], 8
     /* PROPS */
     , _hoisted_1);
   }), 128
   /* KEYED_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "batsu",
-    onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-      return $options.deleteForm(_ctx.index);
-    }, ["prevent"]))
-  }, "×"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-secondary",
     style: {
       "width": "450px"
     },
-    onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+    onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.addForm();
     }, ["prevent"]))
   }, " 入力欄を追加 ")]);
