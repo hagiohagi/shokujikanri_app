@@ -14,7 +14,8 @@ class EditController extends Controller
     public function index(Request $request, $meal_id)
     {
         $meal_record = MealRecord::with(['mealPhotos', 'mealDetails'])->find($meal_id);
-        return view('/edit', ['meal_record' => $meal_record]);
+        $meal_details = $meal_record->mealDetails;
+        return view('/edit', ['meal_record' => $meal_record, 'meal_details' => $meal_details]);
     }
 
     public function update(Request $request, $meal_id)
@@ -46,24 +47,24 @@ class EditController extends Controller
             'update_user_id' => FacadesAuth::user()->id
         ]);
 
-        MealDetail::where('meal_id',$meal_id)->update([
-            'meal_id' => $meal_id,
-            'food' => $request['food'],
-            'ingredient' => $request['ingredient'],
-            'amount' => $request['amount'],
-            'order_num' => 1,
-            'update_user_id' => FacadesAuth::user()->id
-        ]);
+        // MealDetail::where('meal_id', $meal_id)->update([
+        //     'meal_id' => $meal_id,
+        //     'food' => $request['food'],
+        //     'ingredient' => $request['ingredient'],
+        //     'amount' => $request['amount'],
+        //     'order_num' => 1,
+        //     'update_user_id' => FacadesAuth::user()->id
+        // ]);
 
         if ($request->has('files')) {
 
-            foreach($request->file('files') as $file){
+            foreach ($request->file('files') as $file) {
 
                 do {
                     $fileName = uniqid(rand());
-                } while(Storage::exists("images/$fileName"));
-                $file['photo']->storeAS('images', $fileName); 
-                
+                } while (Storage::exists("images/$fileName"));
+                $file['photo']->storeAS('images', $fileName);
+
                 MealPhoto::create([
                     'meal_id' => $meal_id,
                     'photo_path' => $fileName,
@@ -76,7 +77,8 @@ class EditController extends Controller
         return redirect()->route('index');
     }
 
-    public function delete(Request $request, $meal_id) {
+    public function delete(Request $request, $meal_id)
+    {
 
         $meal = MealRecord::find($meal_id);
         $meal->mealPhotos()->delete();
@@ -84,16 +86,15 @@ class EditController extends Controller
         $meal->delete();
 
         return redirect()->route('index');
-
     }
 
-    public function photoDelete(Request $request,  $meal_id, $photo_num) {
+    public function photoDelete(Request $request,  $meal_id, $photo_num)
+    {
 
         $meal = MealRecord::find($meal_id);
         $meal_photo = $meal->mealPhotos()->find($photo_num);
         $meal_photo->delete();
 
         return redirect()->route('edit', ['meal_id' => $meal_id]);
-
     }
 }

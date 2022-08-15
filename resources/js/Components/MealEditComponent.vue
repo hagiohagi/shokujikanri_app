@@ -1,16 +1,11 @@
 <template>
   <div>
-    <div
-      class="d-flex"
-      v-for="(mealDetail, index) in mealDetails"
-      :mealDetail="mealDetail"
-      :key="index"
-    >
+    <div class="d-flex" v-for="(mealDetail, index) in mealDetails" :key="index">
       <div class="form-group" style="width: 150px">
         <input
           class="form-control"
           type="text"
-          v-model="mealDetail.foods"
+          v-model="mealDetails[index][food]"
           :name="'mealDetails&#91;' + index + '&#93;&#91;food&#93;'"
         />
       </div>
@@ -18,7 +13,7 @@
         <input
           class="form-control"
           type="text"
-          v-model="mealDetail.ingredients"
+          v-model="mealDetails[index][ingredient]"
           :name="'mealDetails&#91;' + index + '&#93;&#91;ingredient&#93;'"
         />
       </div>
@@ -26,7 +21,7 @@
         <input
           class="form-control"
           type="text"
-          v-model="mealDetail.amounts"
+          v-model="mealDetails[index][amount]"
           :name="'mealDetails&#91;' + index + '&#93;&#91;amount&#93;'"
         />
       </div>
@@ -45,29 +40,31 @@
   </div>
 </template>
 <script>
-import { onMounted } from "vue";
+import { ref, onMounted } from "vue";
+
 export default {
-  setup() {
+  props: {
+    mealDetails: {
+      type: Array,
+    },
+  },
+  setup(__props) {
     console.log("start vue");
 
     onMounted(() => {
       console.log("start mounted !");
     });
-  },
-  data() {
-    return {
-      mealDetails: [
-        {
-          foods: [""],
-          ingredients: [""],
-          amounts: [""],
-        },
-      ],
-    };
-  },
-  methods: {
-    addForm() {
-      this.mealDetails.push([
+
+    const mealDetails = ref([
+      {
+        foods: [""],
+        ingredients: [""],
+        amounts: [""],
+      },
+    ]);
+
+    const addForm = () => {
+      mealDetails.value.push([
         {
           foods: [""],
           ingredients: [""],
@@ -75,11 +72,12 @@ export default {
         },
       ]);
       console.log(mealDetails);
-    },
-    deleteForm(index) {
-      this.mealDetails.splice(index, 1);
+    };
+    const deleteForm = (index) => {
+      mealDetails.value.splice(index, 1);
       console.log(mealDetails);
-    },
+    };
+    return { mealDetails, deleteForm, addForm };
   },
 };
 </script>
