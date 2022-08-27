@@ -6,6 +6,7 @@ import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import MealDetailComponent from './components/MealDetailComponent.vue';
 import MealEditComponent from './components/MealEditComponent.vue';
+import MealEditComponentCopy from './components/MealEditComponentCopy.vue';
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
@@ -24,8 +25,9 @@ createInertiaApp({
 InertiaProgress.init({ color: '#4B5563' });
 
 let app = createApp({});
-app.component('meal-edit-component' , MealEditComponent);
+// app.component('meal-edit-component' , MealEditComponent);
 createApp(MealDetailComponent).mount('#meal-detail');
-// createApp(MealEditComponent).mount('#meal-edit');
+createApp(MealEditComponent).mount('#meal-edit');
+// createApp(MealEditComponentCopy).mount('#meal-edit');
 
 app.mount('#app');

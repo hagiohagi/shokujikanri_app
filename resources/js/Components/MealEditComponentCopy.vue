@@ -30,13 +30,13 @@
           :name="'mealDetails&#91;' + index + '&#93;&#91;amount&#93;'"
         />
       </div>
-      <div class="batsu" style="width: 30px" @click.prevent="deleteForm(index)">
+      <div class="batsu" style="width: 25px" @click.prevent="deleteForm(index)">
         ×
       </div>
     </div>
 
     <button
-      class="btn btn-secondary"
+      class="btn btn-secondary mt-2"
       style="width: 450px"
       @click.prevent="addForm()"
     >
@@ -87,5 +87,6 @@ export default {
 .batsu {
   font-size: 200%;
   font-weight: bold;
+  height: 30px;
 }
 </style>

@@ -1,6 +1,7 @@
 @extends('layouts.researchers')
 
 @section('content')
+
 <div class="container">
 @csrf
   <div class="row mt-3">

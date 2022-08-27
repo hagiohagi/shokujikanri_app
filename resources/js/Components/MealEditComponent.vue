@@ -5,7 +5,7 @@
         <input
           class="form-control"
           type="text"
-          v-model="mealDetails[index][food]"
+          v-model="mealDetail.foods"
           :name="'mealDetails&#91;' + index + '&#93;&#91;food&#93;'"
         />
       </div>
@@ -13,7 +13,7 @@
         <input
           class="form-control"
           type="text"
-          v-model="mealDetails[index][ingredient]"
+          v-model="mealDetail.ingredients"
           :name="'mealDetails&#91;' + index + '&#93;&#91;ingredient&#93;'"
         />
       </div>
@@ -21,11 +21,11 @@
         <input
           class="form-control"
           type="text"
-          v-model="mealDetails[index][amount]"
+          v-model="mealDetail.amounts"
           :name="'mealDetails&#91;' + index + '&#93;&#91;amount&#93;'"
         />
       </div>
-      <div class="batsu" style="width: 30px" @click.prevent="deleteForm(index)">
+      <div class="batsu" style="width: 25px" @click.prevent="deleteForm(index)">
         ×
       </div>
     </div>
@@ -40,50 +40,46 @@
   </div>
 </template>
 <script>
-import { ref, onMounted } from "vue";
-
+import { reactive } from "vue";
+import { onMounted } from "vue";
 export default {
   props: {
     mealDetails: {
       type: Array,
     },
   },
-  setup(__props) {
+  setup(props) {
     console.log("start vue");
+    console.log(props);
 
     onMounted(() => {
       console.log("start mounted !");
+      console.log(props);
     });
-
-    const mealDetails = ref([
-      {
-        foods: [""],
-        ingredients: [""],
-        amounts: [""],
-      },
-    ]);
-
+    
     const addForm = () => {
-      mealDetails.value.push([
+      this.mealDetails.push([
         {
           foods: [""],
           ingredients: [""],
           amounts: [""],
-        },
+        }
       ]);
       console.log(mealDetails);
     };
     const deleteForm = (index) => {
-      mealDetails.value.splice(index, 1);
+      this.mealDetails.splice(index, 1);
       console.log(mealDetails);
     };
     return { mealDetails, deleteForm, addForm };
   },
+
 };
 </script>
 <style>
 .batsu {
-  font-size: 200%;
+ font-size: 200%;
   font-weight: bold;
+  height: 30px;
 }
 </style>

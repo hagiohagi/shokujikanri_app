@@ -17,9 +17,9 @@ class MealDetailTable extends Migration
             $table->unsignedInteger('meal_id')->comment('食事記録ID');
             $table->foreign('meal_id')->references('meal_id')->on('meal_record')->OnDelete('cascade');
             $table->increments('meal_sub_id')->comment('食事詳細ID');
-            $table->string('food')->comment('食事');
-            $table->string('ingredient')->comment('材料');
-            $table->string('amount')->comment('量');
+            $table->string('food')->nullable()->comment('食事');
+            $table->string('ingredient')->nullable()->comment('材料');
+            $table->string('amount')->nullable()->comment('量');
             $table->string('order_num')->comment('表示順');
             $table->timestamp('created_at')->comment('登録日時');
             $table->unsignedInteger('create_user_id')->comment('登録ユーザーID');
