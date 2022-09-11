@@ -14,7 +14,7 @@ class EditController extends Controller
     public function index(Request $request, $meal_id)
     {
         $meal_record = MealRecord::with(['mealPhotos', 'mealDetails'])->find($meal_id);
-        $meal_details = $meal_record->mealDetails;
+        $meal_details = $meal_record->mealDetails->toArray();
         return view('/edit', ['meal_record' => $meal_record, 'meal_details' => $meal_details]);
     }
 

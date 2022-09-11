@@ -24644,6 +24644,11 @@ __webpack_require__.r(__webpack_exports__);
 
     console.log("start vue");
     console.log(props);
+    var mealDetails = [{
+      food: [""],
+      ingredient: [""],
+      amount: [""]
+    }];
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       console.log("start mounted !");
       console.log(props);
@@ -24651,9 +24656,9 @@ __webpack_require__.r(__webpack_exports__);
 
     var addForm = function addForm() {
       _this.mealDetails.push([{
-        foods: [""],
-        ingredients: [""],
-        amounts: [""]
+        food: [""],
+        ingredient: [""],
+        amount: [""]
       }]);
 
       console.log(mealDetails);
@@ -26335,7 +26340,7 @@ var _hoisted_8 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.mealDetails, function (mealDetail, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      "class": "d-flex",
+      "class": "d-flex mt-2",
       mealDetail: mealDetail,
       key: index
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -26412,55 +26417,49 @@ var _hoisted_1 = {
     "width": "150px"
   }
 };
-var _hoisted_2 = ["onUpdate:modelValue", "name"];
+var _hoisted_2 = ["value", "name"];
 var _hoisted_3 = {
   "class": "form-group",
   style: {
     "width": "150px"
   }
 };
-var _hoisted_4 = ["onUpdate:modelValue", "name"];
+var _hoisted_4 = ["value", "name"];
 var _hoisted_5 = {
   "class": "form-group",
   style: {
     "width": "150px"
   }
 };
-var _hoisted_6 = ["onUpdate:modelValue", "name"];
+var _hoisted_6 = ["value", "name"];
 var _hoisted_7 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.mealDetails, function (mealDetail, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "d-flex",
       key: index
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       "class": "form-control",
       type: "text",
-      "onUpdate:modelValue": function onUpdateModelValue($event) {
-        return mealDetail.foods = $event;
-      },
+      value: mealDetail.food,
       name: 'mealDetails[' + index + '][food]'
     }, null, 8
     /* PROPS */
-    , _hoisted_2), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, mealDetail.foods]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    , _hoisted_2)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       "class": "form-control",
       type: "text",
-      "onUpdate:modelValue": function onUpdateModelValue($event) {
-        return mealDetail.ingredients = $event;
-      },
+      value: mealDetail.ingredient,
       name: 'mealDetails[' + index + '][ingredient]'
     }, null, 8
     /* PROPS */
-    , _hoisted_4), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, mealDetail.ingredients]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    , _hoisted_4)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       "class": "form-control",
       type: "text",
-      "onUpdate:modelValue": function onUpdateModelValue($event) {
-        return mealDetail.amounts = $event;
-      },
+      value: mealDetail.amount,
       name: 'mealDetails[' + index + '][amount]'
     }, null, 8
     /* PROPS */
-    , _hoisted_6), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, mealDetail.amounts]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    , _hoisted_6)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
       "class": "batsu",
       style: {
         "width": "25px"
@@ -26635,7 +26634,8 @@ var appName = ((_window$document$getE = window.document.getElementsByTagName('ti
 _inertiajs_progress__WEBPACK_IMPORTED_MODULE_2__.InertiaProgress.init({
   color: '#4B5563'
 });
-var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({});
+var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({}); // app.component('meal-edit-component' , MealEditComponent);
+
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_components_MealDetailComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]).mount('#meal-detail');
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_components_MealEditComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]).mount('#meal-edit'); // createApp(MealEditComponentCopy).mount('#meal-edit');
 

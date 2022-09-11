@@ -95,8 +95,11 @@
       </div>
 
       <!-- <meal-edit-component :meal-details='@json($meal_details)'></meal-edit-component> -->
+      <!-- @php
+        var_dump($meal_details)
+      @endphp -->
 
-      <div id="meal-edit" v-bind:meal-details="{{ Json::from($meal_details) }}">
+      <div id="meal-edit" v-bind:meal-details="{{ Js::from($meal_details) }}">
       </div>
 
       <!-- @foreach($meal_record->mealDetails as $meal_detail)

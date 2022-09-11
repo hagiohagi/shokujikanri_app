@@ -5,7 +5,7 @@
         <input
           class="form-control"
           type="text"
-          v-model="mealDetail.foods"
+          :value="mealDetail.food"
           :name="'mealDetails&#91;' + index + '&#93;&#91;food&#93;'"
         />
       </div>
@@ -13,7 +13,7 @@
         <input
           class="form-control"
           type="text"
-          v-model="mealDetail.ingredients"
+          :value="mealDetail.ingredient"
           :name="'mealDetails&#91;' + index + '&#93;&#91;ingredient&#93;'"
         />
       </div>
@@ -21,7 +21,7 @@
         <input
           class="form-control"
           type="text"
-          v-model="mealDetail.amounts"
+          :value="mealDetail.amount"
           :name="'mealDetails&#91;' + index + '&#93;&#91;amount&#93;'"
         />
       </div>
@@ -52,6 +52,14 @@ export default {
     console.log("start vue");
     console.log(props);
 
+    let mealDetails = [
+        {
+          food: [""],
+          ingredient: [""],
+          amount: [""],
+        },
+      ]
+
     onMounted(() => {
       console.log("start mounted !");
       console.log(props);
@@ -60,13 +68,14 @@ export default {
     const addForm = () => {
       this.mealDetails.push([
         {
-          foods: [""],
-          ingredients: [""],
-          amounts: [""],
+          food: [""],
+          ingredient: [""],
+          amount: [""],
         }
       ]);
       console.log(mealDetails);
     };
+
     const deleteForm = (index) => {
       this.mealDetails.splice(index, 1);
       console.log(mealDetails);
