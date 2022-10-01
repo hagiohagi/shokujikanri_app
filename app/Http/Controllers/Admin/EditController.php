@@ -31,10 +31,6 @@ class EditController extends Controller
             'eat_time' => ['required'],
             'memo' => ['max:500'],
 
-            'food' => ['required'],
-            'ingredient' => ['required'],
-            'amount' => ['required'],
-
             'files.*.photo' => ['file|image|mimes:jpg,jpeg,bmp,png'],
         ];
 
@@ -49,15 +45,24 @@ class EditController extends Controller
             'update_user_id' => FacadesAuth::user()->id
         ]);
 
-        MealDetail::where('meal_id',$meal_id)->update([
-            'meal_id' => $meal_id,
-            'food' => $request['food'],
-            'ingredient' => $request['ingredient'],
-            'amount' => $request['amount'],
-            'order_num' => 1,
-            'update_user_id' => FacadesAuth::user()->id
-        ]);
-
+        // 食事詳細記録の既存の値更新
+        //更新時は一旦消す
+        MealDetail::where('meal_id', $meal_id)->delete();
+        
+        if ($request->meal_details) {
+            foreach ($request->meal_details as $meal_detail) {
+                if (!is_null($meal_detail['food']) || !is_null($meal_detail['ingredient']) || !is_null($meal_detail['amount'])) {
+                    MealDetail::create([
+                        'meal_id' => $meal_id,
+                        'food' => $meal_detail['food'],
+                        'ingredient' => $meal_detail['ingredient'],
+                        'amount' => $meal_detail['amount'],
+                        'order_num' => 1,
+                        'create_user_id' => FacadesAuth::user()->id,
+                    ]);
+                }
+            }
+        }
         if ($request->has('files')) {
 
             foreach($request->file('files') as $file){
