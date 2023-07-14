@@ -24,7 +24,10 @@
 ## テーブル構成
 ![image](https://github.com/hagiohagi/shokujikanri_app/assets/68381420/13097eb1-2bd8-447e-a93e-e5b0b7df457f)
 ## 使用した技術
-PHP 8.0
+PHP 8.0  
 Laravel 7.29  
 Vue 2.5  
 Bootstrap 4.0  
+MySQL
+
+画面表示・画面遷移など基本的な部分はLaravelのBladeを使用し、入力フォームでの項目追加など、部分的な箇所でVueライブラリを用いている。
