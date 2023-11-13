@@ -28,7 +28,12 @@ class UploadController extends Controller
             'eat_date' => ['required'],
             'eat_time' => ['required'],
             'memo' => ['max:500'],
-            'files.*.photo' => ['required', 'image|mimes:jpg,jpeg,bmp,png'],
+
+            'mealDetails.*.food' => ['required'],
+            'mealDetails.*.ingredient' => ['required'],
+            'mealDetails.*.amount' => ['required'],
+
+            'files.*.photo' => ['required', 'image', 'mimes:jpg,jpeg,bmp,png'],
         ];
 
         $this->validate($request, $rules);
@@ -46,25 +51,26 @@ class UploadController extends Controller
         $meal_id = $meal->meal_id;
 
         foreach ($request->mealDetails as $meal_detail) {
-            if (!is_null($meal_detail['food']) || !is_null($meal_detail['ingredient']) || !is_null($meal_detail['amount'])) {
-                MealDetail::create([
-                    'meal_id' => $meal_id,
-                    'food' => $meal_detail['food'],
-                    'ingredient' => $meal_detail['ingredient'],
-                    'amount' => $meal_detail['amount'],
-                    'order_num' => 1,
-                    'create_user_id' => Auth::user()->id,
-                ]);
-            }
+            MealDetail::create([
+                'meal_id' => $meal_id,
+                'food' => $meal_detail['food'],
+                'ingredient' => $meal_detail['ingredient'],
+                'amount' => $meal_detail['amount'],
+                'order_num' => 1,
+                'create_user_id' => Auth::user()->id,
+            ]);
         }
 
 
         if ($request->has('files')) {
-            foreach ($request->file('files') as $file) {
-
-                $file_name = $file['photo']->getClientOriginalName();
+            foreach($request->file('files') as $file){
+                
+                // 拡張子を取得
+                $extension = $file['photo']->getClientOriginalExtension();
+                // 一意なファイル名を生成 (例: 20230101-123456.jpg)
+                $file_name = date('Ymd-His') . '-' . uniqid() . '.' . $extension;
                 $file['photo']->storeAS('images', $file_name); //画像をストレージに保存
-
+                
                 MealPhoto::create([
                     'meal_id' => $meal_id,
                     'photo_path' => $file_name,

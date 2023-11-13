@@ -31,7 +31,11 @@ class EditController extends Controller
             'eat_time' => ['required'],
             'memo' => ['max:500'],
 
-            'files.*.photo' => ['file|image|mimes:jpg,jpeg,bmp,png'],
+            'food' => ['required'],
+            'ingredient' => ['required'],
+            'amount' => ['required'],
+
+            'files.*.photo' => ['image','mimes:jpg,jpeg,bmp,png'],
         ];
 
         $this->validate($request, $rules);
@@ -45,32 +49,25 @@ class EditController extends Controller
             'update_user_id' => FacadesAuth::user()->id
         ]);
 
-        // 食事詳細記録の既存の値更新
-        //更新時は一旦消す
-        MealDetail::where('meal_id', $meal_id)->delete();
-        
-        if ($request->meal_details) {
-            foreach ($request->meal_details as $meal_detail) {
-                if (!is_null($meal_detail['food']) || !is_null($meal_detail['ingredient']) || !is_null($meal_detail['amount'])) {
-                    MealDetail::create([
-                        'meal_id' => $meal_id,
-                        'food' => $meal_detail['food'],
-                        'ingredient' => $meal_detail['ingredient'],
-                        'amount' => $meal_detail['amount'],
-                        'order_num' => 1,
-                        'create_user_id' => FacadesAuth::user()->id,
-                    ]);
-                }
-            }
-        }
+        MealDetail::where('meal_id',$meal_id)->update([
+            'meal_id' => $meal_id,
+            'food' => $request['food'],
+            'ingredient' => $request['ingredient'],
+            'amount' => $request['amount'],
+            'order_num' => 1,
+            'update_user_id' => FacadesAuth::user()->id
+        ]);
+
         if ($request->has('files')) {
 
             foreach($request->file('files') as $file){
-
                 do {
-                    $fileName = uniqid(rand());
-                } while(Storage::exists("images/$fileName"));
-                $file['photo']->storeAS('images', $fileName); 
+                    // 拡張子を取得
+                    $extension = $file['photo']->getClientOriginalExtension();
+                    // 一意なファイル名を生成 (例: 20230101-123456.jpg)
+                    $fileName = date('Ymd-His') . '-' . uniqid() . '.' . $extension;
+                } while (Storage::exists("images/$fileName"));
+                $file['photo']->storeAS('images', $fileName);
                 
                 MealPhoto::create([
                     'meal_id' => $meal_id,
@@ -87,6 +84,13 @@ class EditController extends Controller
     public function delete(Request $request, $id, $meal_id) {
 
         $meal = MealRecord::find($meal_id);
+        // 関連する写真データを取得して、それらのファイルを削除
+        foreach ($meal->mealPhotos as $mealPhoto) {
+            $path = 'images/' . $mealPhoto->photo_path;
+            if (Storage::exists($path)) {
+                Storage::delete($path);
+            }
+        }
         $meal->mealPhotos()->delete();
         $meal->mealDetails()->delete();
         $meal->delete();
@@ -98,6 +102,10 @@ class EditController extends Controller
 
         $meal = MealRecord::find($meal_id);
         $meal_photo = $meal->mealPhotos()->find($photo_num);
+        $path = 'images/' . $meal_photo->photo_path;
+        if (Storage::exists($path)) {
+            Storage::delete($path);
+        }
         $meal_photo->delete();
 
         return redirect()->route('admin.edit', ['id' => $id, 'meal_id' => $meal_id]);

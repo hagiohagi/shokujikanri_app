@@ -28,8 +28,7 @@ class EditController extends Controller
             'eat_date' => ['required'],
             'eat_time' => ['required'],
             'memo' => ['max:500'],
-
-            'files.*.photo' => ['file|image|mimes:jpg,jpeg,bmp,png'],
+            'files.*.photo' => ['image','mimes:jpg,jpeg,bmp,png'],
         ];
 
         $this->validate($request, $rules);
@@ -43,29 +42,45 @@ class EditController extends Controller
             'update_user_id' => FacadesAuth::user()->id
         ]);
 
-        // 食事詳細記録の既存の値更新
         //更新時は一旦消す
-        MealDetail::where('meal_id', $meal_id)->delete();
-        
+        MealDetail::where('meal_id',$meal_id)->delete();
+
+        // laravelによる既存の値更新
         if ($request->meal_details) {
             foreach ($request->meal_details as $meal_detail) {
-                if (!is_null($meal_detail['food']) || !is_null($meal_detail['ingredient']) || !is_null($meal_detail['amount'])) {
                     MealDetail::create([
-                        'meal_id' => $meal_id,
-                        'food' => $meal_detail['food'],
-                        'ingredient' => $meal_detail['ingredient'],
-                        'amount' => $meal_detail['amount'],
-                        'order_num' => 1,
-                        'create_user_id' => FacadesAuth::user()->id,
-                    ]);
-                }
+                    'meal_id' => $meal_id,
+                    'food' => $meal_detail['food'],
+                    'ingredient' => $meal_detail['ingredient'],
+                    'amount' => $meal_detail['amount'],
+                    'order_num' => 1,
+                    'create_user_id' => FacadesAuth::user()->id,
+                ]);
+            }
+        }
+
+        // vue側による新規の値登録
+        if ($request->mealDetails) {
+            foreach ($request->mealDetails as $new_detail) {
+                MealDetail::create([
+                    'meal_id' => $meal_id,
+                    'food' => $new_detail['food'],
+                    'ingredient' => $new_detail['ingredient'],
+                    'amount' => $new_detail['amount'],
+                    'order_num' => 1,
+                    'update_user_id' => FacadesAuth::user()->id
+                ]);
             }
         }
 
         if ($request->has('files')) {
+
             foreach ($request->file('files') as $file) {
                 do {
-                    $fileName = uniqid(rand());
+                    // 拡張子を取得
+                    $extension = $file['photo']->getClientOriginalExtension();
+                    // 一意なファイル名を生成 (例: 20230101-123456.jpg)
+                    $fileName = date('Ymd-His') . '-' . uniqid() . '.' . $extension;
                 } while (Storage::exists("images/$fileName"));
                 $file['photo']->storeAS('images', $fileName);
 
@@ -81,10 +96,16 @@ class EditController extends Controller
         return redirect()->route('index');
     }
 
-    public function delete(Request $request, $meal_id)
-    {
+    public function delete(Request $request, $meal_id){
 
         $meal = MealRecord::find($meal_id);
+        // 関連する写真データを取得して、それらのファイルを削除
+        foreach ($meal->mealPhotos as $mealPhoto) {
+            $path = 'images/' . $mealPhoto->photo_path;
+            if (Storage::exists($path)) {
+                Storage::delete($path);
+            }
+        }
         $meal->mealPhotos()->delete();
         $meal->mealDetails()->delete();
         $meal->delete();
@@ -92,11 +113,14 @@ class EditController extends Controller
         return redirect()->route('index');
     }
 
-    public function photoDelete(Request $request,  $meal_id, $photo_num)
-    {
+    public function photoDelete(Request $request,  $meal_id, $photo_num){
 
         $meal = MealRecord::find($meal_id);
         $meal_photo = $meal->mealPhotos()->find($photo_num);
+        $path = 'images/' . $meal_photo->photo_path;
+        if (Storage::exists($path)) {
+            Storage::delete($path);
+        }
         $meal_photo->delete();
 
         return redirect()->route('edit', ['meal_id' => $meal_id]);
